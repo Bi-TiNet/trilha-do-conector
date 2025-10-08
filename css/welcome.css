@@ -131,3 +131,100 @@
     .modal-header-tech, .ceo-message { font-size: 0.9rem; }
     .ceo-message { min-height: 250px; }
 }
+
+/* ... (todo o seu CSS existente) ... */
+
+#role-selection {
+    margin-top: 2rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.5s; /* Adiciona um pequeno delay */
+}
+
+#role-selection.visible {
+    opacity: 1;
+}
+
+.role-selection-label {
+    color: var(--cor-aviso);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.role-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.role-btn {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 30px;
+    border: 2px solid var(--cor-glow);
+    background-color: transparent;
+    color: var(--cor-glow);
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    min-width: 250px;
+}
+
+.role-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.role-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--cor-glow), transparent);
+    transition: left 0.4s ease;
+}
+
+.role-btn:hover {
+    color: var(--cor-primaria);
+    box-shadow: 0 0 25px var(--cor-glow);
+}
+
+.role-btn:hover::before {
+    left: 100%;
+}
+
+/* Estilo adicional para o botão de técnico */
+.role-btn.technician {
+    --cor-glow: rgba(40, 167, 69, 0.8); /* Um brilho verde, por exemplo */
+    border-color: var(--cor-glow);
+    color: var(--cor-glow);
+}
+
+.role-btn.technician:hover {
+    color: var(--cor-primaria);
+    box-shadow: 0 0 25px var(--cor-glow);
+}
+
+/* ... (todo o seu CSS existente) ... */
+
+/* Estilo para o botão de Técnico Autônomo */
+.role-btn.autonomo {
+    --cor-glow: rgba(255, 107, 8, 0.8); /* Um brilho laranja */
+    border-color: var(--cor-glow);
+    color: var(--cor-glow);
+}
+
+.role-btn.autonomo:hover {
+    color: var(--cor-primaria);
+    box-shadow: 0 0 25px var(--cor-glow);
+}

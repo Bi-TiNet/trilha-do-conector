@@ -26,9 +26,20 @@
                 <p class="ceo-message-label">&gt;&gt; BROADCAST CEO: DIEGO FRANÇA</p>
                 <p class="ceo-message"><span id="line4"></span></p>
             </div>
-            <a href="modulo1.html" id="start-journey-btn" class="hidden">
-                <span>INICIAR JORNADA</span>
-            </a>
+            <div id="role-selection" class="hidden">
+                <p class="role-selection-label">&gt;&gt; SELECIONE SUA FUNÇÃO PARA INICIAR:</p>
+                <div class="role-buttons">
+                    <a href="modulo1.html?role=auxiliar" class="role-btn">
+                        <span>AUXILIAR CABISTA</span>
+                    </a>
+                    <a href="modulo1-tecnico.html?role=tecnico" class="role-btn technician">
+                        <span>TÉCNICO CABISTA</span>
+                    </a>
+                    <a href="modulo1-autonomo.html?role=autonomo" class="role-btn autonomo">
+                        <span>TÉCNICO CABISTA (SFC)</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -179,11 +190,11 @@
                 typeWriter(line2, line2Text, typingSpeed, () => {
                     typeWriter(line3, line3Text, typingSpeed, () => {
                         typeWriter(line4, line4Text, 25, () => {
-                           // Remove todos os cursores
                            document.querySelectorAll('.cursor').forEach(c => c.style.display = 'none');
-                           // Mostra o botão
-                           startBtn.classList.remove('hidden');
-                           startBtn.classList.add('visible');
+                           // Mostra a SELEÇÃO DE FUNÇÃO
+                           const roleSelection = document.getElementById('role-selection');
+                           roleSelection.classList.remove('hidden');
+                           roleSelection.classList.add('visible');
                         });
                     });
                 });

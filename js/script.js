@@ -3,38 +3,73 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Sistema 'Trilha do Conector' iniciado!");
 
     // ==========================================================
-    // --- ANIMAÇÃO DE ENTRADA DAS SEÇÕES ---
+    // --- LÓGICAS GLOBAIS E DE NAVEGAÇÃO ---
     // ==========================================================
-    const sections = document.querySelectorAll('section');
-    if (sections.length > 0) {
-        setTimeout(() => {
-            sections.forEach(section => {
-                section.classList.add('visible');
-            });
-        }, 100);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get('role');
+    const isAvaliacaoPage = window.location.pathname.includes('avaliacao.html');
+
+    // --- 1. DINAMIZA O MENU NA PÁGINA DE AVALIAÇÃO ---
+    if (isAvaliacaoPage && role === 'tecnico') {
+        const navLinks = {
+            'nav-mod1': { href: 'modulo1-tecnico.html', text: 'Módulo 1: Fundamentos Téc.' },
+            'nav-mod2': { href: 'modulo2-tecnico.html', text: 'Módulo 2: Segurança Avançada' },
+            'nav-mod3': { href: 'modulo3-tecnico.html', text: 'Módulo 3: Ferramentas de Precisão' },
+            'nav-mod4': { href: 'modulo4-tecnico.html', text: 'Módulo 4: Protocolos' },
+            'nav-mod5-6': { href: 'modulo5-6-tecnico.html', text: 'Módulo 5/6: Excelência e Carreira' }
+        };
+
+        for (const id in navLinks) {
+            const link = document.getElementById(id);
+            if (link) {
+                link.href = navLinks[id].href;
+                link.textContent = navLinks[id].text;
+            }
+        }
     }
 
-    // ==========================================================
-    // --- LÓGICA GERAL DOS MÓDULOS ---
-    // ==========================================================
-
-    // MÓDULO 1: Fundamentos
-    const botoesValor = document.querySelectorAll('.valor-btn');
-    const caixaDescricaoValor = document.getElementById('valor-descricao');
-    if (botoesValor.length > 0) {
-        botoesValor.forEach(botao => {
-            botao.addEventListener('click', function() {
-                caixaDescricaoValor.innerHTML = `<p>${this.dataset.description}</p>`;
-            });
+    // --- 2. PROPAGA O PARÂMETRO 'ROLE' PARA TODOS OS LINKS ---
+    if (role) {
+        document.querySelectorAll('a').forEach(link => {
+            try {
+                // Processa apenas links relativos que apontam para .html
+                if (link.href && new URL(link.href).pathname.endsWith('.html')) {
+                    const url = new URL(link.href);
+                    url.searchParams.set('role', role);
+                    link.href = url.toString();
+                }
+            } catch (e) {
+                // Ignora links inválidos ou que não sejam URLs completas
+            }
         });
     }
 
-    // MÓDULO 2: Simulador de EPI
+    // --- 3. ANIMAÇÃO DE ENTRADA DAS SEÇÕES ---
+    document.querySelectorAll('section').forEach(section => {
+        setTimeout(() => section.classList.add('visible'), 100);
+    });
+
+
+    // ==========================================================
+    // --- LÓGICAS INTERATIVAS DOS MÓDULOS ---
+    // ==========================================================
+
+    // MÓDULO 1: Fundamentos
+    document.querySelectorAll('.valor-btn').forEach(botao => {
+        botao.addEventListener('click', function() {
+            const caixaDescricaoValor = document.getElementById('valor-descricao');
+            if(caixaDescricaoValor) caixaDescricaoValor.innerHTML = `<p>${this.dataset.description}</p>`;
+        });
+    });
+
+    // MÓDULO 2: Simulador de EPI (Drag and Drop)
     const epiArrastaveis = document.querySelectorAll('.epi-arrastavel');
-    const hotspotsEPI = document.querySelectorAll('.hotspot-epi');
-    const feedbackEPI = document.getElementById('feedback-epi');
     if (epiArrastaveis.length > 0) {
+        const hotspotsEPI = document.querySelectorAll('.hotspot-epi');
+        const feedbackEPI = document.getElementById('feedback-epi');
         let corretos = 0;
+        
         epiArrastaveis.forEach(item => {
             item.addEventListener('dragstart', e => {
                 if (item.classList.contains('validado')) return e.preventDefault();
@@ -43,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             item.addEventListener('dragend', () => item.classList.remove('dragging'));
         });
+
         hotspotsEPI.forEach(hotspot => {
             hotspot.addEventListener('dragover', e => {
                 if (hotspot.classList.contains('validado')) return;
@@ -51,11 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             hotspot.addEventListener('dragleave', () => hotspot.classList.remove('drag-over'));
             hotspot.addEventListener('drop', e => {
-                if (hotspot.classList.contains('validado')) return;
+                if (hotspot.classList.contains('validado') || !feedbackEPI) return;
                 e.preventDefault();
                 hotspot.classList.remove('drag-over');
                 const draggedId = e.dataTransfer.getData('text/plain');
                 const draggedItem = document.getElementById(draggedId);
+                
                 if (hotspot.dataset.accepts === draggedId) {
                     hotspot.classList.add('validado');
                     hotspot.innerHTML = '✓';
@@ -77,10 +114,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // MÓDULO 2: Cenário de Risco
+    // MÓDULO 2: Cenário de Risco Interativo
     const hotspotsRisco = document.querySelectorAll('.hotspot');
-    const riscoItems = document.querySelectorAll('.risco-item');
-    if (hotspotsRisco.length > 0 && riscoItems.length > 0) {
+    if (hotspotsRisco.length > 0) {
+        const riscoItems = document.querySelectorAll('.risco-item');
         const activateElements = (targetId) => {
             riscoItems.forEach(item => item.classList.remove('active'));
             hotspotsRisco.forEach(spot => spot.classList.remove('active'));
@@ -103,13 +140,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // MÓDULO 3: Modal de Ferramentas
-    const ferramentaItems = document.querySelectorAll('.ferramenta-item');
     const modalFerramenta = document.getElementById('modal-ferramenta');
-    if (ferramentaItems.length > 0 && modalFerramenta) {
+    if (modalFerramenta) {
+        const ferramentaItems = document.querySelectorAll('.ferramenta-item');
         const modalCloseBtn = document.getElementById('modal-close');
         const modalImg = document.getElementById('modal-img');
         const modalNome = document.getElementById('modal-nome');
         const modalFuncao = document.getElementById('modal-funcao');
+        
         ferramentaItems.forEach(item => {
             item.addEventListener('click', () => {
                 modalNome.textContent = item.dataset.nome;
@@ -118,12 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 modalFerramenta.classList.add('visible');
             });
         });
+        
         const closeModal = () => modalFerramenta.classList.remove('visible');
         modalCloseBtn.addEventListener('click', closeModal);
         modalFerramenta.addEventListener('click', (e) => { if (e.target === modalFerramenta) closeModal(); });
     }
 
-    // MÓDULO 3: Carrossel de Limpeza (AUTOPLAY)
+    // MÓDULO 3: Carrossel de Limpeza
     const carouselContainer = document.querySelector('.fiber-cleaning-carousel');
     if (carouselContainer) {
         const carouselImages = carouselContainer.querySelectorAll('.carousel-img');
@@ -133,16 +172,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 carouselImages.forEach(img => img.classList.remove('active'));
                 carouselImages[index].classList.add('active');
             };
-            const nextImage = () => {
+            setInterval(() => {
                 currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
                 showImage(currentImageIndex);
-            };
-            setInterval(nextImage, 3000); 
-            showImage(currentImageIndex); 
+            }, 3000);
         }
     }
 
-    // FUNÇÃO GENÉRICA PARA STEPPERS
+    // LÓGICA GENÉRICA PARA STEPPERS (Módulos 4 e 5)
     function initializeStepper(containerId, stepClass, prevBtnId, nextBtnId, counterId, progressBarId) {
         const stepperContainer = document.getElementById(containerId);
         if (!stepperContainer) return;
@@ -150,60 +187,57 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = document.getElementById(prevBtnId);
         const nextBtn = document.getElementById(nextBtnId);
         const steps = stepperContainer.querySelectorAll(`.${stepClass}`);
+        if (steps.length === 0 || !prevBtn || !nextBtn) return;
+
         const stepCounter = document.getElementById(counterId);
         const progressBarFill = progressBarId ? document.getElementById(progressBarId) : null;
         let currentStep = 0;
 
-        if (steps.length === 0 || !prevBtn || !nextBtn) return;
-
         function updateView() {
             steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
-            const totalSteps = steps.length;
             if (stepCounter) {
                 const text = stepCounter.id.includes('fusao') ? 'Passo' : 'Fase';
-                stepCounter.textContent = `${text} ${currentStep + 1} de ${totalSteps}`;
+                stepCounter.textContent = `${text} ${currentStep + 1} de ${steps.length}`;
             }
-            if (progressBarFill) progressBarFill.style.width = `${(currentStep / (totalSteps - 1)) * 100}%`;
+            if (progressBarFill) {
+                progressBarFill.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+            }
             prevBtn.disabled = currentStep === 0;
-            nextBtn.disabled = currentStep === totalSteps - 1;
+            nextBtn.disabled = currentStep === steps.length - 1;
         }
 
-        nextBtn.addEventListener('click', () => { if (currentStep < steps.length - 1) currentStep++; updateView(); });
-        prevBtn.addEventListener('click', () => { if (currentStep > 0) currentStep--; updateView(); });
+        nextBtn.addEventListener('click', () => { if (currentStep < steps.length - 1) { currentStep++; updateView(); } });
+        prevBtn.addEventListener('click', () => { if (currentStep > 0) { currentStep--; updateView(); } });
         updateView();
     }
     
     initializeStepper('stepper-content', 'step', 'prev-btn', 'next-btn', 'step-counter', 'progress-bar-fill');
     initializeStepper('stepper-content-fusao', 'step-fusao', 'prev-btn-fusao', 'next-btn-fusao', 'step-counter-fusao', null);
     
-    // --- LÓGICA CORRIGIDA PARA OS SIMULADOS ---
+    // LÓGICA PARA SIMULADOS DE MÚLTIPLA ESCOLHA
     function setupSimuladoMultiplaEscolha(selector) {
-        const botoes = document.querySelectorAll(selector);
-        botoes.forEach(function(botao) {
+        document.querySelectorAll(selector).forEach(botao => {
             botao.addEventListener('click', function() {
                 const isCorrect = this.dataset.correta === 'true';
                 const questionContainer = this.closest('.questao');
                 const feedbackElement = questionContainer.querySelector('.feedback');
                 const allButtonsInGroup = questionContainer.querySelectorAll(selector);
 
-                allButtonsInGroup.forEach(btn => btn.disabled = true); // Trava todos os botões
+                allButtonsInGroup.forEach(btn => btn.disabled = true);
 
+                this.style.borderColor = isCorrect ? '#155724' : '#721c24';
+                this.style.backgroundColor = isCorrect ? '#d4edda' : '#f8d7da';
+                
                 if (isCorrect) {
-                    this.style.backgroundColor = '#d4edda'; // Verde
-                    this.style.borderColor = '#155724';
                     feedbackElement.textContent = 'Resposta Correta!';
                     feedbackElement.className = 'feedback correto';
                 } else {
-                    this.style.backgroundColor = '#f8d7da'; // Vermelho
-                    this.style.borderColor = '#721c24';
                     feedbackElement.textContent = 'Resposta Incorreta.';
                     feedbackElement.className = 'feedback incorreto';
-                    
-                    // Encontra e destaca a resposta correta
                     const correctButton = questionContainer.querySelector(`${selector}[data-correta="true"]`);
                     if (correctButton) {
-                        correctButton.style.backgroundColor = '#d4edda';
                         correctButton.style.borderColor = '#155724';
+                        correctButton.style.backgroundColor = '#d4edda';
                     }
                 }
             });
@@ -212,17 +246,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setupSimuladoMultiplaEscolha('.opcao-m2, .opcao-m3, .opcao-m4, .opcao-m5-6');
     
-    // --- LÓGICA CORRIGIDA PARA SIMULAÇÃO DE ORDEM (MÓDULO 4) ---
+    // MÓDULO 4: SIMULAÇÃO DE ORDEM
     const ordemContainer = document.getElementById('ordem-container');
     if (ordemContainer) {
-        const ordemItems = ordemContainer.querySelectorAll('.ordem-item');
-        const ordemFeedback = document.getElementById('ordem-feedback');
         let proximaOrdemCorreta = 1;
-
-        ordemItems.forEach(item => {
+        ordemContainer.querySelectorAll('.ordem-item').forEach(item => {
             item.addEventListener('click', () => {
                 if (item.classList.contains('correto')) return;
-
+                const ordemFeedback = document.getElementById('ordem-feedback');
                 const ordemDoItem = parseInt(item.getAttribute('data-ordem'));
 
                 if (ordemDoItem === proximaOrdemCorreta) {
@@ -231,36 +262,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     proximaOrdemCorreta++;
                     ordemFeedback.textContent = 'Correto!';
                     ordemFeedback.className = 'feedback correto';
-                    
-                    if (proximaOrdemCorreta > ordemItems.length) {
+                    if (proximaOrdemCorreta > ordemContainer.children.length) {
                         ordemFeedback.textContent = 'Sequência completa e correta! Excelente!';
                     }
                 } else {
                     item.classList.add('incorreto');
                     ordemFeedback.className = 'feedback incorreto';
                     ordemFeedback.textContent = 'Ordem incorreta. Tente novamente.';
-                    
-                    setTimeout(() => {
-                        item.classList.remove('incorreto');
-                    }, 500);
+                    setTimeout(() => item.classList.remove('incorreto'), 500);
                 }
             });
         });
     }
 
     // MÓDULOS 5 e 6: Carreira
-    const etapaBtns = document.querySelectorAll('.etapa-btn');
-    const etapaDescricao = document.getElementById('etapa-descricao');
-    if (etapaBtns.length > 0) {
-        etapaBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                etapaDescricao.innerHTML = `<p>${btn.dataset.descricao}</p>`;
-            });
+    document.querySelectorAll('.etapa-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const etapaDescricao = document.getElementById('etapa-descricao');
+            if (etapaDescricao) etapaDescricao.innerHTML = `<p>${btn.dataset.descricao}</p>`;
         });
-    }
+    });
 
     // ==========================================================
-    // --- LÓGICA DA AVALIAÇÃO FINAL (COM MAIS QUESTÕES) ---
+    // --- LÓGICA DA AVALIAÇÃO FINAL ---
     // ==========================================================
     const avaliacaoInicio = document.getElementById('avaliacao-inicio');
     if (avaliacaoInicio) {
@@ -268,51 +292,49 @@ document.addEventListener('DOMContentLoaded', function() {
         const avaliacaoResultado = document.getElementById('avaliacao-resultado');
         const btnIniciar = document.getElementById('btn-iniciar-avaliacao');
         const inputNome = document.getElementById('nome-colaborador');
-
-        const bancoDeQuestoes = [
-            // Módulo 1: Fundamentos (4 questões)
-            { pergunta: "Qual é a missão da Ti.Net?", opcoes: ["Ser referência em serviço de telecomunicação.", "Vender produtos de automação residencial.", "Levar conectividade e conhecimento às pessoas.", "Atingir o maior número de cidades com fibra."], respostaCorreta: 2 },
-            { pergunta: "Qual componente da rede FTTH é conhecido como o 'cérebro' da rede, localizado na central?", opcoes: ["ONT (Optical Network Terminal)", "CTO (Caixa de Terminação Óptica)", "OLT (Optical Line Terminal)", "Drop Cable"], respostaCorreta: 2 },
-            { pergunta: "Qual dos valores da Ti.Net significa 'zelar pelo patrimônio da empresa e ter orgulho do resultado final'?", opcoes: ["Responsabilidade", "Senso de Dono", "Honestidade", "Trabalho em Equipe"], respostaCorreta: 1 },
-            { pergunta: "Qual é a principal função do Auxiliar Cabista durante uma instalação?", opcoes: ["Realizar a fusão da fibra óptica.", "Configurar o roteador do cliente.", "Garantir a segurança, preparar ferramentas e auxiliar o técnico.", "Fazer o primeiro contato com o cliente para vendas."], respostaCorreta: 2 },
-
-            // Módulo 2: Segurança (4 questões)
-            { pergunta: "Qual Norma Regulamentadora (NR) é específica para Trabalho em Altura?", opcoes: ["NR-10", "NR-06", "NR-35", "NR-12"], respostaCorreta: 2 },
-            { pergunta: "Por que é estritamente proibido olhar diretamente para a ponta de uma fibra óptica ativa?", opcoes: ["Porque a luz visível pode ofuscar a visão.", "Porque emite um som agudo prejudicial.", "Porque a luz do laser é invisível e pode causar danos permanentes aos olhos.", "Porque pode causar choque elétrico."], respostaCorreta: 2 },
-            { pergunta: "Qual EPI é essencial para proteger contra quedas durante o trabalho em postes?", opcoes: ["Óculos de Proteção", "Cinto de Segurança tipo Paraquedista", "Luvas de Proteção", "Capacete com Jugular"], respostaCorreta: 1 },
-            { pergunta: "Ao sinalizar uma área de trabalho na rua, qual equipamento é indispensável?", opcoes: ["Fita zebrada", "Escada", "Cones de sinalização", "Caixa de ferramentas"], respostaCorreta: 2 },
-
-            // Módulo 3: Ferramentas (4 questões)
-            { pergunta: "Qual ferramenta é usada para fazer um corte preciso de 90 graus na ponta da fibra óptica antes da conexão?", opcoes: ["Tesoura para Kevlar", "Decapador de Fibra (Stripper)", "Alicate de Bico", "Clivador de Precisão"], respostaCorreta: 3 },
-            { pergunta: "Para que serve a 'Tesoura para Kevlar'?", opcoes: ["Para cortar a capa preta do cabo Drop.", "Para cortar os fios amarelos de resistência dentro do cabo.", "Para decapar a fibra nua.", "Para cortar o cabo de rede."], respostaCorreta: 1 },
-            { pergunta: "Qual material é instalado dentro da casa do cliente para ser o ponto final do cabo Drop?", opcoes: ["ONT (Optical Network Terminal)", "CTO (Caixa de Terminação Óptica)", "OLT (Optical Line Terminal)", "Conector de Campo"], respostaCorreta: 1 },
-            { pergunta: "A limpeza da fibra nua, após a decapagem, deve ser feita com:", opcoes: ["Água e sabão", "Um pano seco", "Álcool Isopropílico", "Qualquer tipo de álcool"], respostaCorreta: 2 },
-
-            // Módulo 4: Passo a Passo (4 questões)
-            { pergunta: "No aplicativo InMap Service, qual é a PRIMEIRA ação a ser tomada ao iniciar o trajeto para a casa do cliente?", opcoes: ["Chamar Cliente", "Mostrar Localização", "Iniciar Deslocamento", "Reagendar"], respostaCorreta: 2 },
-            { pergunta: "Qual é a faixa de sinal óptico (em dBm) considerada IDEAL ao medir com um Power Meter na casa do cliente?", opcoes: ["Entre -5dBm e -14dBm", "Abaixo de -28dBm", "Acima de 0dBm", "Entre -15dBm e -25dBm"], respostaCorreta: 3 },
-            { pergunta: "Se a luz 'PON/Link' da ONT está apagada ou piscando, qual é o problema mais provável?", opcoes: ["Problema de senha no roteador.", "Problema de sinal óptico (cabo desconectado ou rompido).", "A ONT está com defeito de fábrica.", "Falta de energia na casa do cliente."], respostaCorreta: 1 },
-            { pergunta: "Durante a rotina de instalação, quem é responsável por informar ao Suporte (NOC) os dados da CTO e o serial da ONT?", opcoes: ["O cliente", "O Auxiliar Cabista", "O Técnico Cabista", "O sistema automaticamente"], respostaCorreta: 1 },
-
-            // Módulo 5/6: Avançado (4 questões)
-            { pergunta: "Qual é a principal causa de falhas na fusão óptica?", opcoes: ["Limpeza inadequada da fibra.", "Uma clivagem (corte) ruim, que não esteja a 90 graus.", "Usar o decapador incorreto.", "A temperatura do ambiente."], respostaCorreta: 1 },
-            { pergunta: "O que é uma 'reserva técnica' de cabo, deixada no poste e perto da casa do cliente?", opcoes: ["Um tipo de cabo mais resistente.", "Um cabo para ser usado em outra instalação.", "Uma sobra de cabo organizada para facilitar manutenções futuras.", "Um cabo que ficou com defeito."], respostaCorreta: 2 },
-            { pergunta: "Qual equipamento funciona como um 'radar' para a fibra, informando a distância exata de um rompimento?", opcoes: ["Power Meter", "OTDR (Optical Time Domain Reflectometer)", "Máquina de Fusão", "Multímetro"], respostaCorreta: 1 },
-            { pergunta: "Para ser promovido de Auxiliar para Técnico, qual é um dos principais passos na sua jornada de desenvolvimento?", opcoes: ["Apenas dominar a função atual perfeitamente.", "Comprar suas próprias ferramentas.", "Aprender a teoria sobre redes e praticar tarefas complexas com supervisão.", "Fazer amizade com os supervisores."], respostaCorreta: 2 }
-        ];
-
-        let questoesSelecionadas = [];
-        let pontuacao = 0;
-        let questaoAtualIndex = 0;
+        const bancoDeQuestoes = {
+            geral: [
+                { pergunta: "Qual valor da Ti.Net representa agir com transparência e integridade?", opcoes: ["Senso de Dono", "Honestidade", "Dedicação", "Trabalho em Equipe"], respostaCorreta: 1 },
+                { pergunta: "O que significa a sigla FTTH?", opcoes: ["Fiber To The House", "Fast To The Home", "Fiber To The Home", "Fibra Total Residencial"], respostaCorreta: 2 },
+                { pergunta: "Qual a primeira ação a ser realizada ao chegar em um local de trabalho externo?", opcoes: ["Subir no poste", "Ligar para o cliente", "Realizar a Análise Preliminar de Risco (APR)", "Organizar as ferramentas"], respostaCorreta: 2 },
+                { pergunta: "Qual produto é usado para a limpeza correta da fibra nua?", opcoes: ["Água", "Álcool 70%", "Álcool Isopropílico", "Pano seco"], respostaCorreta: 2 },
+                { pergunta: "A ferramenta com furos calibrados para remover as capas protetoras da fibra é o:", opcoes: ["Clivador", "Alicate", "Decapador (Stripper)", "Tesoura de Kevlar"], respostaCorreta: 2 },
+                { pergunta: "Por que é proibido olhar diretamente para uma fibra ativa?", opcoes: ["A luz é muito forte e ofusca.", "A luz do laser é invisível e pode causar danos permanentes.", "Pode causar choque elétrico.", "Pode queimar a pele."], respostaCorreta: 1 },
+                { pergunta: "O que é a 'reserva técnica' de cabo?", opcoes: ["Um cabo extra para o cliente.", "Uma sobra de cabo organizada para manutenções futuras.", "Um cabo de outra operadora.", "Um cabo com defeito que foi trocado."], respostaCorreta: 1 }
+            ],
+            auxiliar: [
+                { pergunta: "Qual é a principal função do Auxiliar Cabista durante uma instalação?", opcoes: ["Realizar a fusão da fibra.", "Configurar a ONT.", "Garantir a segurança, organizar ferramentas e auxiliar o técnico.", "Vender um plano melhor para o cliente."], respostaCorreta: 2 },
+                { pergunta: "Quem o auxiliar deve informar sobre os dados da CTO e serial da ONT?", opcoes: ["O cliente", "O Técnico Cabista", "Diretamente para o NOC", "Ninguém, é automático"], respostaCorreta: 1 },
+                { pergunta: "Na simulação de ordem de preparação do cabo, qual é o primeiro passo?", opcoes: ["Cortar o Kevlar", "Expor a fibra", "Remover a capa preta com o decapador", "Limpar a fibra"], respostaCorreta: 2 },
+                { pergunta: "Ao observar um risco no ambiente (ex: galho de árvore instável), o que o auxiliar deve fazer?", opcoes: ["Ignorar e continuar o trabalho.", "Tentar resolver sozinho.", "Comunicar imediatamente o técnico responsável.", "Anotar para resolver depois."], respostaCorreta: 2 },
+                { pergunta: "Qual a maneira correta de guiar o cabo Drop durante o lançamento?", opcoes: ["Deixá-lo arrastar no chão.", "Puxá-lo com força para ir mais rápido.", "Desenrolá-lo com cuidado para não 'quiná-lo' (dobrar).", "Passá-lo por cima de fios elétricos."], respostaCorreta: 2 }
+            ],
+            tecnico: [
+                { pergunta: "Ao medir o sinal na CTO e encontrar -32dBm, qual a conclusão mais provável?", opcoes: ["O problema está no cabo Drop do cliente.", "A ONT do cliente está com defeito.", "O problema está na rede principal, antes da CTO.", "O Power Meter está descalibrado."], respostaCorreta: 2 },
+                { pergunta: "De quem é a responsabilidade final de inspecionar os EPIs de toda a equipe antes de um trabalho em altura?", opcoes: ["Do Auxiliar", "Do Técnico de Segurança", "De cada um individualmente", "Do Técnico Cabista líder da equipe"], respostaCorreta: 3 },
+                { pergunta: "Qual é o último passo obrigatório para encerrar uma OS no aplicativo InMap Service?", opcoes: ["Ligar para o NOC", "Adicionar os materiais utilizados", "Tirar uma foto da instalação", "Coletar a assinatura do cliente e finalizar a OS"], respostaCorreta: 3 },
+                { pergunta: "Uma emenda por fusão é considerada de boa qualidade quando sua perda (atenuação) é, tipicamente:", opcoes: ["Menor que 0.5 dB", "Maior que 1.0 dB", "Menor que 0.05 dB", "Exatamente 0.0 dB"], respostaCorreta: 2 },
+                { pergunta: "Qual equipamento cria um 'mapa' gráfico da fibra, indicando a distância exata de rompimentos ou atenuações?", opcoes: ["Power Meter", "Máquina de Fusão", "OTDR", "VFL (Caneta de Luz)"], respostaCorreta: 2 },
+                { pergunta: "A luz 'PON' da ONT está piscando. O sinal na PTO é -21dBm. Qual o próximo passo?", opcoes: ["Trocar o cabo Drop, pois o sinal está ruim.", "Contatar o NOC para verificar o provisionamento da ONT.", "Trocar a ONT, pois ela está com defeito.", "Reiniciar o roteador do cliente."], respostaCorreta: 1 },
+                { pergunta: "Qual é a faixa de sinal (em dBm) considerada IDEAL em uma instalação?", opcoes: ["Entre -15dBm e -25dBm", "Abaixo de -28dBm", "Acima de -10dBm", "Entre -26dBm e -28dBm"], respostaCorreta: 0 }
+            ]
+        };
+        let questoesSelecionadas = [], pontuacao = 0, questaoAtualIndex = 0;
 
         btnIniciar.addEventListener('click', () => {
             if (inputNome.value.trim() === '') {
                 alert('Por favor, digite seu nome completo.');
                 return;
             }
-            // Lógica para embaralhar o banco de questões e selecionar as 10 primeiras
-            questoesSelecionadas = [...bancoDeQuestoes].sort(() => 0.5 - Math.random()).slice(0, 10);
-            
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role') || 'auxiliar';
+            let questoesDisponiveis = [...bancoDeQuestoes.geral];
+            if (role === 'tecnico' && bancoDeQuestoes.tecnico) {
+                questoesDisponiveis.push(...bancoDeQuestoes.tecnico);
+            } else if (bancoDeQuestoes.auxiliar) {
+                questoesDisponiveis.push(...bancoDeQuestoes.auxiliar);
+            }
+            questoesSelecionadas = questoesDisponiveis.sort(() => 0.5 - Math.random()).slice(0, 10);
             pontuacao = 0;
             questaoAtualIndex = 0;
             avaliacaoInicio.style.display = 'none';
@@ -328,8 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('quiz-pergunta').textContent = questao.pergunta;
                 const opcoesContainer = document.getElementById('quiz-opcoes');
                 opcoesContainer.innerHTML = '';
-                document.getElementById('quiz-feedback').innerHTML = ''; // Limpa o feedback anterior
-                
+                document.getElementById('quiz-feedback').innerHTML = '';
                 questao.opcoes.forEach((opcao, index) => {
                     const botao = document.createElement('button');
                     botao.textContent = opcao;
@@ -341,12 +362,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 mostrarResultado();
             }
         }
-
         function selecionarResposta(indexSelecionado, indexCorreto) {
             const botoesOpcao = document.querySelectorAll('.opcao-quiz');
             botoesOpcao.forEach(btn => btn.disabled = true);
             const feedbackContainer = document.getElementById('quiz-feedback');
-            
             if (indexSelecionado === indexCorreto) {
                 pontuacao++;
                 botoesOpcao[indexSelecionado].classList.add('correta');
@@ -356,13 +375,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 botoesOpcao[indexCorreto].classList.add('correta');
                 feedbackContainer.innerHTML = '<p class="feedback incorreto">Incorreto!</p>';
             }
-            
             setTimeout(() => {
                 questaoAtualIndex++;
                 mostrarQuestao();
             }, 2000);
         }
-
         function mostrarResultado() {
             avaliacaoQuiz.style.display = 'none';
             avaliacaoResultado.style.display = 'block';
@@ -371,7 +388,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const mensagemEl = document.getElementById('resultado-mensagem');
             const btnCertificado = document.getElementById('btn-gerar-certificado');
             placarEl.textContent = `Sua pontuação: ${pontuacao} de 10 (${percentual.toFixed(0)}%)`;
-
             if (percentual >= 70) {
                 placarEl.className = 'resultado-placar aprovado';
                 mensagemEl.textContent = 'Parabéns, você foi aprovado! Clique abaixo para gerar seu certificado.';
@@ -383,74 +399,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 btnCertificado.style.display = 'none';
             }
         }
-        
         function gerarCertificado() {
             if (!window.jspdf || !window.jspdf.jsPDF) {
                 console.error('Erro: jsPDF não foi carregado corretamente.');
-                alert('Ocorreu um erro ao carregar a biblioteca para gerar o PDF. Verifique o console para mais detalhes.');
+                alert('Ocorreu um erro ao carregar a biblioteca para gerar o PDF.');
                 return;
             }
-
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-            
             const logoImg = document.getElementById('logo-cert');
             if (!logoImg) {
-                console.error("Elemento da logo para o certificado não encontrado (ID: logo-cert).");
                 alert("Não foi possível gerar o certificado. A imagem da logo não foi encontrada.");
                 return;
             }
-            
             const nomeColaborador = inputNome.value;
             const dataConclusao = new Date().toLocaleString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
             const pageWidth = doc.internal.pageSize.getWidth();
             const pageHeight = doc.internal.pageSize.getHeight();
-
-            // Fundo e Bordas
-            doc.setFillColor(248, 249, 250); // Um branco levemente acinzentado
+            doc.setFillColor(248, 249, 250);
             doc.rect(0, 0, pageWidth, pageHeight, 'F');
-            doc.setDrawColor(0, 51, 102); // Azul escuro
+            doc.setDrawColor(0, 51, 102);
             doc.setLineWidth(1.5);
             doc.rect(10, 10, pageWidth - 20, pageHeight - 20);
-            doc.setDrawColor(0, 153, 204); // Azul claro
+            doc.setDrawColor(0, 153, 204);
             doc.setLineWidth(0.5);
             doc.rect(12, 12, pageWidth - 24, pageHeight - 24);
-
-            // Conteúdo
             doc.addImage(logoImg, 'PNG', 20, 20, 50, 19);
-            
             doc.setFont('times', 'bold');
             doc.setFontSize(38);
             doc.setTextColor(0, 51, 102);
             doc.text("Certificado de Conclusão", pageWidth / 2, 55, { align: 'center' });
-            
             doc.setFont('times', 'normal');
             doc.setFontSize(16);
             doc.setTextColor(51, 51, 51);
             doc.text("Certificamos que", pageWidth / 2, 80, { align: 'center' });
-
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(32);
             doc.setTextColor(0, 153, 204);
             doc.text(nomeColaborador, pageWidth / 2, 100, { align: 'center' });
-
-            const textLines = doc.splitTextToSize(
-                `concluiu com êxito o treinamento de integração "Trilha do Conector", demonstrando competência nos padrões de qualidade e segurança da Ti.Net Tecnologia.`,
-                220
-            );
+            const textLines = doc.splitTextToSize(`concluiu com êxito o treinamento de integração "Trilha do Conector", demonstrando competência nos padrões de qualidade e segurança da Ti.Net Tecnologia.`, 220);
             doc.setFont('times', 'normal');
             doc.setFontSize(14);
             doc.setTextColor(51, 51, 51);
             doc.text(textLines, pageWidth / 2, 120, { align: 'center' });
-
             doc.setFontSize(12);
             doc.text(`Concluído em: ${dataConclusao}. Pontuação: ${pontuacao}/10.`, pageWidth / 2, 150, { align: 'center' });
-
-            // Assinaturas
             const signatureY = 175;
             doc.setLineWidth(0.3);
             doc.setDrawColor(100, 100, 100);
-
             const ceoX = pageWidth / 4 + 20;
             doc.line(ceoX - 35, signatureY, ceoX + 35, signatureY);
             doc.setFont('times', 'bold');
@@ -459,7 +455,6 @@ document.addEventListener('DOMContentLoaded', function() {
             doc.setFont('times', 'italic');
             doc.setFontSize(10);
             doc.text("CEO - Ti.Net Tecnologia", ceoX, signatureY + 13, { align: 'center' });
-            
             const devX = pageWidth * 3 / 4 - 20;
             doc.line(devX - 35, signatureY, devX + 35, signatureY);
             doc.setFont('times', 'bold');
@@ -468,7 +463,6 @@ document.addEventListener('DOMContentLoaded', function() {
             doc.setFont('times', 'italic');
             doc.setFontSize(10);
             doc.text("Gerente - Ti.Net Tecnologia", devX, signatureY + 13, { align: 'center' });
-            
             doc.save(`Certificado-${nomeColaborador.replace(/ /g, "_")}.pdf`);
         }
     }

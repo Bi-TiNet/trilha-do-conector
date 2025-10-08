@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Ferramentas e Diagnóstico - Trilha do Conector</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1-autonomo.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2-autonomo.html" class="nav-item">Módulo 2: Segurança em Campo</a>
+                <a href="modulo3-autonomo.html" class="nav-item active">Módulo 3: Ferramentas e Diagnóstico</a>
+                <a href="modulo4-autonomo.html" class="nav-item">Módulo 4: Protocolos de Atuação</a>
+                <a href="modulo5-6-autonomo.html" class="nav-item">Módulo 5/6: Excelência e Carreira</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Trilha do Conector 🚀 - Técnico Autônomo</h1>
+            </header>
+
+            <main>
+                <section id="modulo3">
+                    <h2>📖 Módulo 3: Ferramentas e Diagnóstico</h2>
+                    <p>Suas ferramentas não são apenas para executar, são para <strong>diagnosticar</strong>. Dominar seu arsenal de equipamentos é o que diferencia uma instalação padrão de uma solução de excelência e um reparo rápido de um problema recorrente.</p>
+
+                    <div class="caixa-ferramentas">
+                        <h3>3.1. Ferramentas Essenciais de Manuseio</h3>
+                        <p>O domínio destas ferramentas é a base para qualquer trabalho de qualidade com fibra óptica. A precisão aqui evita problemas futuros.</p>
+                        <div class="ferramentas-grid">
+                            <div class="ferramenta-item" data-nome="Clivador de Precisão" data-funcao="Sua ferramenta mais importante para fusões e conectorizações. Garante o corte perfeitamente perpendicular (90°) da fibra. Um clivador desregulado ou sujo é a principal causa de emendas com alta atenuação." data-imagem="images/clivador.jpg">
+                                <img src="images/clivador.jpg" alt="Clivador de Precisão">
+                                <span>Clivador de Precisão</span>
+                            </div>
+                            <div class="ferramenta-item" data-nome="Tesoura para Kevlar" data-funcao="Projetada especificamente para cortar as fibras de aramida (Kevlar) que protegem o cabo. Usar outra ferramenta danifica tanto a ferramenta quanto o cabo." data-imagem="images/tesoura.jpg">
+                                <img src="images/tesoura.jpg" alt="Tesoura para Kevlar">
+                                <span>Tesoura para Kevlar</span>
+                            </div>
+                            <div class="ferramenta-item" data-nome="Decapadores de Fibra (Stripper)" data-funcao="Remove as camadas de proteção (capa e acrilato) sem arranhar ou danificar a fibra nua. Use sempre o furo calibrado correto para cada camada." data-imagem="images/decapador.jpg">
+                                <img src="images/decapador.jpg" alt="Decapadores de Fibra">
+                                <span>Decapadores de Fibra</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="equipamentos-avancados">
+                        <h3>3.2. Equipamentos de Diagnóstico e Conexão</h3>
+
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header active">Power Meter (Medidor de Potência Óptica)</button>
+                                <div class="accordion-content">
+                                    <p>É o seu "termômetro" da rede. Ele mede a intensidade (potência) do sinal óptico que chega em um ponto, informando se está forte o suficiente para garantir uma conexão de qualidade.</p>
+                                    <ul>
+                                        <li><strong>Quando usar:</strong> Em TODAS as instalações para validar o sinal e em TODAS as manutenções para diagnosticar problemas de "internet lenta" ou "sem conexão".</li>
+                                        <li><strong>Como usar:</strong> Conecte-o na ponta da fibra (na casa do cliente ou na CTO) e selecione o comprimento de onda correto. Para redes GPON, o sinal do cliente é em <strong>1490nm</strong>.</li>
+                                        <li><strong>Interpretando os resultados:</strong>
+                                            <ul>
+                                                <li>🟢 <strong>Sinal Ideal (-15 a -25 dBm):</strong> Conexão perfeita.</li>
+                                                <li>🟡 <strong>Sinal de Alerta (-26 a -28 dBm):</strong> Funciona, mas está no limite. Pode indicar um conector sujo, uma fibra atenuada ou um problema futuro.</li>
+                                                <li>🔴 <strong>Sinal Ruim (Abaixo de -28 dBm):</strong> Causa de conexão lenta ou quedas. O problema está na rede externa (cabo Drop, CTO ou além).</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">Máquina de Fusão</button>
+                                <div class="accordion-content">
+                                    <p>Este equipamento alinha e "solda" (funde) duas pontas de fibra com um arco elétrico, criando uma emenda quase perfeita, com perda de sinal mínima (tipicamente menor que 0.05 dB).</p>
+                                    <ul>
+                                        <li><strong>Quando usar:</strong> Para reparar rompimentos no cabo Drop ou em cabos de backbone, e para construir caixas de emenda.</li>
+                                        <li><strong>Processo Crítico:</strong> O sucesso da fusão depende 100% da preparação: decapagem correta, limpeza impecável com álcool isopropílico e uma clivagem perfeita.</li>
+                                        <li><strong>Manutenção:</strong> Mantenha os eletrodos limpos e realize a calibragem do arco periodicamente para garantir fusões de qualidade.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="accordion-item">
+                                <button class="accordion-header">OTDR (Reflectômetro Óptico no Domínio do Tempo) - Conhecimento Teórico</button>
+                                <div class="accordion-content">
+                                    <p>O OTDR é o "radar" da fibra óptica. Ele envia um pulso de luz e mede o tempo e a intensidade dos reflexos para criar um mapa gráfico da rede, permitindo identificar:</p>
+                                    <ul>
+                                        <li><strong>Distância exata de rompimentos:</strong> Permite ir direto ao ponto do problema em um cabo de quilômetros.</li>
+                                        <li><strong>Atenuação por distância:</strong> Mostra a perda de sinal natural ao longo do cabo.</li>
+                                        <li><strong>Eventos:</strong> Identifica pontos de alta perda, como uma fusão mal feita, um conector sujo ou uma dobra acentuada (macrocurvatura) no cabo.</li>
+                                    </ul>
+                                    <p><em>Entender o funcionamento do OTDR, mesmo que não seja sua ferramenta primária, ajuda você a interpretar diagnósticos do NOC e a identificar problemas complexos.</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado - Módulo 3</h3>
+                        <div class="questao">
+                            <p><strong>1. Qual a principal causa de uma fusão óptica com alta perda de sinal?</strong></p>
+                            <button class="opcao-m3" data-correta="false">A temperatura do ambiente.</button>
+                            <button class="opcao-m3" data-correta="true">Uma clivagem (corte) mal feita da fibra.</button>
+                            <button class="opcao-m3" data-correta="false">Usar a tesoura errada para o Kevlar.</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. Você mede o sinal na casa do cliente e o Power Meter mostra -18dBm. Qual a sua conclusão?</strong></p>
+                            <button class="opcao-m3" data-correta="false">O sinal está muito fraco, preciso verificar a CTO.</button>
+                            <button class="opcao-m3" data-correta="true">O sinal está excelente, dentro da faixa ideal.</button>
+                            <button class="opcao-m3" data-correta="false">O sinal está no limite, mas aceitável.</button>
+                            <p class="feedback"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="navigation-buttons">
+                    <a href="modulo2-autonomo.html" class="btn-prev">&larr; Voltar ao Módulo 2</a>
+                    <a href="modulo4-autonomo.html" class="btn-next">Avançar para o Módulo 4 &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia. Desenvolvido por Carlos Santos Bispo Júnior.</p>
+            </footer>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <div id="modal-ferramenta" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn">&times;</button>
+            <img id="modal-img" src="" alt="Imagem da Ferramenta em Alta Definição">
+            <h3 id="modal-nome"></h3>
+            <p id="modal-funcao"></p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const isActive = button.classList.contains('active');
+                    
+                    document.querySelectorAll('.accordion-content').forEach(c => {
+                        if (c.previousElementSibling !== button) {
+                            c.style.maxHeight = null;
+                            c.previousElementSibling.classList.remove('active');
+                        }
+                    });
+
+                    if (!isActive) {
+                        button.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        button.classList.remove('active');
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+
+            const firstAccordion = document.querySelector('.accordion-header');
+            if (firstAccordion) {
+                firstAccordion.classList.add('active');
+                firstAccordion.nextElementSibling.style.maxHeight = firstAccordion.nextElementSibling.scrollHeight + 'px';
+            }
+        });
+    </script>
+</body>
+</html>

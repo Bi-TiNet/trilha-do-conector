@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Segurança em Campo - Trilha do Conector</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1-autonomo.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2-autonomo.html" class="nav-item active">Módulo 2: Segurança em Campo</a>
+                <a href="modulo3-autonomo.html" class="nav-item">Módulo 3: Ferramentas e Diagnóstico</a>
+                <a href="modulo4-autonomo.html" class="nav-item">Módulo 4: Protocolos de Atuação</a>
+                <a href="modulo5-6-autonomo.html" class="nav-item">Módulo 5/6: Excelência e Carreira</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Trilha do Conector 🚀 - Técnico Autônomo</h1>
+            </header>
+
+            <main>
+                <section id="modulo2">
+                    <h2>📖 Módulo 2: Segurança em Campo</h2>
+                    <p class="aviso">A segurança é sua responsabilidade intransferível. Cada passo, desde a análise do ambiente até a finalização do serviço, deve ser guiado pelos mais altos padrões de segurança.</p>
+
+                    <div class="apr-checklist">
+                        <h3>2.1. Análise Preliminar de Risco (APR)</h3>
+                        <p>Antes de qualquer outra ação, realize a APR. Esta é sua ferramenta mais importante para garantir um ambiente de trabalho seguro. Marque os itens para confirmar a inspeção:</p>
+                        <div id="apr-feedback" class="feedback-box"></div>
+                        <ul class="checklist-apr">
+                            <li data-apr="1">Verificar condições climáticas (chuva, ventos fortes, raios).</li>
+                            <li data-apr="2">Inspecionar a condição do poste (rachaduras, inclinação, ferragens).</li>
+                            <li data-apr="3">Analisar a proximidade e condição da rede elétrica.</li>
+                            <li data-apr="4">Verificar o terreno para a base da escada (firme e nivelado).</li>
+                            <li data-apr="5">Analisar o fluxo de veículos/pedestres para posicionar a sinalização.</li>
+                            <li data-apr="6">Confirmar que todos os seus EPIs estão em perfeito estado de uso.</li>
+                        </ul>
+                    </div>
+
+                    <div class="epis">
+                        <h3>2.2. EPIs - Seu Equipamento de Sobrevivência</h3>
+                        <p>O uso correto e a inspeção diária dos seus Equipamentos de Proteção Individual são obrigatórios.</p>
+                        <ul>
+                            <li><strong>Capacete com Jugular:</strong> Proteção contra impactos. A jugular é essencial para que não caia.</li>
+                            <li><strong>Óculos de Proteção:</strong> Proteção contra fragmentos de fibra, que são como vidro. O uso é mandatório durante todo o manuseio.</li>
+                            <li><strong>Luvas de Proteção e Botas de Segurança:</strong> Proteção contra cortes, perfurações e impactos.</li>
+                            <li><strong>Cinto de Segurança tipo Paraquedista:</strong> Inspecione as costuras, talabartes e engates antes de CADA subida.</li>
+                            <li><strong>Uniforme e Colete de Alta Visibilidade:</strong> Garante que você seja visto, prevenindo acidentes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cenario-risco">
+                        <h3>🖼️ 2.3. Cenário de Risco: Identificação e Ação</h3>
+                        <p>Identificar um risco é o primeiro passo. Tomar a ação correta é o que garante sua segurança. Clique nos pontos de perigo para entender o protocolo.</p>
+                        <div class="cenario-flex-container">
+                            <div class="imagem-container">
+                                <img src="images/poste.jpg" alt="Cenário de trabalho em um poste">
+                                <div class="hotspot" style="top: 8%; left: 90%;" data-target="risco-eletrico"></div>
+                                <div class="hotspot" style="top: 40%; left: 10%;" data-target="risco-altura"></div>
+                                <div class="hotspot" style="top: 32%; left: 50%;" data-target="risco-fibra"></div>
+                            </div>
+                            <div class="riscos-lista">
+                                <div id="risco-eletrico" class="risco-item">
+                                    <strong>Risco Elétrico (NR-10):</strong> Mantenha a "distância de segurança" da rede elétrica. Na dúvida, não execute. É sua decisão interromper a atividade sob risco de descarga atmosférica.
+                                </div>
+                                <div id="risco-fibra" class="risco-item">
+                                    <strong>Cuidados com a Fibra:</strong> Garanta o descarte correto dos fragmentos em recipiente apropriado. Nunca olhe diretamente para a ponta de um cabo ativo.
+                                </div>
+                                <div id="risco-altura" class="risco-item">
+                                    <strong>Trabalho em Altura (NR-35):</strong> Inspecione a escada, garanta que ela esteja em base firme e amarrada ao poste. Seu cinto deve estar sempre ancorado em um ponto seguro. A sinalização da área com cones é obrigatória.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado - Módulo 2</h3>
+                        <div class="questao">
+                            <p><strong>1. Qual a ação mais importante antes de posicionar a escada em um poste?</strong></p>
+                            <button class="opcao-m2" data-correta="true">Realizar uma Análise Preliminar de Risco (APR) completa do ambiente.</button>
+                            <button class="opcao-m2" data-correta="false">Verificar se a máquina de fusão está calibrada.</button>
+                            <button class="opcao-m2" data-correta="false">Ligar para o cliente para confirmar o endereço.</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. O trabalho em altura sob chuva leve, sem raios, é permitido para adiantar o serviço.</strong></p>
+                            <button class="opcao-m2" data-correta="false">Verdadeiro</button>
+                            <button class="opcao-m2" data-correta="true">Falso</button>
+                            <p class="feedback"></p>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navigation-buttons">
+                    <a href="modulo1-autonomo.html" class="btn-prev">&larr; Voltar ao Módulo 1</a>
+                    <a href="modulo3-autonomo.html" class="btn-next">Avançar para o Módulo 3 &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia. Desenvolvido por Carlos Santos Bispo Júnior.</p>
+            </footer>
+        </div>
+    </div>
+    <script>
+    // Adiciona interatividade para o checklist APR
+    document.addEventListener('DOMContentLoaded', function() {
+        const checklistItems = document.querySelectorAll('.checklist-apr li');
+        const feedbackAPR = document.getElementById('apr-feedback');
+        let checkedCount = 0;
+
+        if (checklistItems.length > 0) {
+            checklistItems.forEach(item => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function() {
+                    if (!this.classList.contains('checked')) {
+                        this.classList.add('checked');
+                        this.style.textDecoration = 'line-through';
+                        this.style.opacity = '0.6';
+                        this.style.backgroundColor = '#d4edda';
+                        checkedCount++;
+
+                        if (checkedCount === checklistItems.length) {
+                            feedbackAPR.className = 'feedback-box sucesso';
+                            feedbackAPR.textContent = 'APR concluída! Você está pronto para iniciar o trabalho com segurança.';
+                            feedbackAPR.style.display = 'block';
+                        }
+                    }
+                });
+            });
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .checklist-apr { list-style-type: none; padding: 0; }
+                .checklist-apr li { padding: 10px; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 5px; transition: all 0.3s ease; }
+                .checklist-apr li:before { content: '☐ '; font-weight: bold; margin-right: 10px; }
+                .checklist-apr li.checked:before { content: '☑ '; color: #28a745; }
+            `;
+            document.head.appendChild(style);
+        }
+    });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>
