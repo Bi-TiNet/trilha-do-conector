@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 4: Atividades - Trilha do Conector</title>
+    <title>Módulo 4: Guia de Campo Completo - Trilha do Conector</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,8 +16,6 @@
                 <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
                 <a href="modulo2.html" class="nav-item">Módulo 2: Segurança</a>
                 <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
-                <a href="modulo4.html" class="nav-item active">Módulo 4: Passo a Passo</a>
-                <a href="modulo-app-inmap.html" class="nav-item">📲 Módulo App: InMap</a>
                 <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
                 <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
             </nav>
@@ -31,7 +29,102 @@
             <main>
                 <section id="modulo4">
                     <h2>📖 Módulo 4: Guia de Campo Completo do Auxiliar Cabista</h2>
-                    <p>Este módulo é o seu manual de campo. Ele detalha não apenas a instalação perfeita, mas também como agir em situações de manutenção e instabilidade, garantindo a excelência no padrão Ti.Net.</p>
+                    <p>Este módulo é o seu manual de campo. Ele detalha não apenas a instalação perfeita, mas também como agir em situações de manutenção e instabilidade, e como utilizar o aplicativo InMap Service, garantindo a excelência no padrão Ti.Net.</p>
+
+                    <div class="app-guide">
+                        <h3>📲 Dominando o InMap Service Mobile</h3>
+                        <p>O aplicativo InMap Service é sua principal ferramenta de trabalho. Ele conecta você ao escritório, organiza suas tarefas e registra todo o serviço. Dominar seu uso é essencial para a eficiência.</p>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header active">Tela 1: Agenda de Ordens de Serviço</button>
+                                <div class="accordion-content" style="max-height: fit-content;">
+                                    <div class="content-flex">
+                                        <div class="text-content">
+                                            <p>Ao fazer o login, sua tela inicial é a **Agenda**. Aqui você visualiza todas as Ordens de Serviço (OS) do dia, organizadas por prioridade e horário.</p>
+                                            <ul>
+                                                <li><strong>Visualização:</strong> Navegue entre os dias, semanas ou meses para ver seus agendamentos.</li>
+                                                <li><strong>Informações Rápidas:</strong> Cada card mostra o ID do cliente, nome, assunto (Instalação, Análise Técnica) e endereço.</li>
+                                                <li><strong>Navegação Principal:</strong> Na parte inferior, você tem acesso rápido a todas as seções do app: Agenda, Materiais, Notificações, Tarefas e Configurações.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="images/agenda.jpg" alt="Tela da Agenda do InMap Service" class="content-image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">Tela 2: Detalhes da Ordem de Serviço (OS)</button>
+                                <div class="accordion-content">
+                                     <div class="content-flex">
+                                        <div class="text-content">
+                                            <p>Ao tocar em uma OS na agenda, você abre a tela de detalhes. Aqui estão todas as informações que você precisa para o atendimento.</p>
+                                            <ul>
+                                                <li><strong>Dados do Cliente:</strong> Endereço completo, bairro, cidade e pontos de referência.</li>
+                                                <li><strong>Descrição do Serviço:</strong> Detalhes sobre o que precisa ser feito (ex: "NOVA CONTRATAÇÃO. TAREFA: INSTALAÇÃO GPON").</li>
+                                                <li><strong>Login e Senha:</strong> Informações de autenticação do cliente (PPPoE).</li>
+                                            </ul>
+                                            <h5>Ações Imediatas:</h5>
+                                            <ul>
+                                                <li><strong>Mostrar Localização:</strong> Abre o mapa com a rota para o endereço.</li>
+                                                <li><strong>Chamar Cliente:</strong> Liga para o telefone do cliente.</li>
+                                                <li><strong>Iniciar Deslocamento:</strong> **Ação mais importante!** Notifica o cliente que você está a caminho e muda o status da OS para o escritório.</li>
+                                                <li><strong>Reagendar / Encaminhar:</strong> Use estas opções apenas com autorização do seu supervisor ou do NOC para reagendar o atendimento ou transferir a OS para outro técnico.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="images/os.jpg" alt="Tela de Detalhes da Ordem de Serviço" class="content-image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">Tela 3: Gerenciamento de Materiais</button>
+                                <div class="accordion-content">
+                                    <div class="content-flex">
+                                        <div class="text-content">
+                                            <p>A aba **Materiais** é seu controle de estoque pessoal e a ferramenta para solicitar mais itens ao almoxarifado.</p>
+                                            <ul>
+                                                <li><strong>Meus Materiais:</strong> Lista tudo o que está sob sua responsabilidade, com o saldo atual. Itens com status "Baixo" indicam que você precisa solicitar mais.</li>
+                                                <li><strong>Requisições:</strong> Crie e acompanhe pedidos de materiais para o almoxarifado.</li>
+                                                <li><strong>Transferências:</strong> Envie ou receba materiais de outros técnicos diretamente pelo app.</li>
+                                            </ul>
+                                            <p><strong>Importante:</strong> Todo material usado em uma OS (cabos, conectores, ONTs) deve ser adicionado na OS específica para dar baixa no seu estoque.</p>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="images/materiais.jpg" alt="Tela de Gerenciamento de Materiais" class="content-image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <button class="accordion-header">Tela 4: Central de Notificações e Tarefas</button>
+                                <div class="accordion-content">
+                                    <div class="content-flex">
+                                        <div class="text-content">
+                                            <p>As abas **Notif.** e **Tarefas** organizam sua comunicação e pendências.</p>
+                                            <h5>Central de Notificações</h5>
+                                            <ul>
+                                                <li>Receba alertas sobre novas OS, alterações de agendamento e mensagens do suporte.</li>
+                                                <li>É fundamental checar esta tela com frequência ao longo do dia.</li>
+                                            </ul>
+                                            <h5>Lista de Tarefas</h5>
+                                             <ul>
+                                                <li>Funciona como um checklist pessoal para lembretes ("Calibrar pneu").</li>
+                                                <li>Seu supervisor também pode atribuir tarefas por aqui ("Participar de treinamento").</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-content" style="display: flex; gap: 10px;">
+                                            <img src="images/notificacao.jpg" alt="Tela da Central de Notificações" class="content-image" style="flex: 1;">
+                                            <img src="images/tarefas.jpg" alt="Tela da Lista de Tarefas" class="content-image" style="flex: 1;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="fluxograma-stepper">
                         <h3>🖼️ Fluxograma Detalhado: Rotina de Instalação GPON</h3>
@@ -71,47 +164,13 @@
                                 <p><strong>Limpeza e Organização:</strong> Fixe os cabos de forma limpa ("padrão Ti.Net"). Recolha TODOS os resíduos. Guarde as ferramentas e, por último, os cones. Peça a aprovação final do cliente e explique brevemente como reiniciar os equipamentos se necessário.</p>
                             </div>
                         </div>
-
                         <div class="stepper-controls">
                             <button id="prev-btn" disabled>Anterior</button>
                             <span id="step-counter">Fase 1 de 7</span>
                             <button id="next-btn">Próximo</button>
                         </div>
                     </div>
-
-                    <div class="comunicacao-noc">
-                        <h3>📞 Comunicação com o Suporte (NOC) e Provisionamento</h3>
-                        <p>A comunicação clara com o NOC é vital para a agilidade do processo. O provisionamento é o "casamento" entre a ONT do cliente e a nossa central (OLT).</p>
-                        <div class="accordion">
-                            <div class="accordion-item">
-                                <button class="accordion-header">O que informar para o Provisionamento?</button>
-                                <div class="accordion-content">
-                                    <p>Ao contatar o NOC para uma nova instalação, tenha em mãos as seguintes informações:</p>
-                                    <ul>
-                                        <li><strong>Número da Ordem de Serviço (OS):</strong> Para que o suporte localize o cadastro do cliente.</li>
-                                        <li><strong>Identificação da CTO:</strong> Ex: "CTO-03-12, Bairro Centro".</li>
-                                        <li><strong>Porta da CTO:</strong> Ex: "Porta 5".</li>
-                                        <li><strong>Serial Number (S/N) da ONT:</strong> Ex: "HWTC1234ABCD". Fica em uma etiqueta atrás do equipamento.</li>
-                                    </ul>
-                                    <p>O NOC usará esses dados para autorizar o serial na porta correta da OLT, liberando o sinal para o cliente.</p>
-                                </div>
-                            </div>
-                             <div class="accordion-item">
-                                <button class="accordion-header">O que acontece durante o Provisionamento?</button>
-                                <div class="accordion-content">
-                                    <p>Enquanto você aguarda, o NOC está realizando os seguintes passos no sistema:</p>
-                                    <ol>
-                                        <li>A OLT "enxerga" a nova ONT conectada na porta que você informou, mas ela está "não autorizada".</li>
-                                        <li>O NOC associa o Serial Number da sua ONT ao contrato do cliente.</li>
-                                        <li>A OLT envia as configurações de serviço (plano de internet, VLAN, etc.) para a ONT.</li>
-                                        <li>A ONT reinicia e se registra na rede. A luz "PON" ou "Link" no equipamento fica acesa e estável.</li>
-                                    </ol>
-                                    <p>Somente após a confirmação do NOC de que a ONT está "provisionada e online", você pode prosseguir com os testes de sinal e configuração do Wi-Fi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <div class="troubleshooting">
                         <h3>🔧 Procedimentos de Manutenção e Instabilidade</h3>
                         <p>Quando um cliente relata "sem conexão" ou "internet lenta", siga este fluxograma de diagnóstico.</p>
@@ -122,29 +181,28 @@
                                     <p><strong>Verificação Visual dos LEDs da ONT:</strong></p>
                                     <ul>
                                         <li><strong>PON/Link Apagado ou Piscando:</strong> Problema de sinal óptico. Verifique se o cabo de fibra não está desconectado, quebrado ou com uma curva muito acentuada (atenuado).</li>
-                                        <li><strong>PON/Link Aceso, mas LOS Vermelho:</strong> LOS (Loss of Signal) indica que a ONT não consegue "conversar" com a OLT. Pode ser um problema massivo na região ou falha na sua porta na CTO.</li>
-                                        <li><strong>PON/Link Aceso, Wi-Fi/WLAN Apagado:</strong> O sinal chega, mas o Wi-Fi está desativado. Verifique se o botão de Wi-Fi da ONT foi pressionado acidentalmente.</li>
+                                        <li><strong>PON/Link Aceso, mas LOS Vermelho:</strong> LOS (Loss of Signal) indica falha de comunicação com a OLT. Pode ser um problema massivo ou falha na sua porta na CTO.</li>
                                     </ul>
-                                    <p><strong>Teste de Sinal com Power Meter:</strong> Se a luz PON/Link não está estável, desconecte a fibra da ONT e meça o sinal. Informe o valor ao NOC.</p>
+                                    <p><strong>Teste de Sinal com Power Meter:</strong> Se a luz PON não está estável, meça o sinal na ponta do cabo.</p>
                                     <ul>
-                                        <li><strong>Sinal Bom (-15 a -25dBm):</strong> Se o sinal que chega no cabo está bom, mas a ONT não funciona, a falha provavelmente é na própria ONT. Comunique o NOC e proceda com a troca do equipamento.</li>
-                                        <li><strong>Sinal Ruim (abaixo de -28dBm) ou Inexistente:</strong> O problema está na rede externa. A falha pode estar no cabo Drop ou na CTO.</li>
+                                        <li><strong>Sinal Bom (-15 a -25dBm):</strong> Se o sinal está bom, a falha provavelmente é na ONT. Comunique o NOC e proceda com a troca do equipamento.</li>
+                                        <li><strong>Sinal Ruim (abaixo de -28dBm):</strong> O problema está na rede externa. A falha pode estar no cabo Drop ou "para trás".</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <button class="accordion-header">Passo 2: Diagnóstico na Rede Externa (CTO)</button>
                                 <div class="accordion-content">
-                                    <p>Se o sinal na casa do cliente está ruim, o próximo passo é medir o sinal diretamente na porta da CTO onde o cliente está conectado. Você auxiliará o técnico no poste.</p>
+                                    <p>Se o sinal na casa do cliente está ruim, o próximo passo é medir o sinal diretamente na porta da CTO.</p>
                                     <ul>
-                                        <li><strong>Sinal bom na CTO:</strong> Se o sinal na porta do cliente na caixa está bom, o problema é 100% no cabo Drop (entre a caixa e a casa). Ele pode estar rompido, esmagado ou com um conector defeituoso. A solução é passar um cabo Drop novo.</li>
-                                        <li><strong>Sinal ruim na CTO:</strong> Se o sinal na porta do cliente na CTO também está ruim, o problema é "para trás", na rede principal. O técnico irá então usar a VFL (caneta de luz) para verificar se há rompimento próximo ou medir o sinal que "alimenta" a CTO para identificar onde a falha ocorre e acionar a equipe de rede.</li>
+                                        <li><strong>Sinal bom na CTO:</strong> O problema é 100% no cabo Drop. A solução é passar um cabo novo.</li>
+                                        <li><strong>Sinal ruim na CTO:</strong> O problema é na rede principal. O técnico irá usar a VFL (caneta de luz) para verificar rompimentos próximos ou medir o sinal que alimenta a CTO para escalar o problema para a equipe de rede.</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="simulacao-ordem">
                         <h3>💡 Simulação: Preparando a Ponta do Cabo</h3>
                         <p>Clique nas ações na ordem correta para preparar a fibra.</p>
@@ -159,19 +217,25 @@
                     <div class="simulado">
                         <h3>💡 Simulado - Módulo 4</h3>
                         <div class="questao">
-                            <p><strong>1. Qual faixa de sinal óptico (em dBm) é considerada ideal em um Power Meter?</strong></p>
+                            <p><strong>1. Qual a primeira ação a ser tomada no aplicativo InMap ao se dirigir para um atendimento?</strong></p>
+                            <button class="opcao-m4" data-correta="false">Chamar Cliente</button>
+                            <button class="opcao-m4" data-correta="true">Iniciar Deslocamento</button>
+                            <button class="opcao-m4" data-correta="false">Mostrar Localização</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. Qual faixa de sinal óptico (em dBm) é considerada ideal em um Power Meter?</strong></p>
                             <button class="opcao-m4" data-correta="false">Acima de 0dBm.</button>
                             <button class="opcao-m4" data-correta="true">Entre -15dBm e -25dBm.</button>
                             <button class="opcao-m4" data-correta="false">Abaixo de -28dBm.</button>
-                            <button class="opcao-m4" data-correta="false">Entre 10 e 20 Watts.</button>
                             <p class="feedback"></p>
                         </div>
                     </div>
                 </section>
-
+                
                 <div class="navigation-buttons">
                     <a href="modulo3.html" class="btn-prev">&larr; Voltar ao Módulo 3</a>
-                    <a href="modulo-app-inmap.html" class="btn-next">Avançar para o App InMap Service &rarr;</a>
+                    <a href="modulo5-6.html" class="btn-next">Avançar para o Módulo 5 &rarr;</a>
                 </div>
             </main>
 
@@ -181,17 +245,27 @@
         </div>
     </div>
     <script>
-        // Simples script para accordion
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                button.classList.toggle('active');
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Script do Accordion
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const isActive = button.classList.contains('active');
+                    
+                    document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                    document.querySelectorAll('.accordion-header').forEach(b => b.classList.remove('active'));
+
+                    if (!isActive) {
+                        button.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
             });
+             // Mantém o primeiro item aberto por padrão
+            const firstAccordionHeader = document.querySelector('.accordion-header');
+            if (firstAccordionHeader) {
+                firstAccordionHeader.click();
+            }
         });
     </script>
     <script src="js/script.js"></script>
