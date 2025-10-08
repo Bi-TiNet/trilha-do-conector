@@ -17,6 +17,7 @@
                 <a href="modulo2.html" class="nav-item active">Módulo 2: Segurança</a>
                 <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
                 <a href="modulo4.html" class="nav-item">Módulo 4: Passo a Passo</a>
+                <a href="modulo-app-inmap.html" class="nav-item">📲 Módulo App: InMap</a>
                 <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
                 <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
             </nav>
@@ -30,12 +31,26 @@
             <main>
                 <section id="modulo2">
                     <h2>📖 Módulo 2: Segurança em Primeiro Lugar</h2>
-                    <p class="aviso">A segurança não é negociável. O avanço só será permitido após 100% de acerto no simulado.</p>
+                    <p class="aviso">A segurança não é negociável. Sua vida e a do seu colega são a nossa maior prioridade. O cumprimento rigoroso destas normas é obrigatório.</p>
+
+                    <div class="epis">
+                        <h3>2.1. EPIs - Seus Melhores Amigos</h3>
+                        <p>Você DEVE usar todos os EPIs fornecidos pela Ti.Net durante todo o tempo de trabalho.</p>
+                        <ul>
+                            <li><strong>Capacete com Jugular:</strong> Protege contra quedas de objetos. A jugular (tira no queixo) impede que ele caia.</li>
+                            <li><strong>Óculos de Proteção:</strong> OBRIGATÓRIO ao manusear a fibra. Fragmentos de fibra são minúsculos e afiados como vidro, podendo causar lesões permanentes nos olhos.</li>
+                            <li><strong>Luvas de Proteção:</strong> Protegem contra cortes, farpas e sujeira.</li>
+                            <li><strong>Botas de Segurança:</strong> Protegem os pés e dão firmeza.</li>
+                            <li><strong>Cinto de Segurança tipo Paraquedista:</strong> Essencial para o trabalho em altura.</li>
+                            <li><strong>Uniforme e Colete de Alta Visibilidade:</strong> Garante que você seja visto, prevenindo acidentes.</li>
+                        </ul>
+                    </div>
 
                     <div class="simulador-epi">
-                        <h3>💡 Simulador: Conecte o EPI ao local correto</h3>
-                        <p>Arraste o nome de cada EPI da lista até o ponto colorido correspondente na imagem.</p>
-                        <div id="feedback-epi" class="feedback-box"></div> <div class="arena-epi-conect">
+                        <h3>💡 Simulador: Vista o EPI</h3>
+                        <p>Arraste o nome de cada EPI da lista até o ponto correspondente na imagem para equipar o técnico.</p>
+                        <div id="feedback-epi" class="feedback-box"></div>
+                        <div class="arena-epi-conect">
                             <div class="epi-lista-arrastar">
                                 <div class="epi-arrastavel cor-capacete" id="label-capacete" draggable="true">Capacete com Jugular</div>
                                 <div class="epi-arrastavel cor-oculos" id="label-oculos" draggable="true">Óculos de Proteção</div>
@@ -43,9 +58,8 @@
                                 <div class="epi-arrastavel cor-luvas" id="label-luvas" draggable="true">Luvas de Proteção</div>
                                 <div class="epi-arrastavel cor-botas" id="label-botas" draggable="true">Botas de Segurança</div>
                             </div>
-
                             <div class="avatar-container-conect">
-                                <img src="images/avatar.png" alt="Colaborador com todos os EPIs"> 
+                                <img src="images/avatar.png" alt="Colaborador com todos os EPIs">
                                 <div class="hotspot-epi cor-capacete" style="top: 5%; left: 50%;" data-accepts="label-capacete"></div>
                                 <div class="hotspot-epi cor-oculos" style="top: 15%; left: 50%;" data-accepts="label-oculos"></div>
                                 <div class="hotspot-epi cor-cinto" style="top: 50%; left: 50%;" data-accepts="label-cinto"></div>
@@ -56,26 +70,24 @@
                     </div>
 
                     <div class="cenario-risco">
-                        <h3>🖼️ Cenário de Risco Interativo</h3>
+                        <h3>🖼️ 2.2. Cenário de Risco Interativo</h3>
                         <p>Clique nos pontos de perigo na imagem para destacar o alerta correspondente ao lado.</p>
-            
                         <div class="cenario-flex-container">
                             <div class="imagem-container">
-                                <img src="images/poste.jpg" alt="Cenário de trabalho em um poste"> 
+                                <img src="images/poste.jpg" alt="Cenário de trabalho em um poste">
                                 <div class="hotspot" style="top: 8%; left: 90%;" data-target="risco-eletrico"></div>
                                 <div class="hotspot" style="top: 40%; left: 10%;" data-target="risco-altura"></div>
                                 <div class="hotspot" style="top: 32%; left: 50%;" data-target="risco-fibra"></div>
                             </div>
-
                             <div class="riscos-lista">
                                 <div id="risco-eletrico" class="risco-item">
-                                    <strong>Risco Elétrico (NR-10):</strong> Nunca toque na rede elétrica. Mantenha distância de segurança e considere a rede sempre energizada.
+                                    <strong>Risco Elétrico (NR-10):</strong> Mantenha distância segura da rede elétrica. NUNCA trabalhe sob chuva forte, tempestades ou raios.
                                 </div>
                                 <div id="risco-fibra" class="risco-item">
-                                    <strong>Fragmentos de Fibra:</strong> Pedaços de fibra são como vidro invisível. Podem perfurar a pele ou, pior, atingir os olhos. Use óculos e nunca passe a mão para limpar.
+                                    <strong>Cuidados com a Fibra:</strong> Fragmentos de vidro devem ser descartados em recipiente apropriado. Nunca olhe diretamente para a ponta de um cabo; a luz do laser é invisível e perigosa.
                                 </div>
                                 <div id="risco-altura" class="risco-item">
-                                    <strong>Trabalho em Altura (NR-35):</strong> A base da escada deve estar firme e em piso nivelado. Sempre ancore o cinto de segurança antes de iniciar o trabalho.
+                                    <strong>Trabalho em Altura (NR-35):</strong> Inspecione a escada. Ajude a estabilizá-la em base firme. Use sempre cones para sinalizar a área de trabalho.
                                 </div>
                             </div>
                         </div>

@@ -305,3 +305,66 @@ h3 {
 #resultado-placar { font-size: 1.5rem; font-weight: bold; padding: 1.5rem; border-radius: 8px; text-align: center; margin: 1.5rem 0; }
 #resultado-placar.aprovado { background-color: #d4edda; color: #155724; }
 #resultado-placar.reprovado { background-color: #f8d7da; color: #721c24; }
+
+/* ========================================= */
+/* ESTILOS PARA TROUBLESHOOTING (MÓDULO 4)   */
+/* ========================================= */
+.troubleshooting {
+    margin-top: 3rem;
+}
+
+.accordion-item {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: #f8f9fa;
+    width: 100%;
+    border: none;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--cor-primaria);
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.accordion-header::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--cor-secundaria);
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active::after {
+    content: '−';
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.accordion-header:hover {
+    background-color: #eef7ff;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background-color: var(--cor-branco);
+    padding: 0 1.5rem;
+}
+
+.accordion-content p, .accordion-content ul {
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

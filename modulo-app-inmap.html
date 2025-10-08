@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo App: InMap Service - Trilha do Conector</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2.html" class="nav-item">Módulo 2: Segurança</a>
+                <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
+                <a href="modulo4.html" class="nav-item">Módulo 4: Guia de Campo</a>
+                <a href="modulo-app-inmap.html" class="nav-item active">📲 Módulo App: InMap</a>
+                <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Trilha do Conector 🚀</h1>
+            </header>
+
+            <main>
+                <section id="modulo-app">
+                    <h2>📲 Módulo App: Dominando o InMap Service Mobile</h2>
+                    <p>O aplicativo InMap Service é sua principal ferramenta de trabalho em campo. Ele conecta você ao escritório, organiza suas tarefas e registra todo o serviço. Dominar seu uso é essencial para a eficiência.</p>
+
+                    <div class="workflow-os">
+                        <h3>O Fluxo de uma Ordem de Serviço (OS) no App</h3>
+                        <p>Desde o login até a finalização, este é o passo a passo que você seguirá para cada atendimento.</p>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">Passo 1: Login e Visualização da Agenda</button>
+                                <div class="accordion-content">
+                                    <p>Ao fazer o login, a primeira tela é a sua **Agenda**. Aqui, você verá todas as Ordens de Serviço (OS) agendadas para você no dia. Cada card de OS contém as informações essenciais: nome do cliente, endereço e tipo de serviço (Instalação, Reparo, etc.).</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">Passo 2: Contato com o Cliente e Iniciar Deslocamento</button>
+                                <div class="accordion-content">
+                                    <p>Ao selecionar uma OS, você terá acesso aos detalhes completos. Utilize os botões de atalho para:</p>
+                                    <ul>
+                                        <li><strong>Chamar Cliente:</strong> Abre o discador do seu celular com o número do cliente.</li>
+                                        <li><strong>WhatsApp:</strong> Inicia uma conversa no WhatsApp com o cliente.</li>
+                                    </ul>
+                                    <p>Após confirmar que o cliente está no local, pressione o botão **"Iniciar Deslocamento"**. Isso é crucial, pois:</p>
+                                    <ul>
+                                        <li>Notifica o cliente via SMS ou App que você está a caminho.</li>
+                                        <li>Altera o status da OS para o time do escritório.</li>
+                                        <li>Abre o GPS do seu celular (Google Maps/Waze) com a rota até o endereço do cliente.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="accordion-item">
+                                <button class="accordion-header">Passo 3: Chegada e Início da Execução</button>
+                                <div class="accordion-content">
+                                    <p>Ao chegar na casa do cliente, você deve pressionar o botão **"Cheguei ao Local"** ou **"Iniciar Execução"**. O aplicativo registrará sua geolocalização e o horário, mudando o status da OS para "Em Execução". A partir deste momento, o tempo de atendimento começa a ser contabilizado.</p>
+                                </div>
+                            </div>
+                             <div class="accordion-item">
+                                <button class="accordion-header">Passo 4: Adicionar Produtos e Equipamentos</button>
+                                <div class="accordion-content">
+                                    <p>Durante a instalação, você precisará registrar todos os materiais utilizados. Na OS, acesse a aba ou menu **"Materiais"**.</p>
+                                    <ul>
+                                        <li><strong>Adicionar Produto:</strong> Busque pelo nome (ex: "Cabo Drop", "Conector Fast") e informe a quantidade utilizada.</li>
+                                        <li><strong>Adicionar Equipamento (Comodato):</strong> Para a ONT, você deve escanear o código de barras (ou digitar o Serial Number) para vinculá-la ao contrato do cliente.</li>
+                                        <li><strong>Remover Equipamento:</strong> Em casos de manutenção com troca, você usará a função de "Remover" para desvincular a ONT antiga e, em seguida, adicionará a nova.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="accordion-item">
+                                <button class="accordion-header">Passo 5: Relato Técnico e Diagnóstico</button>
+                                <div class="accordion-content">
+                                    <p>Antes de finalizar, é obrigatório preencher o laudo do atendimento na aba **"Relato de OS"**.</p>
+                                    <ul>
+                                        <li><strong>Mensagem (Relato):</strong> Descreva de forma clara e objetiva o que foi feito. Ex: "Instalação realizada com sucesso, cabo lançado do poste CTO-02-05, PTO instalada na sala. Sinal -18dBm. Wi-Fi configurado."</li>
+                                        <li><strong>Diagnóstico:</strong> Selecione em uma lista a causa principal do atendimento (ex: "Instalação GPON", "Fibra Rompida", "Troca de ONT").</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">Passo 6: Checkout, Assinatura e Finalização</button>
+                                <div class="accordion-content">
+                                    <p>Com tudo concluído, vá para a tela de **"Checkout"**.</p>
+                                    <ol>
+                                        <li>Mostre o resumo do serviço para o cliente.</li>
+                                        <li>Utilize a função **"Assinatura Digital"** para que o cliente assine na tela do seu celular, confirmando a conclusão do serviço.</li>
+                                        <li>Pressione o botão **"Finalizar Ordem de Serviço"**. A OS sairá da sua lista de pendências e será enviada para o sistema.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gerenciamento-materiais">
+                        <h3>📦 Gerenciamento de Materiais no App</h3>
+                        <p>O controle do seu estoque pessoal é feito diretamente pelo aplicativo, no menu principal **"Materiais"**.</p>
+                         <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">Visualizar "Meus Materiais"</button>
+                                <div class="accordion-content">
+                                    <p>Nesta tela, você pode ver a lista completa de todos os produtos e equipamentos (ONTs, Roteadores) que estão sob sua responsabilidade, com a quantidade atual de cada um.</p>
+                                    <ul>
+                                        <li>Use o campo de busca para encontrar um item específico.</li>
+                                        <li>Clique em "Ver detalhes" para consultar os números patrimoniais (seriais) dos equipamentos em seu estoque.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="accordion-item">
+                                <button class="accordion-header">Requisição de Material</button>
+                                <div class="accordion-content">
+                                    <p>Quando seu estoque estiver baixo, você deve fazer uma requisição para o almoxarifado. No menu de materiais, encontre a opção **"Requisição"**.</p>
+                                    <ol>
+                                        <li>Clique em "Nova Requisição".</li>
+                                        <li>Adicione os produtos e as quantidades que você precisa.</li>
+                                        <li>Informe a Classe (Material) e o Centro de Custo (geralmente, o seu setor).</li>
+                                        <li>Salve a requisição. Ela será enviada para o setor de compras/almoxarifado para aprovação e separação.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">Transferência de Material entre Técnicos</button>
+                                <div class="accordion-content">
+                                    <p>Caso precise de um material urgente e um colega de equipe tenha de sobra, vocês podem fazer uma transferência pelo app.</p>
+                                    <ol>
+                                        <li>O técnico que está **enviando** o material vai em Materiais > Transferência.</li>
+                                        <li>Ele seleciona o técnico de **destino** e adiciona os produtos/equipamentos e quantidades.</li>
+                                        <li>Você, que está **recebendo**, receberá uma notificação. Vá em Materiais > Transferência e aceite a entrada dos itens.</li>
+                                    </ol>
+                                    <p>Este processo dá baixa automática no estoque de um e adiciona no seu, mantendo o controle do sistema sempre atualizado.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navigation-buttons">
+                    <a href="modulo4.html" class="btn-prev">&larr; Voltar ao Módulo 4</a>
+                    <a href="modulo5-6.html" class="btn-next">Avançar para o Módulo 5/6 &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia. Desenvolvido por Carlos Santos Bispo Júnior.</p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        // Simples script para accordion
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('active');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>
