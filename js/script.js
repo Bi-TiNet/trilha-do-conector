@@ -159,7 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateView() {
             steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
             const totalSteps = steps.length;
-            if (stepCounter) stepCounter.textContent = `Passo ${currentStep + 1} de ${totalSteps}`;
+            if (stepCounter) {
+                const text = stepCounter.id.includes('fusao') ? 'Passo' : 'Fase';
+                stepCounter.textContent = `${text} ${currentStep + 1} de ${totalSteps}`;
+            }
             if (progressBarFill) progressBarFill.style.width = `${(currentStep / (totalSteps - 1)) * 100}%`;
             prevBtn.disabled = currentStep === 0;
             nextBtn.disabled = currentStep === totalSteps - 1;
@@ -267,31 +270,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const inputNome = document.getElementById('nome-colaborador');
 
         const bancoDeQuestoes = [
-            // Módulo 1 (4 questões)
-            { pergunta: "Qual valor da Ti.Net se refere a cuidar das ferramentas e projetos como se fossem seus?", opcoes: ["Honestidade", "Senso de Dono", "Dedicação", "Trabalho em Equipe"], respostaCorreta: 1 },
-            { pergunta: "Na arquitetura FTTH, qual equipamento converte o sinal de luz para elétrico na casa do cliente?", opcoes: ["OLT", "CTO", "Drop Cable", "ONT"], respostaCorreta: 3 },
-            { pergunta: "Qual o nome do 'cérebro' da rede, localizado na central da empresa?", opcoes: ["ONT", "OLT", "CTO", "Splitter"], respostaCorreta: 1 },
-            { pergunta: "O que significa a sigla FTTH?", opcoes: ["Fibra para o Hotel", "Frequência de Transmissão por Hora", "Fibra até a Casa", "Falha Total de Transmissão de Hardware"], respostaCorreta: 2 },
-            // Módulo 2 (4 questões)
-            { pergunta: "Qual Norma Regulamentadora (NR) trata sobre Segurança em Instalações e Serviços em Eletricidade?", opcoes: ["NR-35 (Altura)", "NR-10 (Eletricidade)", "NR-06 (EPI)", "NR-12 (Máquinas)"], respostaCorreta: 1 },
-            { pergunta: "Para trabalhos em postes, qual EPI é essencial contra quedas?", opcoes: ["Capacete com Jugular", "Luvas de Proteção", "Cinto de Segurança tipo Paraquedista", "Botas de Segurança"], respostaCorreta: 2 },
-            { pergunta: "Fragmentos de fibra óptica são perigosos porque podem...", opcoes: ["Causar curtos-circuitos", "Atrair raios", "Perfurar a pele e atingir os olhos", "Conduzir eletricidade estática"], respostaCorreta: 2 },
-            { pergunta: "Em caso de chuva forte ou raios, o procedimento correto é:", opcoes: ["Continuar o trabalho rapidamente", "Interromper o trabalho imediatamente e procurar abrigo", "Aguardar por 10 minutos antes de continuar", "Usar uma capa de chuva sobre os EPIs"], respostaCorreta: 1 },
-            // Módulo 3 (4 questões)
-            { pergunta: "Qual ferramenta faz o corte final, perfeitamente a 90 graus, na fibra antes da fusão?", opcoes: ["Tesoura de Kevlar", "Decapador", "Clivador de Precisão", "Alicate de Bico"], respostaCorreta: 2 },
-            { pergunta: "A limpeza da fibra nua deve ser feita com qual produto?", opcoes: ["Água e sabão", "Álcool Isopropílico", "Querosene", "Óleo lubrificante"], respostaCorreta: 1 },
-            { pergunta: "Kevlar, os fios amarelos de resistência dentro do cabo, deve ser cortado com:", opcoes: ["Estilete", "Alicate de corte comum", "Tesoura para Kevlar", "A própria mão"], respostaCorreta: 2 },
-            { pergunta: "Qual o objetivo de usar um decapador de fibra (stripper)?", opcoes: ["Cortar o cabo ao meio", "Remover as camadas de proteção sem danificar o núcleo", "Fazer a fusão óptica", "Medir o sinal"], respostaCorreta: 1 },
-            // Módulo 4 (4 questões)
-            { pergunta: "Qual a primeira fase da rotina de trabalho, antes mesmo de ir ao cliente?", opcoes: ["Lançamento do Cabo", "Testes e Validação", "Preparação na Base", "Gestão da OS"], respostaCorreta: 2 },
-            { pergunta: "Qual faixa de sinal óptico (em dBm) é considerada ideal em um Power Meter?", opcoes: ["-15 a -25", "0 a -10", "-30 a -40", "Acima de 0"], respostaCorreta: 0 },
-            { pergunta: "Ao chegar na casa do cliente, qual deve ser a primeira ação do auxiliar?", opcoes: ["Subir no poste imediatamente", "Pedir um copo de água", "Apresentar-se formalmente ao cliente e analisar o local", "Começar a passar o cabo"], respostaCorreta: 2 },
-            { pergunta: "A responsabilidade de segurar a escada com firmeza é de quem?", opcoes: ["Do cliente", "Do técnico que está no poste", "Do auxiliar que está no solo", "De ninguém, a escada é estável sozinha"], respostaCorreta: 2 },
-            // Módulos 5 e 6 (4 questões)
-            { pergunta: "O que é uma 'Reserva Técnica' de cabo?", opcoes: ["Um cabo mais resistente", "Um excesso de cabo enrolado para futuras manutenções", "Um estoque guardado na empresa", "Um tipo de conector"], respostaCorreta: 1 },
-            { pergunta: "Qual o padrão de atendimento Ti.Net para a organização de cabos na casa do cliente?", opcoes: ["O mais rápido possível", "Bonita e discreta, sem 'barrigas'", "Deixar solto para o cliente escolher", "Usar abraçadeiras de metal"], respostaCorreta: 1 },
-            { pergunta: "Qual dos 3 passos críticos ANTES da fusão óptica garante a remoção de impurezas?", opcoes: ["Decapagem", "Limpeza", "Clivagem", "Medição"], respostaCorreta: 1 },
-            { pergunta: "Para evoluir de Auxiliar para Técnico, qual etapa envolve aprender sobre redes e configurações?", opcoes: ["Dominar a função atual", "Aprender a teoria", "Praticar com supervisão", "Comprar novas ferramentas"], respostaCorreta: 1 },
+            // Módulo 1: Fundamentos (4 questões)
+            { pergunta: "Qual é a missão da Ti.Net?", opcoes: ["Ser referência em serviço de telecomunicação.", "Vender produtos de automação residencial.", "Levar conectividade e conhecimento às pessoas.", "Atingir o maior número de cidades com fibra."], respostaCorreta: 2 },
+            { pergunta: "Qual componente da rede FTTH é conhecido como o 'cérebro' da rede, localizado na central?", opcoes: ["ONT (Optical Network Terminal)", "CTO (Caixa de Terminação Óptica)", "OLT (Optical Line Terminal)", "Drop Cable"], respostaCorreta: 2 },
+            { pergunta: "Qual dos valores da Ti.Net significa 'zelar pelo patrimônio da empresa e ter orgulho do resultado final'?", opcoes: ["Responsabilidade", "Senso de Dono", "Honestidade", "Trabalho em Equipe"], respostaCorreta: 1 },
+            { pergunta: "Qual é a principal função do Auxiliar Cabista durante uma instalação?", opcoes: ["Realizar a fusão da fibra óptica.", "Configurar o roteador do cliente.", "Garantir a segurança, preparar ferramentas e auxiliar o técnico.", "Fazer o primeiro contato com o cliente para vendas."], respostaCorreta: 2 },
+
+            // Módulo 2: Segurança (4 questões)
+            { pergunta: "Qual Norma Regulamentadora (NR) é específica para Trabalho em Altura?", opcoes: ["NR-10", "NR-06", "NR-35", "NR-12"], respostaCorreta: 2 },
+            { pergunta: "Por que é estritamente proibido olhar diretamente para a ponta de uma fibra óptica ativa?", opcoes: ["Porque a luz visível pode ofuscar a visão.", "Porque emite um som agudo prejudicial.", "Porque a luz do laser é invisível e pode causar danos permanentes aos olhos.", "Porque pode causar choque elétrico."], respostaCorreta: 2 },
+            { pergunta: "Qual EPI é essencial para proteger contra quedas durante o trabalho em postes?", opcoes: ["Óculos de Proteção", "Cinto de Segurança tipo Paraquedista", "Luvas de Proteção", "Capacete com Jugular"], respostaCorreta: 1 },
+            { pergunta: "Ao sinalizar uma área de trabalho na rua, qual equipamento é indispensável?", opcoes: ["Fita zebrada", "Escada", "Cones de sinalização", "Caixa de ferramentas"], respostaCorreta: 2 },
+
+            // Módulo 3: Ferramentas (4 questões)
+            { pergunta: "Qual ferramenta é usada para fazer um corte preciso de 90 graus na ponta da fibra óptica antes da conexão?", opcoes: ["Tesoura para Kevlar", "Decapador de Fibra (Stripper)", "Alicate de Bico", "Clivador de Precisão"], respostaCorreta: 3 },
+            { pergunta: "Para que serve a 'Tesoura para Kevlar'?", opcoes: ["Para cortar a capa preta do cabo Drop.", "Para cortar os fios amarelos de resistência dentro do cabo.", "Para decapar a fibra nua.", "Para cortar o cabo de rede."], respostaCorreta: 1 },
+            { pergunta: "Qual material é instalado dentro da casa do cliente para ser o ponto final do cabo Drop?", opcoes: ["ONT (Optical Network Terminal)", "CTO (Caixa de Terminação Óptica)", "OLT (Optical Line Terminal)", "Conector de Campo"], respostaCorreta: 1 },
+            { pergunta: "A limpeza da fibra nua, após a decapagem, deve ser feita com:", opcoes: ["Água e sabão", "Um pano seco", "Álcool Isopropílico", "Qualquer tipo de álcool"], respostaCorreta: 2 },
+
+            // Módulo 4: Passo a Passo (4 questões)
+            { pergunta: "No aplicativo InMap Service, qual é a PRIMEIRA ação a ser tomada ao iniciar o trajeto para a casa do cliente?", opcoes: ["Chamar Cliente", "Mostrar Localização", "Iniciar Deslocamento", "Reagendar"], respostaCorreta: 2 },
+            { pergunta: "Qual é a faixa de sinal óptico (em dBm) considerada IDEAL ao medir com um Power Meter na casa do cliente?", opcoes: ["Entre -5dBm e -14dBm", "Abaixo de -28dBm", "Acima de 0dBm", "Entre -15dBm e -25dBm"], respostaCorreta: 3 },
+            { pergunta: "Se a luz 'PON/Link' da ONT está apagada ou piscando, qual é o problema mais provável?", opcoes: ["Problema de senha no roteador.", "Problema de sinal óptico (cabo desconectado ou rompido).", "A ONT está com defeito de fábrica.", "Falta de energia na casa do cliente."], respostaCorreta: 1 },
+            { pergunta: "Durante a rotina de instalação, quem é responsável por informar ao Suporte (NOC) os dados da CTO e o serial da ONT?", opcoes: ["O cliente", "O Auxiliar Cabista", "O Técnico Cabista", "O sistema automaticamente"], respostaCorreta: 1 },
+
+            // Módulo 5/6: Avançado (4 questões)
+            { pergunta: "Qual é a principal causa de falhas na fusão óptica?", opcoes: ["Limpeza inadequada da fibra.", "Uma clivagem (corte) ruim, que não esteja a 90 graus.", "Usar o decapador incorreto.", "A temperatura do ambiente."], respostaCorreta: 1 },
+            { pergunta: "O que é uma 'reserva técnica' de cabo, deixada no poste e perto da casa do cliente?", opcoes: ["Um tipo de cabo mais resistente.", "Um cabo para ser usado em outra instalação.", "Uma sobra de cabo organizada para facilitar manutenções futuras.", "Um cabo que ficou com defeito."], respostaCorreta: 2 },
+            { pergunta: "Qual equipamento funciona como um 'radar' para a fibra, informando a distância exata de um rompimento?", opcoes: ["Power Meter", "OTDR (Optical Time Domain Reflectometer)", "Máquina de Fusão", "Multímetro"], respostaCorreta: 1 },
+            { pergunta: "Para ser promovido de Auxiliar para Técnico, qual é um dos principais passos na sua jornada de desenvolvimento?", opcoes: ["Apenas dominar a função atual perfeitamente.", "Comprar suas próprias ferramentas.", "Aprender a teoria sobre redes e praticar tarefas complexas com supervisão.", "Fazer amizade com os supervisores."], respostaCorreta: 2 }
         ];
 
         let questoesSelecionadas = [];
@@ -303,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Por favor, digite seu nome completo.');
                 return;
             }
-            // Lógica corrigida: embaralha o banco inteiro e pega os 10 primeiros
+            // Lógica para embaralhar o banco de questões e selecionar as 10 primeiras
             questoesSelecionadas = [...bancoDeQuestoes].sort(() => 0.5 - Math.random()).slice(0, 10);
             
             pontuacao = 0;
@@ -321,6 +328,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('quiz-pergunta').textContent = questao.pergunta;
                 const opcoesContainer = document.getElementById('quiz-opcoes');
                 opcoesContainer.innerHTML = '';
+                document.getElementById('quiz-feedback').innerHTML = ''; // Limpa o feedback anterior
+                
                 questao.opcoes.forEach((opcao, index) => {
                     const botao = document.createElement('button');
                     botao.textContent = opcao;
@@ -336,13 +345,18 @@ document.addEventListener('DOMContentLoaded', function() {
         function selecionarResposta(indexSelecionado, indexCorreto) {
             const botoesOpcao = document.querySelectorAll('.opcao-quiz');
             botoesOpcao.forEach(btn => btn.disabled = true);
+            const feedbackContainer = document.getElementById('quiz-feedback');
+            
             if (indexSelecionado === indexCorreto) {
                 pontuacao++;
                 botoesOpcao[indexSelecionado].classList.add('correta');
+                feedbackContainer.innerHTML = '<p class="feedback correto">Correto!</p>';
             } else {
                 botoesOpcao[indexSelecionado].classList.add('errada');
                 botoesOpcao[indexCorreto].classList.add('correta');
+                feedbackContainer.innerHTML = '<p class="feedback incorreto">Incorreto!</p>';
             }
+            
             setTimeout(() => {
                 questaoAtualIndex++;
                 mostrarQuestao();
@@ -372,63 +386,72 @@ document.addEventListener('DOMContentLoaded', function() {
         
         function gerarCertificado() {
             if (!window.jspdf || !window.jspdf.jsPDF) {
-                alert('Erro: jsPDF não foi carregado corretamente.');
+                console.error('Erro: jsPDF não foi carregado corretamente.');
+                alert('Ocorreu um erro ao carregar a biblioteca para gerar o PDF. Verifique o console para mais detalhes.');
                 return;
             }
 
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
             
-            // --- CORREÇÃO APLICADA AQUI: "dados:" para "data:" ---
             const logoImg = document.getElementById('logo-cert');
+            if (!logoImg) {
+                console.error("Elemento da logo para o certificado não encontrado (ID: logo-cert).");
+                alert("Não foi possível gerar o certificado. A imagem da logo não foi encontrada.");
+                return;
+            }
+            
             const nomeColaborador = inputNome.value;
             const dataConclusao = new Date().toLocaleString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
             const pageWidth = doc.internal.pageSize.getWidth();
             const pageHeight = doc.internal.pageSize.getHeight();
 
-            doc.setFillColor(248, 249, 250);
+            // Fundo e Bordas
+            doc.setFillColor(248, 249, 250); // Um branco levemente acinzentado
             doc.rect(0, 0, pageWidth, pageHeight, 'F');
-            doc.setDrawColor(0, 51, 102);
+            doc.setDrawColor(0, 51, 102); // Azul escuro
             doc.setLineWidth(1.5);
             doc.rect(10, 10, pageWidth - 20, pageHeight - 20);
-            doc.setDrawColor(0, 153, 204);
+            doc.setDrawColor(0, 153, 204); // Azul claro
             doc.setLineWidth(0.5);
             doc.rect(12, 12, pageWidth - 24, pageHeight - 24);
 
+            // Conteúdo
             doc.addImage(logoImg, 'PNG', 20, 20, 50, 19);
             
             doc.setFont('times', 'bold');
             doc.setFontSize(38);
             doc.setTextColor(0, 51, 102);
-            doc.text("Certificado", pageWidth / 2, 50, { align: 'center' });
+            doc.text("Certificado de Conclusão", pageWidth / 2, 55, { align: 'center' });
             
             doc.setFont('times', 'normal');
             doc.setFontSize(16);
             doc.setTextColor(51, 51, 51);
-            doc.text("Este certificado é concedido a", pageWidth / 2, 70, { align: 'center' });
+            doc.text("Certificamos que", pageWidth / 2, 80, { align: 'center' });
 
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(32);
             doc.setTextColor(0, 153, 204);
-            doc.text(nomeColaborador, pageWidth / 2, 90, { align: 'center' });
+            doc.text(nomeColaborador, pageWidth / 2, 100, { align: 'center' });
 
             const textLines = doc.splitTextToSize(
-                `por ter concluído com sucesso o treinamento de integração "Trilha do Conector", demonstrando competência nos padrões de qualidade e segurança da Ti.Net Tecnologia.`,
+                `concluiu com êxito o treinamento de integração "Trilha do Conector", demonstrando competência nos padrões de qualidade e segurança da Ti.Net Tecnologia.`,
                 220
             );
             doc.setFont('times', 'normal');
             doc.setFontSize(14);
             doc.setTextColor(51, 51, 51);
-            doc.text(textLines, pageWidth / 2, 110, { align: 'center' });
+            doc.text(textLines, pageWidth / 2, 120, { align: 'center' });
 
             doc.setFontSize(12);
-            doc.text(`Concluído em: ${dataConclusao}.`, pageWidth / 2, 140, { align: 'center' });
+            doc.text(`Concluído em: ${dataConclusao}. Pontuação: ${pontuacao}/10.`, pageWidth / 2, 150, { align: 'center' });
 
-            const signatureY = 170;
+            // Assinaturas
+            const signatureY = 175;
             doc.setLineWidth(0.3);
             doc.setDrawColor(100, 100, 100);
 
-            const ceoX = pageWidth / 4 + 10;
+            const ceoX = pageWidth / 4 + 20;
             doc.line(ceoX - 35, signatureY, ceoX + 35, signatureY);
             doc.setFont('times', 'bold');
             doc.setFontSize(12);
@@ -437,7 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
             doc.setFontSize(10);
             doc.text("CEO - Ti.Net Tecnologia", ceoX, signatureY + 13, { align: 'center' });
             
-            const devX = pageWidth * 3 / 4 - 10;
+            const devX = pageWidth * 3 / 4 - 20;
             doc.line(devX - 35, signatureY, devX + 35, signatureY);
             doc.setFont('times', 'bold');
             doc.setFontSize(12);
