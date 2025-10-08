@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Ferramentas - Trilha do Conector</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2.html" class="nav-item">Módulo 2: Segurança</a>
+                <a href="modulo3.html" class="nav-item active">Módulo 3: Ferramentas</a>
+                <a href="modulo4.html" class="nav-item">Módulo 4: Passo a Passo</a>
+                <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Trilha do Conector 🚀</h1>
+            </header>
+
+            <main>
+                <section id="modulo3">
+                    <h2>📖 Módulo 3: Ferramentas e Materiais de Trabalho</h2>
+
+                    <div class="caixa-ferramentas">
+                        <h3>🖼️ Caixa de Ferramentas Virtual</h3>
+                        <p>Clique em uma ferramenta para ver os detalhes.</p>
+                        <div class="ferramentas-grid">
+                            <div class="ferramenta-item" 
+                                 data-nome="Clivador de Precisão" 
+                                 data-funcao="Usado para fazer um corte preciso e limpo na fibra óptica antes da fusão. A qualidade da clivagem é essencial para uma boa conexão." 
+                                 data-imagem="images/clivador.jpg">
+                                <img src="images/clivador.jpg" alt="Clivador de Precisão">
+                                <span>Clivador de Precisão</span>
+                            </div>
+                            <div class="ferramenta-item" 
+                                 data-nome="Tesoura para Kevlar" 
+                                 data-funcao="Possui lâminas serrilhadas especiais para cortar os fios de aramida (Kevlar), que dão resistência ao cabo, sem deslizar." 
+                                 data-imagem="images/tesoura.jpg">
+                                <img src="images/tesoura.jpg" alt="Tesoura para Kevlar">
+                                <span>Tesoura para Kevlar</span>
+                            </div>
+                            <div class="ferramenta-item" 
+                                 data-nome="Decapadores de Fibra (Alicate Stripper)" 
+                                 data-funcao="Ferramenta com furos de diferentes diâmetros para remover as camadas de proteção da fibra (capa externa, acrilato) sem danificar o núcleo de vidro." 
+                                 data-imagem="images/decapador.jpg">
+                                <img src="images/decapador.jpg" alt="Decapadores de Fibra">
+                                <span>Decapadores de Fibra</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gifs-demonstracao">
+                        <h3>💡 Demonstração de Manuseio</h3>
+                        <div class="gif-container">
+                            <figure>
+                                <figcaption>Decapando a capa externa do cabo Drop</figcaption>
+                                <img src="images/decapador.gif" alt="GIF animado decapando cabo de fibra">
+                            </figure>
+                            
+                            <figure class="carousel-figure">
+                                <figcaption>Limpando a fibra com Álcool Isopropílico</figcaption>
+                                <div class="fiber-cleaning-carousel">
+                                    <div class="carousel-images">
+                                        <img src="images/limpeza_fibra_passo_01.png" alt="Técnica pingando álcool isopropílico no lenço." class="carousel-img active">
+                                        <img src="images/limpeza_fibra_passo_02.png" alt="Técnica pinçando a fibra com o lenço umedecido." class="carousel-img">
+                                        <img src="images/limpeza_fibra_passo_03.png" alt="Técnica puxando o lenço para limpar a fibra." class="carousel-img">
+                                    </div>
+                                    </div>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado - Módulo 3</h3>
+                        <div class="questao">
+                            <p><strong>1. Qual ferramenta específica é utilizada para cortar os fios amarelos de resistência (Kevlar) dentro do cabo?</strong></p>
+                            <button class="opcao-m3" data-correta="false">Alicate de Corte</button>
+                            <button class="opcao-m3" data-correta="true">Tesoura para Kevlar</button>
+                            <button class="opcao-m3" data-correta="false">Clivador</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. A limpeza da fibra nua é crucial e deve ser feita com ________ e lenços especiais.</strong></p>
+                            <div class="preenchimento-container">
+                                <input type="text" id="resposta-m3-q2" placeholder="Digite a resposta aqui">
+                                <button id="btn-verificar-m3-q2">Verificar</button>
+                            </div>
+                            <p class="feedback"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="navigation-buttons">
+                    <a href="modulo2.html" class="btn-prev">&larr; Voltar ao Módulo 2</a>
+                    <a href="modulo4.html" comit c class="btn-next">Avançar para o Módulo 4 &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia. Desenvolvido por Carlos Santos Bispo Júnior.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+    <div id="modal-ferramenta" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn">&times;</button>
+            <img id="modal-img" src="" alt="Imagem da Ferramenta em Alta Definição">
+            <h3 id="modal-nome"></h3>
+            <p id="modal-funcao"></p>
+        </div>
+    </div>
+</body>
+</html>

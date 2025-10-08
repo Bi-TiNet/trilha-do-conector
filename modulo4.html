@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Atividades - Trilha do Conector</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2.html" class="nav-item">Módulo 2: Segurança</a>
+                <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
+                <a href="modulo4.html" class="nav-item active">Módulo 4: Passo a Passo</a>
+                <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Trilha do Conector 🚀</h1>
+            </header>
+
+            <main>
+                <section id="modulo4">
+                    <h2>📖 Módulo 4: Passo a Passo das Suas Atividades</h2>
+
+                    <div class="fluxograma-stepper">
+                        <h3>🖼️ Fluxograma Interativo: Rotina de Instalação</h3>
+                        <p>Navegue pelas 7 fases da sua rotina de trabalho.</p>
+                        
+                        <div class="progress-bar">
+                            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+                        </div>
+
+                        <div id="stepper-content" class="stepper-content">
+                            <div class="step active" data-step="1">
+                                <h4>Fase 1: Preparação na Base</h4>
+                                <p>Realize o checklist do veículo (água, óleo, pneus), confira todos os materiais e ferramentas, e certifique-se de que seus EPIs estão em perfeito estado de uso.</p>
+                            </div>
+                            <div class="step" data-step="2">
+                                <h4>Fase 2: Gestão da Ordem de Serviço (OS)</h4>
+                                <p>Acesse o aplicativo InMap Service para verificar as OS's do dia. Colete os dados do cliente, pegue os equipamentos necessários e inicie o deslocamento via app.</p>
+                            </div>
+                            <div class="step" data-step="3">
+                                <h4>Fase 3: Chegada e Análise no Local</h4>
+                                <p>Apresente-se formalmente ao cliente. Inspecione o local para definir o melhor ponto de ancoragem da escada, localize a CTO e planeje o trajeto do cabo Drop.</p>
+                            </div>
+                            <div class="step" data-step="4">
+                                <h4>Fase 4: Lançamento do Cabo</h4>
+                                <p>Com a área devidamente sinalizada e segura, proceda com o lançamento do cabo óptico, guiando-o da CTO até a residência do cliente com máxima atenção.</p>
+                            </div>
+                            <div class="step" data-step="5">
+                                <h4>Fase 5: Conectorização e Instalação Interna</h4>
+                                <p>Realize a preparação da ponta do cabo (conectorização). Passe o cabo para o interior da residência e instale a ONT em local estratégico, acordado com o cliente.</p>
+                            </div>
+                            <div class="step" data-step="6">
+                                <h4>Fase 6: Testes e Validação Técnica</h4>
+                                <p>Ative a ONT, utilize o Power Meter para medir e validar se o sinal óptico está dentro dos padrões de qualidade e confirme a conectividade com a internet.</p>
+                            </div>
+                            <div class="step" data-step="7">
+                                <h4>Fase 7: Finalização e Padrão de Qualidade</h4>
+                                <p>Organize os cabos de forma limpa e discreta ("padrão Ti.Net"). Recolha todas as ferramentas, limpe qualquer resíduo e solicite a aprovação final do cliente.</p>
+                            </div>
+                        </div>
+
+                        <div class="stepper-controls">
+                            <button id="prev-btn" disabled>Anterior</button>
+                            <span id="step-counter">Fase 1 de 7</span>
+                            <button id="next-btn">Próximo</button>
+                        </div>
+                    </div>
+                        <div class="simulacao-ordem">
+                            <h3>💡 Simulação: Preparando a Ponta do Cabo</h3>
+                            <p>Clique nas ações/ferramentas na ordem correta para preparar a fibra.</p>
+                            <div id="ordem-container" class="ordem-container">
+                                <div class="ordem-item" data-ordem="2">Cortar o excesso de Kevlar</div>
+                                <div class="ordem-item" data-ordem="1">Usar o decapador para remover a capa preta</div>
+                                <div class="ordem-item" data-ordem="3">Expor a fibra óptica com cuidado</div>
+                            </div>
+                            <div id="ordem-feedback" class="feedback"></div>
+                        </div>
+
+                        <div class="simulado">
+                            <h3>💡 Simulado - Módulo 4</h3>
+                            <div class="questao">
+                                <p><strong>1. Na Fase 6 (Testes e Validação Técnica), você utiliza o Power Meter para medir o sinal óptico. Qual faixa de sinal é considerada ideal para garantir uma conexão de qualidade para o cliente?</strong></p>
+                                <button class="opcao-m4" data-correta="false">Acima de 0dBm.</button>
+                                <button class="opcao-m4" data-correta="true">Entre -15dBm e -25dBm.</button>
+                                <button class="opcao-m4" data-correta="false">Abaixo de -28dBm.</button>
+                                <button class="opcao-m4" data-correta="false">Entre 10 e 20 Watts.</button>
+                                <p class="feedback"></p>
+                            </div>
+                        </div>
+                </section>
+
+                
+                <div class="navigation-buttons">
+                    <a href="modulo3.html" class="btn-prev">&larr; Voltar ao Módulo 3</a>
+                    <a href="modulo5-6.html" class="btn-next">Avançar para o Módulo 5 &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia. Desenvolvido por Carlos Santos Bispo Júnior.</p>
+            </footer>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Avaliação Final - Trilha do Conector</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="js/script.js"></script>
+
+    </head>
+    <body>
+        <div class="page-container">
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
+                    <a href="modulo2.html" class="nav-item">Módulo 2: Segurança</a>
+                    <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
+                    <a href="modulo4.html" class="nav-item">Módulo 4: Passo a Passo</a>
+                    <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
+                    <a href="avaliacao.html" class="nav-item active">🏆 Avaliação Final</a>
+                </nav>
+            </aside>
+
+            <div class="main-content">
+                <header>
+                    <h1>Trilha do Conector 🚀</h1>
+                </header>
+
+                <main>
+                    <section id="avaliacao">
+                        <h2>🏆 Avaliação Final</h2>
+
+                        <div id="avaliacao-inicio">
+                            <p>Você concluiu todos os módulos de treinamento! Agora, para receber sua certificação, você deve realizar a avaliação final.</p>
+                            <ul>
+                                <li>A prova contém <strong>10 questões</strong> aleatórias sobre todos os módulos.</li>
+                                <li>Você precisa de um acerto mínimo de <strong>70%</strong> para ser aprovado.</li>
+                            </ul>
+                            <div class="form-group">
+                                <label for="nome-colaborador">Digite seu nome completo para o certificado:</label>
+                                <input type="text" id="nome-colaborador" value="Carlos Santos Bispo Júnior" placeholder="Ex: Carlos Santos Bispo Júnior">
+                            </div>
+                            <button id="btn-iniciar-avaliacao">Iniciar Avaliação</button>
+                        </div>
+
+                        <div id="avaliacao-quiz" style="display: none;">
+                            <div class="quiz-header">
+                                <p id="quiz-progresso"></p>
+                                <h4 id="quiz-pergunta"></h4>
+                            </div>
+                            <div id="quiz-opcoes" class="quiz-opcoes"></div>
+                            <div id="quiz-feedback" class="feedback-container"></div>
+                        </div>
+
+                        <div id="avaliacao-resultado" style="display: none;">
+                            <h3>Resultado Final</h3>
+                            <p>Parabéns por concluir a avaliação!</p>
+                            <div id="resultado-placar"></div>
+                            <p id="resultado-mensagem"></p>
+                            <button id="btn-gerar-certificado" style="display: none;">📜 Gerar Certificado em PDF</button>
+                        </div>
+                    </section>
+                    
+                    <div class="navigation-buttons">
+                        <a href="modulo5-6.html" class="btn-prev">&larr; Voltar e Revisar</a>
+                    </div>
+                </main>
+        </div>
+
+        <img id="logo-cert" src="images/logoc.png" style="display: none;">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="./js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Segurança - Trilha do Conector</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2.html" class="nav-item active">Módulo 2: Segurança</a>
+                <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
+                <a href="modulo4.html" class="nav-item">Módulo 4: Passo a Passo</a>
+                <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Trilha do Conector 🚀</h1>
+            </header>
+
+            <main>
+                <section id="modulo2">
+                    <h2>📖 Módulo 2: Segurança em Primeiro Lugar</h2>
+                    <p class="aviso">A segurança não é negociável. O avanço só será permitido após 100% de acerto no simulado.</p>
+
+                    <div class="simulador-epi">
+                        <h3>💡 Simulador: Conecte o EPI ao local correto</h3>
+                        <p>Arraste o nome de cada EPI da lista até o ponto colorido correspondente na imagem.</p>
+                        <div id="feedback-epi" class="feedback-box"></div> <div class="arena-epi-conect">
+                            <div class="epi-lista-arrastar">
+                                <div class="epi-arrastavel cor-capacete" id="label-capacete" draggable="true">Capacete com Jugular</div>
+                                <div class="epi-arrastavel cor-oculos" id="label-oculos" draggable="true">Óculos de Proteção</div>
+                                <div class="epi-arrastavel cor-cinto" id="label-cinto" draggable="true">Cinto Paraquedista</div>
+                                <div class="epi-arrastavel cor-luvas" id="label-luvas" draggable="true">Luvas de Proteção</div>
+                                <div class="epi-arrastavel cor-botas" id="label-botas" draggable="true">Botas de Segurança</div>
+                            </div>
+
+                            <div class="avatar-container-conect">
+                                <img src="images/avatar.png" alt="Colaborador com todos os EPIs"> 
+                                <div class="hotspot-epi cor-capacete" style="top: 5%; left: 50%;" data-accepts="label-capacete"></div>
+                                <div class="hotspot-epi cor-oculos" style="top: 15%; left: 50%;" data-accepts="label-oculos"></div>
+                                <div class="hotspot-epi cor-cinto" style="top: 50%; left: 50%;" data-accepts="label-cinto"></div>
+                                <div class="hotspot-epi cor-luvas" style="top: 57%; left: 28%;" data-accepts="label-luvas"></div>
+                                <div class="hotspot-epi cor-botas" style="top: 92%; left: 49%;" data-accepts="label-botas"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cenario-risco">
+                        <h3>🖼️ Cenário de Risco Interativo</h3>
+                        <p>Clique nos pontos de perigo na imagem para destacar o alerta correspondente ao lado.</p>
+            
+                        <div class="cenario-flex-container">
+                            <div class="imagem-container">
+                                <img src="images/poste.jpg" alt="Cenário de trabalho em um poste"> 
+                                <div class="hotspot" style="top: 8%; left: 90%;" data-target="risco-eletrico"></div>
+                                <div class="hotspot" style="top: 40%; left: 10%;" data-target="risco-altura"></div>
+                                <div class="hotspot" style="top: 32%; left: 50%;" data-target="risco-fibra"></div>
+                            </div>
+
+                            <div class="riscos-lista">
+                                <div id="risco-eletrico" class="risco-item">
+                                    <strong>Risco Elétrico (NR-10):</strong> Nunca toque na rede elétrica. Mantenha distância de segurança e considere a rede sempre energizada.
+                                </div>
+                                <div id="risco-fibra" class="risco-item">
+                                    <strong>Fragmentos de Fibra:</strong> Pedaços de fibra são como vidro invisível. Podem perfurar a pele ou, pior, atingir os olhos. Use óculos e nunca passe a mão para limpar.
+                                </div>
+                                <div id="risco-altura" class="risco-item">
+                                    <strong>Trabalho em Altura (NR-35):</strong> A base da escada deve estar firme e em piso nivelado. Sempre ancore o cinto de segurança antes de iniciar o trabalho.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado - Módulo 2</h3>
+                        <div class="questao">
+                            <p><strong>1. Por que é OBRIGATÓRIO o uso de óculos de proteção ao manusear fibra óptica?</strong></p>
+                            <button class="opcao-m2" data-correta="false">Para proteger contra o brilho do sol.</button>
+                            <button class="opcao-m2" data-correta="true">Para evitar que fragmentos de fibra invisíveis atinjam os olhos.</button>
+                            <button class="opcao-m2" data-correta="false">Para parecer mais profissional.</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. Em caso de chuva forte ou raios, o trabalho em altura deve continuar para cumprir o cronograma.</strong></p>
+                            <button class="opcao-m2" data-correta="false">Verdadeiro</button>
+                            <button class="opcao-m2" data-correta="true">Falso</button>
+                            <p class="feedback"></p>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navigation-buttons">
+                    <a href="modulo1.html" class="btn-prev">&larr; Voltar ao Módulo 1</a>
+                    <a href="modulo3.html" class="btn-next">Avançar para o Módulo 3 &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia. Desenvolvido por Carlos Santos Bispo Júnior.</p>
+            </footer>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
