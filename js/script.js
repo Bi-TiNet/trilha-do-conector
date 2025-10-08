@@ -3,57 +3,67 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Sistema 'Trilha do Conector' iniciado!");
 
     // ==========================================================
-    // --- LÓGICAS GLOBAIS E DE NAVEGAÇÃO ---
+    // --- LÓGICA DE NAVEGAÇÃO (VERSÃO FINAL CORRIGIDA) ---
     // ==========================================================
-
     const urlParams = new URLSearchParams(window.location.search);
     const role = urlParams.get('role');
     const isAvaliacaoPage = window.location.pathname.includes('avaliacao.html');
 
-    // --- 1. DINAMIZA O MENU NA PÁGINA DE AVALIAÇÃO ---
-    if (isAvaliacaoPage && role === 'tecnico') {
-        const navLinks = {
-            'nav-mod1': { href: 'modulo1-tecnico.html', text: 'Módulo 1: Fundamentos Téc.' },
-            'nav-mod2': { href: 'modulo2-tecnico.html', text: 'Módulo 2: Segurança Avançada' },
-            'nav-mod3': { href: 'modulo3-tecnico.html', text: 'Módulo 3: Ferramentas de Precisão' },
-            'nav-mod4': { href: 'modulo4-tecnico.html', text: 'Módulo 4: Protocolos' },
-            'nav-mod5-6': { href: 'modulo5-6-tecnico.html', text: 'Módulo 5/6: Excelência e Carreira' }
-        };
-
-        for (const id in navLinks) {
-            const link = document.getElementById(id);
-            if (link) {
-                link.href = navLinks[id].href;
-                link.textContent = navLinks[id].text;
-            }
-        }
-    }
-
-    // --- 2. PROPAGA O PARÂMETRO 'ROLE' PARA TODOS OS LINKS ---
     if (role) {
+        // Define o sufixo com base na role. Para 'auxiliar', não há sufixo.
+        const suffix = (role === 'tecnico' || role === 'autonomo') ? `-${role}` : '';
+
         document.querySelectorAll('a').forEach(link => {
+            const originalHref = link.getAttribute('href');
+
+            // Ignora links que não devem ser processados (âncoras, externos, etc.)
+            if (!originalHref || originalHref.startsWith('#') || !originalHref.endsWith('.html')) {
+                return;
+            }
+
             try {
-                // Processa apenas links relativos que apontam para .html
-                if (link.href && new URL(link.href).pathname.endsWith('.html')) {
-                    const url = new URL(link.href);
-                    url.searchParams.set('role', role);
-                    link.href = url.toString();
+                let finalHref = originalHref;
+
+                // Apenas na página de avaliação os links base precisam ser modificados
+                if (isAvaliacaoPage && finalHref.includes('modulo')) {
+                    // Transforma 'moduloX.html' em 'moduloX-role.html'
+                    finalHref = finalHref.replace('.html', `${suffix}.html`);
+                }
+                
+                // Adiciona o parâmetro 'role' ao link final para manter a navegação
+                const url = new URL(finalHref, window.location.href);
+                url.searchParams.set('role', role);
+                link.href = url.href;
+
+                // Atualiza o texto do menu se for a trilha de técnico na pág. de avaliação
+                if (isAvaliacaoPage && role === 'tecnico') {
+                    const textUpdates = {
+                        'nav-mod1': 'Módulo 1: Fundamentos Téc.',
+                        'nav-mod2': 'Módulo 2: Segurança Avançada',
+                        'nav-mod3': 'Módulo 3: Ferramentas de Precisão',
+                        'nav-mod4': 'Módulo 4: Protocolos',
+                        'nav-mod5-6': 'Módulo 5/6: Excelência e Carreira'
+                    };
+                    if (link.id && textUpdates[link.id]) {
+                        link.textContent = textUpdates[link.id];
+                    }
                 }
             } catch (e) {
-                // Ignora links inválidos ou que não sejam URLs completas
+                console.error("Erro ao processar o link:", originalHref, e);
             }
         });
     }
 
-    // --- 3. ANIMAÇÃO DE ENTRADA DAS SEÇÕES ---
+
+    // ==========================================================
+    // --- O RESTANTE DO SEU CÓDIGO PERMANECE O MESMO ---
+    // ==========================================================
+
+
+    // --- ANIMAÇÃO DE ENTRADA DAS SEÇÕES ---
     document.querySelectorAll('section').forEach(section => {
         setTimeout(() => section.classList.add('visible'), 100);
     });
-
-
-    // ==========================================================
-    // --- LÓGICAS INTERATIVAS DOS MÓDULOS ---
-    // ==========================================================
 
     // MÓDULO 1: Fundamentos
     document.querySelectorAll('.valor-btn').forEach(botao => {
@@ -315,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { pergunta: "Qual é o último passo obrigatório para encerrar uma OS no aplicativo InMap Service?", opcoes: ["Ligar para o NOC", "Adicionar os materiais utilizados", "Tirar uma foto da instalação", "Coletar a assinatura do cliente e finalizar a OS"], respostaCorreta: 3 },
                 { pergunta: "Uma emenda por fusão é considerada de boa qualidade quando sua perda (atenuação) é, tipicamente:", opcoes: ["Menor que 0.5 dB", "Maior que 1.0 dB", "Menor que 0.05 dB", "Exatamente 0.0 dB"], respostaCorreta: 2 },
                 { pergunta: "Qual equipamento cria um 'mapa' gráfico da fibra, indicando a distância exata de rompimentos ou atenuações?", opcoes: ["Power Meter", "Máquina de Fusão", "OTDR", "VFL (Caneta de Luz)"], respostaCorreta: 2 },
-                { pergunta: "A luz 'PON' da ONT está piscando. O sinal na PTO é -21dBm. Qual o próximo passo?", opcoes: ["Trocar o cabo Drop, pois o sinal está ruim.", "Contatar o NOC para verificar o provisionamento da ONT.", "Trocar a ONT, pois ela está com defeito.", "Reiniciar o roteador do cliente."], respostaCorreta: 1 },
+                { pergunta: "A luz 'PON' da ONT está piscando. O sinal é -21dBm. Qual o próximo passo?", opcoes: ["Trocar o cabo Drop, pois o sinal está ruim.", "Contatar o NOC para verificar o provisionamento da ONT.", "Trocar a ONT, pois ela está com defeito.", "Reiniciar o roteador do cliente."], respostaCorreta: 1 },
                 { pergunta: "Qual é a faixa de sinal (em dBm) considerada IDEAL em uma instalação?", opcoes: ["Entre -15dBm e -25dBm", "Abaixo de -28dBm", "Acima de -10dBm", "Entre -26dBm e -28dBm"], respostaCorreta: 0 }
             ]
         };
