@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Suporte Técnico - Ti.Net</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Ajustes específicos para o layout de Manual (Menu Lateral Fixo) */
+        body { display: flex; height: 100vh; overflow: hidden; background-color: #f4f7f9; }
+        .sidebar-manual { width: 280px; background-color: #061633; color: white; display: flex; flex-direction: column; border-right: 1px solid #ddd; height: 100%; }
+        .logo-area { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-area img { max-width: 120px; }
+        .menu-manual { list-style: none; padding: 0; margin-top: 10px; overflow-y: auto; flex-grow: 1; }
+        .menu-item-manual { padding: 15px 20px; cursor: pointer; transition: background 0.3s; border-left: 4px solid transparent; font-size: 15px; display: flex; align-items: center; color: #ccc; }
+        .menu-item-manual:hover { background-color: #0a2550; color: white; }
+        .menu-item-manual.active { background-color: #0a2550; border-left: 4px solid #0099cc; color: white; font-weight: bold; }
+        .menu-item-manual i { margin-right: 10px; width: 20px; text-align: center; }
+        .content-manual { flex: 1; padding: 40px; overflow-y: auto; background-color: #fff; }
+        .topico-manual { display: none; animation: fadeIn 0.5s; }
+        .topico-manual.active { display: block; }
+        .image-container { text-align: center; margin: 20px 0; padding: 10px; border: 1px solid #eee; background: #fafafa; border-radius: 8px; }
+        .image-container img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .legenda { display: block; margin-top: 5px; font-size: 12px; color: #666; font-style: italic; }
+        .alert { padding: 15px; margin: 15px 0; border-radius: 5px; border-left: 5px solid; }
+        .alert-info { background-color: #d1ecf1; color: #0c5460; border-color: #17a2b8; }
+        .alert-warning { background-color: #fff3cd; color: #856404; border-color: #ffc107; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar-manual">
+        <div class="logo-area">
+            <img src="images/logo.png" alt="Ti.Net">
+            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">MANUAL DE SUPORTE</p>
+        </div>
+        <ul class="menu-manual">
+            <li class="menu-item-manual active" onclick="mostrarTopico('inicio')">
+                <i class="fa-solid fa-home"></i> Início
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('diagnostico')">
+                <i class="fa-solid fa-stethoscope"></i> Diagnóstico de Rede
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('acesso-remoto')">
+                <i class="fa-solid fa-desktop"></i> Acesso Remoto
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('autorizar')">
+                <i class="fa-solid fa-wifi"></i> Autorizar ONU
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('ordem-servico')">
+                <i class="fa-solid fa-clipboard-list"></i> Abertura de O.S.
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('sms-massa')">
+                <i class="fa-solid fa-comment-sms"></i> Aviso em Massa (SMS)
+            </li>
+        </ul>
+        <div style="padding: 20px;">
+            <a href="index.html" style="color: #aaa; text-decoration: none; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Sair do Manual</a>
+        </div>
+    </nav>
+
+    <main class="content-manual">
+        
+        <section id="inicio" class="topico-manual active">
+            <h1>Bem-vindo ao Manual de Operações</h1>
+            <p>Este guia serve para consulta rápida durante o atendimento. Selecione um tópico no menu lateral para ver o passo a passo.</p>
+            <div class="alert alert-info">
+                <strong>Dica:</strong> Mantenha esta página aberta durante seu turno para tirar dúvidas sobre procedimentos do IXC Soft.
+            </div>
+        </section>
+
+        <section id="diagnostico" class="topico-manual">
+            <h1>Diagnóstico de Rede</h1>
+            <p>Como analisar o sinal e a conexão do cliente sem ir ao local.</p>
+            <div class="image-container">
+                <img src="images/suporte/diagnostico.png" alt="Tela de Diagnóstico">
+                <span class="legenda">Figura 1: Painel de diagnóstico do IXC</span>
+            </div>
+            <ul>
+                <li><strong>Sinal Ideal:</strong> -15dBm a -25dBm.</li>
+                <li><strong>Sinal Crítico:</strong> Abaixo de -27dBm (ex: -30dBm).</li>
+                <li><strong>Status Online:</strong> Verifique o tempo de conexão e se o cliente não desligou o equipamento (Logoff).</li>
+            </ul>
+        </section>
+
+        <section id="acesso-remoto" class="topico-manual">
+            <h1>Acesso Remoto (ONU/Roteador)</h1>
+            <p>Utilize para trocar senha do Wi-Fi ou verificar configurações internas.</p>
+            <ol>
+                <li>No cadastro do cliente, localize o card <strong>Conexão</strong>.</li>
+                <li>Clique no ícone de "Globo" ou "Monitor" no canto superior direito do card.</li>
+                <li>Você será redirecionado para a página de login do equipamento (Huawei, Datacom, etc.).</li>
+            </ol>
+        </section>
+
+        <section id="autorizar" class="topico-manual">
+            <h1>Provisionamento de ONU</h1>
+            <div class="alert alert-warning">
+                <strong>ATENÇÃO AOS PERFIS:</strong><br>
+                Modo Bridge: VLAN 400 / Perfil 50<br>
+                Modo Router (PPPoE na ONU): VLAN 401 / Perfil 49
+            </div>
+            <ol>
+                <li>Vá em <strong>Provedor > Autorizar ONUs</strong>.</li>
+                <li>Localize o serial informado pelo técnico.</li>
+                <li>Vincule ao <strong>Login</strong> do cliente.</li>
+                <li>Selecione a Caixa FTTH e a Porta correta.</li>
+                <li>Salve e clique em <strong>Autorizar</strong>.</li>
+            </ol>
+        </section>
+
+        <section id="ordem-servico" class="topico-manual">
+            <h1>Abertura de O.S.</h1>
+            <p>Se não resolver remotamente, abra o chamado.</p>
+            <ol>
+                <li>Atendimentos > Novo > Assunto: <strong>32 - SUPORTE TÉCNICO</strong>.</li>
+                <li>Salve o atendimento.</li>
+                <li>Vá na aba Ordens de Serviço > Finalizar Wizard.</li>
+                <li>Selecione a tarefa (ex: <strong>58 - SEM CONEXÃO</strong>).</li>
+                <li>Agende para a data combinada.</li>
+                <li>Encaminhe para o setor Técnico.</li>
+            </ol>
+        </section>
+
+        <section id="sms-massa" class="topico-manual">
+            <h1>Envio de SMS em Massa</h1>
+            <p>Para avisos de rompimento ou manutenção.</p>
+            <ol>
+                <li>Relatórios Provedor > Conexões > Status Logins.</li>
+                <li>Filtre pelo <strong>Transmissor</strong> (POP/OLT) afetado.</li>
+                <li>Aba CRM > Selecione a Mensagem Padrão.</li>
+                <li>Botão CRM > Enviar SMS.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <script>
+        function mostrarTopico(id) {
+            // Esconde todos
+            document.querySelectorAll('.topico-manual').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.menu-item-manual').forEach(el => el.classList.remove('active'));
+            
+            // Mostra o selecionado
+            document.getElementById(id).classList.add('active');
+            
+            // Marca o menu como ativo
+            // (Note: event é global em manipuladores onclick inline simples)
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

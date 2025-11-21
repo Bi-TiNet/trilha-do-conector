@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Trilha - Ti.Net</title>
+    <link rel="stylesheet" href="css/welcome.css">
+</head>
+<body class="welcome-body">
+    <canvas id="neural-network-canvas"></canvas>
+    <div id="welcome-modal" style="max-width: 600px;">
+        <div class="modal-content-wrapper">
+            <div class="modal-header-tech" style="text-align: center;">
+                <p style="color: var(--cor-aviso); margin-bottom: 20px;">&gt;&gt; SELECIONE SUA FUNÇÃO:</p>
+            </div>
+            
+            <div class="role-buttons" style="display: flex; flex-direction: column; gap: 15px;">
+                <a href="modulo1.html?role=auxiliar" class="role-btn">
+                    <span>AUXILIAR CABISTA</span>
+                </a>
+                
+                <a href="modulo1-tecnico.html?role=tecnico" class="role-btn technician">
+                    <span>TÉCNICO CABISTA</span>
+                </a>
+                
+                <a href="modulo1-autonomo.html?role=autonomo" class="role-btn autonomo">
+                    <span>TÉCNICO CABISTA (SFC)</span>
+                </a>
+
+                <a href="trilha-suporte.html?role=suporte" class="role-btn" style="--cor-glow: #9b59b6; border-color: #9b59b6; color: #9b59b6;">
+                    <span>AUXILIAR SUPORTE TÉCNICO</span>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="index.html" style="color: var(--cor-texto-tech); text-decoration: none;">&larr; Voltar ao Início</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

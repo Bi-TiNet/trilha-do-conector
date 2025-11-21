@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração: Suporte Técnico - Ti.Net</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilo extra para os alertas de sistema */
+        .system-alert { background: #e2e3e5; border-left: 5px solid #383d41; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .system-alert strong { color: #383d41; }
+        .parametro-ok { color: #155724; font-weight: bold; background: #d4edda; padding: 2px 5px; border-radius: 3px;}
+        .parametro-critico { color: #721c24; font-weight: bold; background: #f8d7da; padding: 2px 5px; border-radius: 3px;}
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">Treinamento Completo de Suporte</a>
+                <a href="avaliacao.html?role=suporte" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Integração: Auxiliar de Suporte Técnico 🎧</h1>
+            </header>
+
+            <main>
+                <section id="intro">
+                    <h2>📖 Manual de Operações IXC e Procedimentos</h2>
+                    <p>Bem-vindo à equipe de Suporte! Este módulo cobre as ferramentas essenciais do sistema IXC Soft que você utilizará diariamente para atender nossos clientes, diagnosticar redes e gerenciar ordens de serviço.</p>
+                    
+                    <div class="app-guide">
+                        <h3>1. Sistema IXC Soft: Navegação e Diagnóstico</h3>
+                        
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">1.1 Diagnóstico de Rede e Sinal</button>
+                                <div class="accordion-content">
+                                    <p>A ferramenta de diagnóstico é o coração do suporte. Ela permite ver o status da ONU sem ir até o cliente.</p>
+                                    <div class="content-flex">
+                                        <div class="text-content">
+                                            <strong>Passo a Passo:</strong>
+                                            <ol>
+                                                <li>No cadastro do cliente, clique no botão <strong>Diagnóstico</strong> (ícone de maleta/monitor na barra azul).</li>
+                                                <li>Analise as informações da janela pop-up.</li>
+                                            </ol>
+                                            <div class="system-alert">
+                                                <strong>Parâmetros de Sinal (dBm):</strong><br>
+                                                🟢 Ideal: <span class="parametro-ok">-15dBm a -25dBm</span><br>
+                                                🟡 Alerta: -26dBm a -27dBm<br>
+                                                🔴 Crítico: <span class="parametro-critico">Abaixo de -27dBm (Ex: -30)</span> -> Requer visita técnica.
+                                            </div>
+                                            <p>Verifique também o gráfico "Motivos de Desconexão" para saber se o cliente desligou o aparelho ou se o sinal caiu sozinho.</p>
+                                        </div>
+                                        <div class="image-content"><img src="images/suporte/diagnostico.png" alt="Tela de Diagnóstico" class="content-image"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">1.2 Acesso Remoto ao Roteador</button>
+                                <div class="accordion-content">
+                                    <p>Use para trocar senhas ou mudar canais Wi-Fi.</p>
+                                    <ul>
+                                        <li>Localize o card "Conexão" no dashboard.</li>
+                                        <li>Clique no ícone de menu (3 listras) ou no ícone de "Globo/Monitor" na barra superior direita.</li>
+                                        <li>Isso abrirá a página de configuração da ONU (Huawei, Datacom, etc.).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-guide" style="margin-top: 2rem;">
+                        <h3>2. Provisionamento e Gestão de ONUs</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">2.1 Autorizar ONU (Instalação/Troca)</button>
+                                <div class="accordion-content">
+                                    <p>Quando o técnico liga a fibra, a ONU aparece em <strong>Provedor > Autorizar ONUs</strong>.</p>
+                                    <div class="system-alert" style="background-color: #fff3cd; border-color: #ffc107;">
+                                        <strong>⚠️ REGRA DE OURO (VLAN e Perfil):</strong>
+                                        <ul>
+                                            <li><strong>Modo Bridge (Roteador a parte):</strong> Perfil 50 | VLAN 400</li>
+                                            <li><strong>Modo Router (ONU faz tudo):</strong> Perfil 49 | VLAN 401</li>
+                                        </ul>
+                                    </div>
+                                    <ol>
+                                        <li>Localize a ONU pelo MAC Address.</li>
+                                        <li>Vincule ao cliente correto selecionando o Login.</li>
+                                        <li>Selecione a Caixa FTTH e Porta FTTH informadas pelo técnico.</li>
+                                        <li>Clique em <strong>Salvar</strong> e depois em <strong>Autorizar</strong>.</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">2.2 Desautorizar e Deletar ONU</button>
+                                <div class="accordion-content">
+                                    <p>Necessário em casos de cancelamento ou troca de equipamento queimado.</p>
+                                    <ol>
+                                        <li>Vá em <strong>Provedor > Clientes Fibra (ONU)</strong>.</li>
+                                        <li>Busque pelo login do cliente.</li>
+                                        <li>Abra o cadastro da ONU.</li>
+                                        <li>Clique em <strong>Desautorizar</strong> (aguarde o comando).</li>
+                                        <li>Clique em <strong>Deletar</strong> para remover do banco de dados.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-guide" style="margin-top: 2rem;">
+                        <h3>3. Gestão de Ordens de Serviço (O.S.)</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">Fluxo Completo de Abertura</button>
+                                <div class="accordion-content">
+                                    <p>Se o suporte remoto não resolver, agende a visita.</p>
+                                    <ol>
+                                        <li>No cadastro do cliente, vá em <strong>Atendimentos > Novo</strong>.</li>
+                                        <li>Assunto: <code>32 - ATENDIMENTO SUPORTE TÉCNICO</code>.</li>
+                                        <li>Descreva o problema detalhadamente e salve.</li>
+                                        <li>Vá na aba <strong>Ordens de Serviço</strong>, selecione a O.S. gerada e clique em <strong>Finalizar Wizard</strong>.</li>
+                                        <li>Defina a tarefa técnica (ex: <code>58 - SEM CONEXÃO FIBRA</code>).</li>
+                                        <li>Clique em <strong>Agendar</strong>, defina data/hora e técnico (use o padrão do sistema).</li>
+                                        <li>Por fim, use <strong>Encaminhar</strong> para enviar para a fila do setor Técnico.</li>
+                                    </ol>
+                                    <div class="system-alert">
+                                        <strong>Pós-Suporte:</strong> O sistema abrirá automaticamente uma O.S. de validação para 7 dias depois. Agende para você mesmo e ligue para o cliente para confirmar a solução.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-guide" style="margin-top: 2rem;">
+                        <h3>4. Comunicação em Massa (SMS)</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">Enviar Aviso de Rompimento/Manutenção</button>
+                                <div class="accordion-content">
+                                    <ol>
+                                        <li>Vá em <strong>Relatórios Provedor > Relatórios Conexões > Status Logins</strong>.</li>
+                                        <li>Filtre por: <strong>Transmissor</strong> (Selecione o POP/OLT afetado).</li>
+                                        <li>Filtre por: <strong>Status Contrato: Ativo</strong> e <strong>Cadastro Ativo: Sim</strong>.</li>
+                                        <li>Vá na aba <strong>CRM</strong>.</li>
+                                        <li>Escolha a mensagem padrão (ex: Rompimento de Fibra).</li>
+                                        <li>Clique no botão <strong>CRM (topo direito) > Enviar SMS</strong>.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                
+                <div class="navigation-buttons">
+                    <a href="avaliacao.html?role=suporte" class="btn-next">Ir para Avaliação Final &rarr;</a>
+                </div>
+            </main>
+
+            <footer>
+                <p>&copy; 2025 Ti.Net Tecnologia.</p>
+            </footer>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    button.classList.toggle('active');
+                    if (button.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
