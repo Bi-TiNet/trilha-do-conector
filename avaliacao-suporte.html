@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Final - Suporte Técnico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body data-role="suporte"> <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Acesso e Navegação</a>
+                <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Diagnóstico de Rede</a>
+                <a href="modulo3-suporte.html" class="nav-item">Módulo 3: Procedimentos Técnicos</a>
+                <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
+                <a href="avaliacao-suporte.html" class="nav-item active">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Avaliação: Suporte Técnico N1 🎧</h1>
+            </header>
+
+            <main>
+                <section id="avaliacao">
+                    <h2>🏆 Prova de Certificação</h2>
+
+                    <div id="avaliacao-inicio">
+                        <p>Você concluiu a trilha de Suporte! Responda às questões abaixo para validar seu conhecimento sobre o sistema IXC e procedimentos de atendimento.</p>
+                        <ul>
+                            <li><strong>10 Questões</strong> selecionadas do banco de dados.</li>
+                            <li>Mínimo de <strong>70%</strong> para aprovação.</li>
+                        </ul>
+                        <div class="form-group">
+                            <label for="nome-colaborador">Nome Completo (para o certificado):</label>
+                            <input type="text" id="nome-colaborador" placeholder="Ex: João da Silva">
+                        </div>
+                        <button id="btn-iniciar-avaliacao">Iniciar Prova</button>
+                    </div>
+
+                    <div id="avaliacao-quiz" style="display: none;">
+                        <div class="quiz-header">
+                            <p id="quiz-progresso"></p>
+                            <h4 id="quiz-pergunta"></h4>
+                        </div>
+                        <div id="quiz-opcoes" class="quiz-opcoes"></div>
+                        <div id="quiz-feedback" class="feedback-container"></div>
+                    </div>
+
+                    <div id="avaliacao-resultado" style="display: none;">
+                        <h3>Resultado</h3>
+                        <div id="resultado-placar"></div>
+                        <p id="resultado-mensagem"></p>
+                        <button id="btn-gerar-certificado" style="display: none;">📜 Baixar Certificado</button>
+                    </div>
+                </section>
+                
+                <div class="navigation-buttons">
+                    <a href="modulo4-suporte.html" class="btn-prev">&larr; Revisar Módulo 4</a>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

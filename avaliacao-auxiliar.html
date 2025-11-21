@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Final - Auxiliar Técnico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body data-role="auxiliar">
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="modulo1.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2.html" class="nav-item">Módulo 2: Segurança</a>
+                <a href="modulo3.html" class="nav-item">Módulo 3: Ferramentas</a>
+                <a href="modulo4.html" class="nav-item">Módulo 4: Passo a Passo</a>
+                <a href="modulo5-6.html" class="nav-item">Módulo 5/6: Avançado</a>
+                <a href="avaliacao-auxiliar.html" class="nav-item active">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h1>Avaliação: Auxiliar Técnico 🛠️</h1>
+            </header>
+
+            <main>
+                <section id="avaliacao">
+                    <h2>🏆 Prova de Certificação</h2>
+                    <div id="avaliacao-inicio">
+                        <p>Verificação de conhecimentos sobre apoio em campo, segurança e preparação de cabos.</p>
+                        <div class="form-group">
+                            <label>Nome Completo:</label>
+                            <input type="text" id="nome-colaborador">
+                        </div>
+                        <button id="btn-iniciar-avaliacao">Iniciar Prova</button>
+                    </div>
+                    <div id="avaliacao-quiz" style="display: none;">
+                        <div class="quiz-header"><p id="quiz-progresso"></p><h4 id="quiz-pergunta"></h4></div>
+                        <div id="quiz-opcoes" class="quiz-opcoes"></div>
+                        <div id="quiz-feedback" class="feedback-container"></div>
+                    </div>
+                    <div id="avaliacao-resultado" style="display: none;">
+                        <div id="resultado-placar"></div>
+                        <p id="resultado-mensagem"></p>
+                        <button id="btn-gerar-certificado" style="display: none;">📜 Baixar Certificado</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
