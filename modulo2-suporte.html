@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 2: Sistema IXC - Ti.Net</title>
+    <title>Módulo 2: Dominando o IXC - Ti.Net</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,40 +15,45 @@
                 <a href="modulo2-suporte.html" class="nav-item active">Módulo 2: Sistema IXC</a>
                 <a href="modulo3-suporte.html" class="nav-item">Módulo 3: Procedimentos Técnicos</a>
                 <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
-                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+                <a href="avaliacao.html?role=suporte" class="nav-item">🏆 Avaliação Final</a>
             </nav>
         </aside>
         <div class="main-content">
-            <header><h1>Integração: Suporte Técnico N1</h1></header>
+            <header><h1>Trilha de Suporte Técnico 🎧</h1></header>
             <main>
-                <section>
+                <section class="visible">
                     <h2>2.1 Diagnóstico de Rede no IXC</h2>
-                    <p>Aprenda a interpretar os sinais vitais da conexão.</p>
+                    <p>O IXC Soft é sua cabine de comando. Antes de qualquer ação, você deve saber ler os sinais vitais da conexão do cliente.</p>
+                    
                     <div class="app-guide">
-                        <div class="accordion">
-                            <div class="accordion-item">
-                                <button class="accordion-header">Níveis de Sinal (RX Power)</button>
-                                <div class="accordion-content">
-                                    <p>O sinal é medido em dBm (decibéis miliwatt). Quanto mais negativo (longe do zero), mais fraco.</p>
-                                    <ul>
-                                        <li><strong>-15 a -25 dBm:</strong> Sinal Excelente. Cliente navega bem.</li>
-                                        <li><strong>-26 a -27 dBm:</strong> Alerta. Funciona, mas pode oscilar.</li>
-                                        <li><strong>-28 dBm ou menos (ex: -32):</strong> Crítico. Atenuação alta. Requer visita técnica para reparo.</li>
-                                    </ul>
-                                </div>
+                        <h3>Parâmetros Críticos de Sinal (RX Power)</h3>
+                        <p>Ao clicar no ícone de <strong>Diagnóstico</strong> no cadastro do cliente, observe imediatamente o nível de sinal (dBm):</p>
+                        <div class="sinal-container">
+                            <div class="sinal-card bom">
+                                <h4>Sinal Verde (Ideal)</h4>
+                                <p><strong>-15dBm a -25dBm</strong></p>
+                                <p>Conexão saudável. Se o cliente reclama de lentidão, o problema provavelmente é o Wi-Fi (interferência/distância) ou dispositivos dele.</p>
                             </div>
-                            <div class="accordion-item">
-                                <button class="accordion-header">RadAcct (Histórico de Conexão)</button>
-                                <div class="accordion-content">
-                                    <p>Use a aba <strong>RadAcct</strong> para ver o histórico. Se houver muitas desconexões curtas, pode ser rompimento parcial ou energia oscilando no cliente.</p>
-                                </div>
+                            <div class="sinal-card ruim">
+                                <h4>Sinal Vermelho (Crítico)</h4>
+                                <p><strong>Abaixo de -27dBm (Ex: -30, -32)</strong></p>
+                                <p>Atenuação alta. A fibra pode estar dobrada ou o conector sujo. Isso causa lentidão e quedas. Requer agendamento técnico.</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="troubleshooting" style="margin-top: 2rem;">
+                        <h3>Histórico de Conexão (RadAcct)</h3>
+                        <p>Na aba <strong>RadAcct</strong>, verifique o tempo da sessão:</p>
+                        <ul>
+                            <li><strong>Sessão longa (+24h):</strong> Conexão estável. O problema não é queda de internet.</li>
+                            <li><strong>Muitas desconexões curtas (Flapping):</strong> Pode indicar rompimento parcial da fibra ou oscilação de energia na casa do cliente.</li>
+                        </ul>
                     </div>
                 </section>
                 <div class="navigation-buttons">
                     <a href="modulo1-suporte.html" class="btn-prev">&larr; Voltar</a>
-                    <a href="modulo3-suporte.html" class="btn-next">Avançar &rarr;</a>
+                    <a href="modulo3-suporte.html" class="btn-next">Avançar para o Módulo 3 &rarr;</a>
                 </div>
             </main>
         </div>

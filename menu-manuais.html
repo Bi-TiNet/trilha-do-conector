@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuais - Ti.Net</title>
+    <title>Biblioteca de Manuais - Ti.Net</title>
     <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="welcome-body">
-    <div id="welcome-modal">
+    
+    <div id="welcome-modal" style="max-width: 800px;">
         <div class="modal-content-wrapper">
+            <div class="modal-corner top-left"></div>
+            <div class="modal-corner top-right"></div>
+            <div class="modal-corner bottom-left"></div>
+            <div class="modal-corner bottom-right"></div>
+
             <div class="modal-header-tech" style="text-align: center;">
-                <p style="color: var(--cor-sucesso);">&gt;&gt; BIBLIOTECA DE MANUAIS</p>
+                <img src="images/logo.png" alt="Ti.Net" style="max-width: 150px; margin-bottom: 20px;">
+                <p style="color: var(--cor-sucesso); margin-bottom: 10px; font-size: 1.4rem; font-weight: bold;">BIBLIOTECA DE PROCEDIMENTOS</p>
+                <p style="color: var(--cor-texto-tech); font-size: 1rem;">Selecione o manual operacional desejado:</p>
             </div>
             
-            <div class="role-buttons" style="margin-top: 2rem;">
-                <a href="trilha-suporte.html?role=manual" class="role-btn" style="--cor-glow: #ffffff; border-color: #ffffff; color: #ffffff;">
-                    <span>MANUAL SUPORTE TÉCNICO (IXC)</span>
+            <div class="role-buttons" style="display: flex; flex-direction: column; gap: 15px; margin-top: 3rem;">
+                
+                <a href="manual-suporte.html" class="role-btn" style="--cor-glow: #0099cc; border-color: #0099cc; color: #0099cc; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fa-solid fa-headset"></i> <span>MANUAL SUPORTE TÉCNICO (IXC)</span>
+                </a>
+
+                <a href="#" class="role-btn" style="--cor-glow: #6c757d; border-color: #444; color: #666; opacity: 0.6; cursor: not-allowed; display: flex; align-items: center; justify-content: center; gap: 10px;" onclick="return false;">
+                    <i class="fa-solid fa-briefcase"></i> <span>MANUAL DE VENDAS (EM BREVE)</span>
+                </a>
+                
+                <a href="#" class="role-btn" style="--cor-glow: #6c757d; border-color: #444; color: #666; opacity: 0.6; cursor: not-allowed; display: flex; align-items: center; justify-content: center; gap: 10px;" onclick="return false;">
+                    <i class="fa-solid fa-network-wired"></i> <span>MANUAL DE INFRAESTRUTURA (EM BREVE)</span>
                 </a>
             </div>
-             <div style="text-align: center; margin-top: 20px;">
-                <a href="index.html" style="color: var(--cor-texto-tech); text-decoration: none;">&larr; Voltar</a>
+
+             <div style="text-align: center; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                <a href="index.html" style="color: var(--cor-texto-tech); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar ao Portal
+                </a>
             </div>
         </div>
     </div>

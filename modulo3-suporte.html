@@ -15,27 +15,48 @@
                 <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Sistema IXC</a>
                 <a href="modulo3-suporte.html" class="nav-item active">Módulo 3: Procedimentos Técnicos</a>
                 <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
-                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+                <a href="avaliacao.html?role=suporte" class="nav-item">🏆 Avaliação Final</a>
             </nav>
         </aside>
         <div class="main-content">
-            <header><h1>Integração: Suporte Técnico N1</h1></header>
+            <header><h1>Trilha de Suporte Técnico 🎧</h1></header>
             <main>
-                <section>
+                <section class="visible">
                     <h2>3.1 Provisionamento de ONUs</h2>
-                    <p>O suporte é responsável por autorizar o equipamento instalado pelo técnico.</p>
-                    <div class="atendimento-padrao">
-                        <h3>Regras de Configuração (VLAN/Perfil)</h3>
-                        <p>Configurar errado = Cliente sem internet.</p>
-                        <ul>
-                            <li><strong>Modo ROUTER (PPPoE na ONU):</strong><br>Use VLAN <strong>401</strong> e Perfil <strong>49</strong>. É o padrão para clientes residenciais comuns.</li>
-                            <li><strong>Modo BRIDGE (Roteador externo):</strong><br>Use VLAN <strong>400</strong> e Perfil <strong>50</strong>. Usado para clientes empresariais ou gamers com roteadores potentes.</li>
-                        </ul>
+                    <p>Quando o técnico instala um equipamento novo, é você quem libera o acesso no sistema (Autorizar ONU).</p>
+                    
+                    <div class="aviso">
+                        <strong>⚠️ REGRA DE OURO (VLAN e Perfil):</strong> Configurar errado = Cliente sem navegação.
+                    </div>
+
+                    <div class="fluxograma-stepper" style="margin-top: 1.5rem;">
+                        <div class="step active" style="display:block">
+                            <h4>Cenário 1: Cliente Residencial Padrão (PPPoE na ONU)</h4>
+                            <p>A ONU fará a discagem e o Wi-Fi. Use:</p>
+                            <ul>
+                                <li><strong>VLAN:</strong> 401</li>
+                                <li><strong>Perfil:</strong> 49 (Router)</li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="step active" style="display:block">
+                            <h4>Cenário 2: Cliente Gamer / Empresarial (Modo Bridge)</h4>
+                            <p>O cliente tem um roteador potente próprio. A ONU vira apenas um conversor de mídia. Use:</p>
+                            <ul>
+                                <li><strong>VLAN:</strong> 400</li>
+                                <li><strong>Perfil:</strong> 50 (Bridge)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="app-guide" style="margin-top: 2rem;">
+                        <h3>Acesso Remoto ao Roteador</h3>
+                        <p>Para trocar senha do Wi-Fi ou mudar o canal (para evitar interferência), use o atalho de acesso remoto no Dashboard do cliente. <strong>Nunca resete a ONU fisicamente</strong> sem necessidade, pois ela perderá essas configurações.</p>
                     </div>
                 </section>
                 <div class="navigation-buttons">
                     <a href="modulo2-suporte.html" class="btn-prev">&larr; Voltar</a>
-                    <a href="modulo4-suporte.html" class="btn-next">Avançar &rarr;</a>
+                    <a href="modulo4-suporte.html" class="btn-next">Avançar para o Módulo 4 &rarr;</a>
                 </div>
             </main>
         </div>
