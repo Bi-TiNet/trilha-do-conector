@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    console.log("Sistema 'Portal do Colaborador Ti.Net' iniciado - Versão Blindada");
+    console.log("Sistema 'Portal do Colaborador Ti.Net' iniciado - Versão Integrada");
 
     // ==========================================================
     // 1. LÓGICA DE NAVEGAÇÃO E CONTROLE DE FLUXO
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 let finalHref = originalHref;
                 
-                // Se for link para módulos, aplica a lógica de sufixo
+                // Se for link para módulos, aplica a lógica de sufixo para direcionar ao arquivo correto
                 if (!isAvaliacaoPage && finalHref.includes('modulo')) {
                     // Se o arquivo já não tiver o sufixo, adiciona
                     if (!finalHref.includes(suffix)) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                // Adiciona o parametro role na URL
+                // Adiciona o parametro role na URL para persistência
                 const url = new URL(finalHref, window.location.href);
                 url.searchParams.set('role', role);
                 link.href = url.href;
@@ -74,7 +74,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================================
-    // 3. AVALIAÇÃO FINAL (BANCO DE PERGUNTAS DIFÍCEIS)
+    // 3. LÓGICA DOS SIMULADOS RÁPIDOS (NOS MÓDULOS)
+    // ==========================================================
+    // Esta lógica captura os cliques nos botões "opcao-quiz" dentro dos módulos de aula
+    const botoesSimuladoRapido = document.querySelectorAll('.simulado .opcao-quiz');
+    
+    if (botoesSimuladoRapido.length > 0) {
+        botoesSimuladoRapido.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parentDiv = this.parentElement; // A div .questao
+                const feedbackP = parentDiv.querySelector('.feedback');
+                const isCorrect = this.getAttribute('data-correta') === 'true';
+                
+                // Desabilita todos os botões dessa questão para evitar múltiplas respostas
+                const siblings = parentDiv.querySelectorAll('.opcao-quiz');
+                siblings.forEach(sb => sb.disabled = true);
+
+                if (isCorrect) {
+                    this.classList.add('correta'); // Estilo verde (definido no CSS)
+                    this.style.backgroundColor = '#d4edda';
+                    this.style.borderColor = '#28a745';
+                    this.style.color = '#155724';
+                    feedbackP.innerHTML = '<strong>Correto!</strong> Você absorveu bem o conteúdo.';
+                    feedbackP.style.color = '#155724';
+                } else {
+                    this.classList.add('errada'); // Estilo vermelho
+                    this.style.backgroundColor = '#f8d7da';
+                    this.style.borderColor = '#dc3545';
+                    this.style.color = '#721c24';
+                    
+                    // Destaca a correta para aprendizado
+                    siblings.forEach(sb => {
+                        if (sb.getAttribute('data-correta') === 'true') {
+                            sb.style.backgroundColor = '#d4edda';
+                            sb.style.border = '1px solid #28a745';
+                        }
+                    });
+
+                    feedbackP.innerHTML = '<strong>Incorreto.</strong> Revise o tópico acima e tente novamente.';
+                    feedbackP.style.color = '#721c24';
+                }
+            });
+        });
+    }
+
+    // ==========================================================
+    // 4. AVALIAÇÃO FINAL (BANCO DE PERGUNTAS)
     // ==========================================================
     const avaliacaoInicio = document.getElementById('avaliacao-inicio');
     
@@ -84,33 +129,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const btnIniciar = document.getElementById('btn-iniciar-avaliacao');
         const inputNome = document.getElementById('nome-colaborador');
         
-        // --- BANCO DE QUESTÕES: NÍVEL DIFÍCIL / SITUACIONAL ---
+        // --- BANCO DE QUESTÕES ATUALIZADO ---
         const bancoQuestoes = {
-            // SUPORTE TÉCNICO (20 Questões Difíceis)
+            // SUPORTE TÉCNICO (Baseado nos Módulos 1 a 4 criados)
             suporte: [
-                { p: "Cliente conecta via PPPoE, mas não navega. No Log Radius aparece 'Simultaneous-Use'. O que está ocorrendo?", opts: ["Senha errada", "O cliente tem uma sessão presa na OLT ou roteador travado tentando reconectar.", "Cabo rompido", "Fatura vencida"], r: 1 },
-                { p: "Você precisa configurar uma ONU Huawei em Bridge para um cliente Gamer. Qual o par VLAN/Perfil correto no nosso padrão?", opts: ["VLAN 401 / Perfil 49", "VLAN 400 / Perfil 50", "VLAN 100 / Perfil Default", "VLAN 400 / Perfil 49"], r: 1 },
-                { p: "Cliente relata lentidão extrema à noite. Diagnóstico mostra sinal -29dBm. Qual a tratativa correta?", opts: ["Reiniciar a ONU e encerrar", "Vender plano maior", "Abrir O.S. de Reparo (Atenuação Alta), pois o sinal está crítico.", "Trocar o canal do Wi-Fi"], r: 2 },
-                { p: "Ao provisionar uma ONU Datacom, o sistema retorna erro 'MAC Address already exists'. Causa provável:", opts: ["A ONU já está cadastrada em outro login (cliente antigo ou teste).", "A ONU está queimada", "Erro no navegador", "Falta de luz"], r: 0 },
-                { p: "Cliente PJ solicita IP Fixo. Após configurar, ele navega mas o IP não fixa. O que verificar no IXC?", opts: ["Se o boleto está pago", "Se o MAC Address do roteador dele está amarrado ao login e se a Pool de IP está correta.", "Se a ONU é preta ou branca", "O sinal da fibra"], r: 1 },
-                { p: "Qual o procedimento mandatório antes de enviar um SMS em massa de 'Rompimento'?", opts: ["Pedir autorização ao Papa", "Filtrar rigorosamente pelo Transmissor (POP/OLT) afetado para não gerar pânico na base toda.", "Escrever em caixa alta", "Enviar para todos os ativos"], r: 1 },
-                { p: "Cliente com sinal -19dBm reclama que o Wi-Fi cai no quarto. O que o suporte N1 deve fazer?", opts: ["Abrir visita técnica imediatamente", "Agendar troca de ONU", "Diagnosticar cobertura Wi-Fi, sugerir repetidor mesh ou explicar limitações de 5GHz.", "Refazer a fusão"], r: 2 },
-                { p: "Status do cliente no IXC: 'Bloqueio Automático'. Cliente enviou comprovante agora. Procedimento:", opts: ["Desbloquear imediatamente em confiança/baixa manual", "Mandar aguardar 3 dias", "Ignorar", "Pedir para pagar de novo"], r: 0 },
-                { p: "Técnico informa: 'CTO sem potência'. Qual o fluxo correto?", opts: ["Trocar a ONU do cliente", "Agendar visita na casa", "Escalar para a equipe de Rede/Infraestrutura (problema de alimentação da caixa).", "Cancelar o cliente"], r: 2 },
-                { p: "A luz LOS pisca vermelho lento. O que isso indica tecnicamente?", opts: ["Atualização de firmware", "Sinal recebido, mas com potência muito baixa (-30 a -40dBm) ou falha de autenticação física.", "ONU queimada", "Wi-Fi desligado"], r: 1 },
-                { p: "Qual a diferença de um reset físico para um reset lógico na ONU?", opts: ["Nenhuma", "O físico apaga tudo, o lógico mantêm logs", "O reset físico (botão) apaga as configs de WAN/PPPoE, exigindo reconfiguração presencial ou via OLT.", "O lógico quebra a fibra"], r: 2 },
-                { p: "No diagnóstico, o parâmetro 'Temperature' da ONU está em 85ºC. Isso é normal?", opts: ["Sim, ONUs esquentam", "Não, indica superaquecimento e risco de travamento/queima. Validar local de instalação.", "Depende da marca", "Sim, até 100ºC é normal"], r: 1 },
-                { p: "Cliente pede liberação de portas para câmera (DVR). Onde faz isso no IXC?", opts: ["Financeiro", "Aba Login > Redirecionamento de Portas", "Estoque", "Não fazemos"], r: 1 },
-                { p: "O que é um 'Flapping' na conexão visto no RadAcct?", opts: ["Conexão voando", "Cliente caindo e voltando repetidamente em curto intervalo de tempo.", "Sinal muito forte", "Vírus"], r: 1 },
-                { p: "Qual a função do 'Desbloqueio de Confiança'?", opts: ["Dar internet grátis", "Liberar acesso temporário (24/48h) para cliente pagar fatura atrasada.", "Aumentar velocidade", "Resetar senha"], r: 1 },
-                { p: "Erro 'Radius Timeout' no log. O que pode ser?", opts: ["Cliente sem dinheiro", "Falha de comunicação entre o Concentrador (Mikrotik/Huawei) e o servidor IXC.", "Cabo rompido", "Senha errada"], r: 1 },
-                { p: "Para trocar uma ONU queimada mantendo o histórico, você deve:", opts: ["Excluir o cliente e fazer novo", "Editar o login, trocar o MAC na aba 'Cliente Fibra' e reprovisionar.", "Trocar só a fonte", "Abrir chamado no suporte do IXC"], r: 1 },
-                { p: "Qual a faixa de atenuação aceitável entre a CTO e a ONU (Cabo Drop)?", opts: ["0 a 1 dB", "Até 30 dB", "No máximo 2 a 3 dB (dependendo da distância e conectores).", "10 dB"], r: 2 },
-                { p: "Cliente conecta no Wi-Fi mas aparece 'Conectado, sem internet'. Ping para 8.8.8.8 falha. Causa:", opts: ["Sinal ruim", "Provável falha de DNS, IP não atribuído ou bloqueio lógico na OLT.", "Cabo HDMI solto", "Monitor desligado"], r: 1 },
-                { p: "Após finalizar o atendimento de um chamado de visita técnica, o sistema gera uma OS automática. Qual é?", opts: ["Cobrança", "Pós-Suporte (7 dias) para validação de qualidade.", "Cancelamento", "Venda"], r: 1 }
+                { p: "Qual a tecla de atalho utilizada no IXC para abrir a barra de pesquisa de clientes?", opts: ["F5", "F3", "Ctrl+P", "F12"], r: 1 },
+                { p: "Qual dado é considerado o mais confiável para localizar um cliente e evitar homônimos?", opts: ["Nome Completo", "Endereço", "CPF", "Número do Telefone"], r: 2 },
+                { p: "No diagnóstico de rede, qual faixa de sinal (RX Power) é considerada IDEAL?", opts: ["-15dBm a -25dBm", "-26dBm a -30dBm", "Acima de -10dBm", "-30dBm a -40dBm"], r: 0 },
+                { p: "Um cliente apresenta sinal de -31dBm. Qual a ação correta a ser tomada?", opts: ["Reiniciar a ONU e encerrar", "Aumentar a velocidade do plano", "Abrir O.S. de Visita Técnica (Sinal Crítico)", "Informar que é oscilação da região"], r: 2 },
+                { p: "O que significa o motivo de desconexão 'User Request' no histórico?", opts: ["Rompimento de fibra", "Falha na OLT", "O cliente desligou/reiniciou o equipamento manualmente", "Sinal fraco"], r: 2 },
+                { p: "Qual a VLAN correta para configurar uma ONU em modo ROUTER (Padrão)?", opts: ["VLAN 400", "VLAN 100", "VLAN 401", "VLAN 50"], r: 2 },
+                { p: "Qual o Perfil e VLAN para um cliente que usa Roteador Próprio (Modo Bridge)?", opts: ["Perfil 49 / VLAN 401", "Perfil 50 / VLAN 400", "Perfil 50 / VLAN 401", "Perfil 49 / VLAN 400"], r: 1 },
+                { p: "Ao autorizar uma ONU, qual informação técnica é crucial obter com o técnico de campo?", opts: ["A marca do carro dele", "O número da Caixa FTTH e a Porta utilizada", "A metragem do cabo", "A cor da fibra"], r: 1 },
+                { p: "Qual a ordem correta para remover uma ONU do sistema em caso de cancelamento?", opts: ["Deletar direto", "Desautorizar ONU > Aguardar Sucesso > Deletar", "Desligar a ONU e Deletar", "Apenas apagar o login"], r: 1 },
+                { p: "Para acessar a interface web do roteador do cliente remotamente, onde você clica?", opts: ["No menu financeiro", "No ícone de 'Globo' ou menu do card de Conexão", "No botão de imprimir boleto", "Não é possível acessar remotamente"], r: 1 },
+                { p: "Qual o assunto padrão para iniciar um atendimento de suporte no sistema?", opts: ["58 - SEM CONEXÃO", "32 - ATENDIMENTO SUPORTE TÉCNICO", "64 - TROCA DE EQUIPAMENTO", "99 - CANCELAMENTO"], r: 1 },
+                { p: "Após o técnico finalizar a visita, qual O.S. o sistema gera automaticamente?", opts: ["O.S. de Cobrança", "O.S. de Pós-Suporte (7 dias)", "O.S. de Auditoria", "Nenhuma"], r: 1 },
+                { p: "Qual o risco de enviar um SMS em massa sem filtrar o 'Transmissor'?", opts: ["Nenhum, o sistema bloqueia", "Enviar mensagem para a cidade inteira, gerando pânico desnecessário", "A mensagem chega mais rápido", "O cliente recebe duplicado"], r: 1 },
+                { p: "Onde verificamos se o cliente está conectado e há quanto tempo (Sessão)?", opts: ["Na aba Financeiro", "No Google", "No RadAcct / Informações de Conexão", "Na O.S."], r: 2 },
+                { p: "Se o sinal do cliente está em -27dBm (Alerta), o que isso indica?", opts: ["Conexão perfeita", "Fibra rompida", "Sinal no limite, pode funcionar mas requer atenção/monitoramento", "Roteador queimado"], r: 2 },
+                { p: "Qual técnico 'padrão' utilizamos apenas para cumprir a obrigatoriedade do sistema ao agendar?", opts: ["O técnico da região", "57 - Carlos ou Leandro", "Qualquer um da lista", "O supervisor"], r: 1 },
+                { p: "Em qual situação devemos usar o Assunto '58 - SEM CONEXÃO FIBRA'?", opts: ["Para criar o atendimento inicial", "Apenas na etapa de 'Finalizar Wizard' ao gerar a O.S. para o técnico", "Para trocar senha do Wi-Fi", "Para lentidão leve"], r: 1 },
+                { p: "Para enviar um aviso de 'Rompimento de Fibra', qual aba do relatório de logins usamos?", opts: ["Aba Imprimir", "Aba CRM", "Aba Filtros", "Aba Gráficos"], r: 1 },
+                { p: "O que fazer se o botão 'Diagnóstico' não carregar as informações?", opts: ["Desistir", "Verificar se a ONU está ligada e se há comunicação com a OLT", "Abrir O.S. imediatamente", "Reiniciar o computador do suporte"], r: 1 },
+                { p: "Qual a principal função do 'Modo Bridge' na ONU?", opts: ["Melhorar o sinal do Wi-Fi", "Transformar a ONU em apenas um conversor de mídia (ponte), deixando a discagem para um roteador externo", "Bloquear sites", "Aumentar a velocidade"], r: 1 }
             ],
 
-            // TÉCNICO DE CAMPO (20 Questões Difíceis)
+            // TÉCNICO DE CAMPO (Mantido do anterior, focado em fibra/instalação)
             tecnico: [
                 { p: "Você mede a saída de um splitter 1:8 balanceado. A entrada é -2dBm. Qual a saída esperada aproximada?", opts: ["-5 dBm", "-11 a -12 dBm (perda de ~9.5dB)", "-20 dBm", "-2 dBm"], r: 1 },
                 { p: "Ao fazer uma fusão, a máquina acusa 'Erro de Clivagem'. O que fazer?", opts: ["Fundir mesmo assim", "Aumentar a potência do arco", "Refazer a clivagem garantindo corte a 90º.", "Limpar a lente"], r: 2 },
@@ -120,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { p: "Cliente com sinal -26dBm na ONU. Na CTO o sinal é -18dBm. Onde está o problema?", opts: ["Na OLT", "No Drop (8dB de perda é inaceitável). Trocar drop ou refazer conectores.", "No Roteador", "Na CTO"], r: 1 },
                 { p: "Qual o padrão de cor para conector APC?", opts: ["Azul", "Verde", "Preto", "Cinza"], r: 1 },
                 { p: "A luz PON está piscando e a LOS apagada. O que significa?", opts: ["Sem sinal", "ONU tentando sincronizar (Sinal fora do range ou não provisionada).", "ONU queimada", "Funcionando normal"], r: 1 },
-                { p: "Você encontra uma CTO lotada, mas uma porta tem sinal ruim (-35dBm) e está vaga. Pode usar?", opts: ["Sim", "Não. Porta com defeito/suja. Deve solicitar manutenção ou ampliação.", "Sim, se limpar melhora", "Sim, com splitter"], r: 1 },
+                { p: "Você encontra uma CTO lotada, mas uma porta tem sinal ruim (-35dBm) e está vaga. Pode usar?", opts: ["Sim", "Não. Porta com defeito/suja. Deve solicitar manutenção ou ampliação.", "Sim, com splitter"], r: 1 },
                 { p: "Para que serve o OTDR?", opts: ["Medir voltagem", "Medir potência absoluta", "Identificar eventos (emendas, dobras, fim de fibra) e suas distâncias.", "Ver luz visível"], r: 2 },
                 { p: "O que acontece se usar um conector UPC (Azul) em um acoplador APC (Verde)?", opts: ["Nada", "Alta perda de retorno (reflectância) danificando o sinal de vídeo/dados.", "Melhora o sinal", "Encaixa perfeito"], r: 1 },
                 { p: "Qual a função do álcool isopropílico?", opts: ["Limpar as mãos", "Limpar a fibra sem deixar resíduos de água/gordura.", "Limpar o carro", "Beber"], r: 1 },
@@ -141,18 +186,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 { p: "Qual ferramenta corta o elemento de tração (aço) do cabo drop?", opts: ["Tesoura de Kevlar", "Dente", "Alicate Universal (Corte Diagonal).", "Clivador"], r: 2 },
                 { p: "Por que não se deve olhar para a ponta da fibra ativa?", opts: ["Ofusca a vista", "O laser é invisível e queima a retina, causando cegueira.", "Dá azar", "Não tem problema"], r: 1 },
                 { p: "Qual a função da reserva técnica (Loop) no poste?", opts: ["Estética", "Sobrar cabo para futuras manutenções ou re-fusões.", "Gastar cabo", "Padrão da Enel"], r: 1 },
-                // ... (Completei a lógica para usar o banco de técnico se faltar, mas idealmente teria 20 aqui também)
-                // Para economizar espaço na resposta, o código usa fallback se não tiver 20.
+                { p: "Onde devem ser descartados os pedaços de fibra cortados?", opts: ["No chão", "No bolso", "Em garrafa pet ou recipiente de descarte seguro", "Na caixa de ferramentas"], r: 2 },
+                { p: "Para que servem os cones de sinalização?", opts: ["Para reservar vaga", "Para alertar pedestres e veículos sobre a obra, protegendo a equipe.", "Para sentar", "Enfeite"], r: 1 },
+                { p: "Qual a cor padrão do conector APC (usado na maioria das redes FTTH)?", opts: ["Azul", "Verde", "Preto", "Amarelo"], r: 1 },
+                { p: "Se começar a chover forte com raios durante o serviço, o que fazer?", opts: ["Continuar rápido", "Colocar capa de chuva", "Interromper imediatamente o trabalho externo e buscar abrigo.", "Segurar a escada com força"], r: 2 },
+                { p: "Qual o nome do equipamento que emite luz vermelha visível para achar falhas próximas?", opts: ["Power Meter", "VFL (Caneta Óptica)", "Máquina de Fusão", "Lanterna"], r: 1 }
             ],
             
-            // AUTONOMO (Usa o banco técnico)
-            autonomo: [] // Será preenchido via código abaixo
+            // AUTONOMO (Copia do técnico, pois a função é similar)
+            autonomo: [] 
         };
 
-        // Copia as perguntas de técnico para autonomo e auxiliar se estiverem vazias
+        // Preenche as categorias que faltam ou complementa as menores
         bancoQuestoes.autonomo = bancoQuestoes.tecnico;
+        
+        // Se o auxiliar tiver poucas questões, completa com as mais fáceis do técnico
         if(bancoQuestoes.auxiliar.length < 20) {
-             // Adicione mais perguntas aqui se quiser diferenciar, ou use as de técnico simplificadas
              bancoQuestoes.auxiliar = bancoQuestoes.auxiliar.concat(bancoQuestoes.tecnico.slice(0, 20 - bancoQuestoes.auxiliar.length));
         }
 
@@ -162,14 +211,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         btnIniciar.addEventListener('click', () => {
             if (inputNome.value.trim() === '') {
-                alert('Por favor, digite seu nome completo.');
+                alert('Por favor, digite seu nome completo para o certificado.');
                 return;
             }
             
             const roleURL = new URLSearchParams(window.location.search).get('role'); 
+            // Se não tiver role na URL, assume 'auxiliar' como padrão seguro
             let bancoAlvo = bancoQuestoes[roleURL] ? bancoQuestoes[roleURL] : bancoQuestoes['auxiliar'];
 
-            // SORTEIO: Pega 10 aleatórias das 20 disponíveis
+            // SORTEIO: Pega 10 aleatórias das 20 disponíveis para não repetir sempre a mesma prova
             questoesSelecionadas = [...bancoAlvo].sort(() => 0.5 - Math.random()).slice(0, 10);
             
             pontuacao = 0;
@@ -205,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function responder(idx, correta) {
-            const btns = document.querySelectorAll('.opcao-quiz');
+            const btns = document.querySelectorAll('#quiz-opcoes .opcao-quiz');
             btns.forEach(b => b.disabled = true);
             
             const feedback = document.getElementById('quiz-feedback');
@@ -216,10 +266,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 feedback.innerHTML = '<p class="feedback correto">Correto!</p>';
             } else {
                 btns[idx].classList.add('errada');
-                btns[correta].classList.add('correta');
+                btns[correta].classList.add('correta'); // Mostra qual era a certa
                 feedback.innerHTML = '<p class="feedback incorreto">Incorreto!</p>';
             }
             
+            // Aguarda 2 segundos para o usuário ler o feedback antes de pular
             setTimeout(() => {
                 questaoAtualIndex++;
                 mostrarQuestao();
@@ -235,44 +286,51 @@ document.addEventListener('DOMContentLoaded', function() {
             const msg = document.getElementById('resultado-mensagem');
             const btnCert = document.getElementById('btn-gerar-certificado');
             
-            // Limpa botões antigos para não duplicar
+            // Remove botões antigos de retry se existirem
             const oldRetry = document.getElementById('btn-retry');
             if(oldRetry) oldRetry.remove();
 
-            placar.textContent = `Nota: ${pontuacao}/10 (${pct}%)`;
+            placar.textContent = `Nota Final: ${pontuacao}/10 (${pct}%)`;
             
             if (pct >= 70) {
                 placar.className = 'resultado-placar aprovado';
-                msg.textContent = 'Parabéns! Você demonstrou conhecimento sólido.';
+                msg.innerHTML = '<strong>Parabéns! Aprovado.</strong><br>Você demonstrou o conhecimento necessário.';
                 btnCert.style.display = 'block';
                 btnCert.onclick = gerarPDF;
             } else {
                 placar.className = 'resultado-placar reprovado';
-                msg.innerHTML = 'Pontuação insuficiente. Revise o conteúdo e tente novamente.';
+                msg.innerHTML = '<strong>Não atingiu a média (70%).</strong><br>Revise o conteúdo dos módulos e tente novamente.';
                 btnCert.style.display = 'none';
                 
-                // Botão para reiniciar a trilha correta
+                // Botão para reiniciar a trilha
                 const btnRetry = document.createElement('button');
                 btnRetry.id = 'btn-retry';
-                btnRetry.textContent = "Reiniciar Trilha";
+                btnRetry.textContent = "Reiniciar Trilha / Tentar Novamente";
                 btnRetry.className = "btn-prev";
                 btnRetry.style.marginTop = "20px";
                 btnRetry.style.backgroundColor = "#6c757d";
+                btnRetry.style.color = "#fff";
+                btnRetry.style.border = "none";
                 
-                // Redirecionamento inteligente baseado na role
                 const roleURL = new URLSearchParams(window.location.search).get('role');
-                let targetUrl = 'menu-integracao.html';
-                if (roleURL === 'suporte') targetUrl = 'modulo1-suporte.html?role=suporte';
-                else if (roleURL === 'tecnico') targetUrl = 'modulo1-tecnico.html?role=tecnico';
-                else if (roleURL === 'auxiliar') targetUrl = 'modulo1.html?role=auxiliar';
                 
-                btnRetry.onclick = () => window.location.href = targetUrl;
+                // Redireciona para o início da trilha correspondente
+                btnRetry.onclick = () => {
+                    if (roleURL === 'suporte') window.location.href = 'modulo1-suporte.html?role=suporte';
+                    else if (roleURL === 'tecnico') window.location.href = 'modulo1-tecnico.html?role=tecnico';
+                    else if (roleURL === 'auxiliar') window.location.href = 'modulo1.html?role=auxiliar';
+                    else window.location.href = 'menu-integracao.html';
+                };
+                
                 avaliacaoResultado.appendChild(btnRetry);
             }
         }
 
         function gerarPDF() {
-            if (!window.jspdf || !window.jspdf.jsPDF) { alert('Erro biblioteca PDF'); return; }
+            if (!window.jspdf || !window.jspdf.jsPDF) { 
+                alert('Erro: Biblioteca PDF não carregada. Verifique sua conexão.'); 
+                return; 
+            }
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
             
@@ -280,35 +338,50 @@ document.addEventListener('DOMContentLoaded', function() {
             const w = doc.internal.pageSize.getWidth();
             const h = doc.internal.pageSize.getHeight();
             
-            // Design Profissional
+            // Fundo Branco
             doc.setFillColor(255, 255, 255);
             doc.rect(0, 0, w, h, 'F');
             
-            doc.setDrawColor(6, 22, 51); // Azul Ti.Net
+            // Borda Azul Ti.Net
+            doc.setDrawColor(6, 22, 51); 
             doc.setLineWidth(3);
             doc.rect(10, 10, w-20, h-20);
             
+            // Cabeçalho
             doc.setFont('times', 'bold');
             doc.setFontSize(36);
             doc.setTextColor(6, 22, 51);
-            doc.text("CERTIFICADO DE CONCLUSÃO", w/2, 50, { align: 'center' });
+            doc.text("CERTIFICADO DE CONCLUSÃO", w/2, 60, { align: 'center' });
             
-            doc.setFontSize(24);
-            doc.setTextColor(0, 153, 204);
-            doc.text(nome.toUpperCase(), w/2, 90, { align: 'center' });
+            // Nome do Colaborador
+            doc.setFontSize(28);
+            doc.setTextColor(0, 153, 204); // Azul Claro
+            doc.text(nome.toUpperCase(), w/2, 95, { align: 'center' });
             
+            // Texto do corpo
             doc.setFont('helvetica', 'normal');
-            doc.setFontSize(14);
+            doc.setFontSize(16);
             doc.setTextColor(80, 80, 80);
             
             const roleURL = new URLSearchParams(window.location.search).get('role');
-            const cargo = roleURL === 'suporte' ? "Suporte Técnico N1" : (roleURL === 'tecnico' ? "Técnico de Campo" : "Auxiliar Técnico");
-            
-            doc.text(`Concluiu com êxito a avaliação técnica para a função de ${cargo}`, w/2, 110, { align: 'center' });
-            doc.text(`Nota final: ${pontuacao}/10`, w/2, 120, { align: 'center' });
-            doc.text(`Data: ${new Date().toLocaleDateString()}`, w/2, 130, { align: 'center' });
+            let cargoTexto = "Colaborador";
+            if(roleURL === 'suporte') cargoTexto = "Suporte Técnico N1";
+            if(roleURL === 'tecnico') cargoTexto = "Técnico de Campo";
+            if(roleURL === 'auxiliar') cargoTexto = "Auxiliar Técnico";
 
-            doc.save(`Certificado_${nome}.pdf`);
+            doc.text(`Concluiu com êxito a trilha de capacitação para a função de`, w/2, 120, { align: 'center' });
+            doc.setFont('helvetica', 'bold');
+            doc.text(cargoTexto, w/2, 130, { align: 'center' });
+            
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.text(`Nota Final: ${pontuacao}/10 - Aproveitamento Aprovado`, w/2, 145, { align: 'center' });
+            
+            // Data e Assinatura Digital
+            const hoje = new Date().toLocaleDateString('pt-BR');
+            doc.text(`Ti.Net Tecnologia - Emitido em: ${hoje}`, w/2, 170, { align: 'center' });
+
+            doc.save(`Certificado_TiNet_${nome.replace(/\s+/g, '_')}.pdf`);
         }
     }
 });

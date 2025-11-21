@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 4: Gestão de O.S. - Ti.Net</title>
+    <title>Módulo 4: Gestão de O.S. - Suporte Ti.Net</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <aside class="sidebar">
             <div class="sidebar-header"><img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo"></div>
             <nav class="sidebar-nav">
-                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Fundamentos</a>
-                <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Sistema IXC</a>
+                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Acesso e Navegação</a>
+                <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Diagnóstico de Rede</a>
                 <a href="modulo3-suporte.html" class="nav-item">Módulo 3: Procedimentos Técnicos</a>
                 <a href="modulo4-suporte.html" class="nav-item active">Módulo 4: Gestão de O.S.</a>
                 <a href="avaliacao.html?role=suporte" class="nav-item">🏆 Avaliação Final</a>
@@ -22,30 +22,68 @@
             <header><h1>Trilha de Suporte Técnico 🎧</h1></header>
             <main>
                 <section class="visible">
-                    <h2>4.1 Abertura de Chamados Técnicos</h2>
-                    <p>Se o suporte remoto falhar, a visita técnica é necessária. A classificação correta da O.S. ajuda o técnico a se preparar.</p>
+                    <h2>4.1 Fluxo de Abertura de O.S.</h2>
+                    <p>Quando o suporte remoto não resolve, a visita técnica é necessária. Siga este fluxo rigorosamente para garantir que o técnico receba as informações corretas.</p>
                     
-                    <div class="troubleshooting">
-                        <h3>Classificação de Tarefas (Assuntos)</h3>
-                        <ul>
-                            <li><strong>58 - SEM CONEXÃO FIBRA:</strong> Use quando há LOS Vermelho (sem sinal) ou rompimento identificado na rua. Prioridade Alta.</li>
-                            <li><strong>59 - LENTIDÃO/INSTABILIDADE:</strong> Cliente navega, mas reclama de travar. O técnico verificará sinal no limite ou posicionamento do roteador.</li>
-                            <li><strong>64 - TROCA DE EQUIPAMENTO:</strong> Use quando o diagnóstico remoto apontar queima da fonte ou da ONU (não liga ou LAN apagada).</li>
-                        </ul>
-                    </div>
+                    <div class="fluxograma-stepper">
+                        <div class="step active" style="display:block">
+                            <h4>Passo 1: Criar Atendimento</h4>
+                            <p>Na aba <strong>Atendimentos</strong>, clique em <strong>Novo</strong>. Use o Assunto <code>32 - ATENDIMENTO SUPORTE</code> e descreva o problema detalhadamente.</p>
+                            <img src="images/abertura-os/passo 02.png" class="step-image" alt="Novo Atendimento">
+                        </div>
+                        
+                        <div class="step active" style="display:block; margin-top: 20px;">
+                            <h4>Passo 2: Gerar O.S. (Finalizar Wizard)</h4>
+                            <p>Vá na aba <strong>Ordens de Serviço</strong>, selecione a linha criada e clique em <strong>Ações > Finalizar</strong>.</p>
+                            <img src="images/abertura-os/passo 03.png" class="step-image" alt="Finalizar Wizard">
+                        </div>
 
-                    <div class="atendimento-padrao" style="margin-top: 2rem;">
-                        <h3>Avisos em Massa (SMS)</h3>
-                        <p>Em caso de rompimento de fibra que afete um bairro inteiro:</p>
-                        <ol>
-                            <li>Vá em <strong>Relatórios > Status Logins</strong>.</li>
-                            <li>Filtre EXATAMENTE pelo <strong>Transmissor (OLT/POP)</strong> afetado. <em>(Cuidado para não selecionar a cidade toda!)</em></li>
-                            <li>Use a aba <strong>CRM</strong> para enviar o SMS padrão de "Manutenção Emergencial". Isso reduz as ligações no call center.</li>
-                        </ol>
+                        <div class="step active" style="display:block; margin-top: 20px;">
+                            <h4>Passo 3: Definir Tarefa e Agendar</h4>
+                            <p>Escolha a tarefa correta (ex: <code>58 - SEM CONEXÃO FIBRA</code>). Clique em <strong>Agendar</strong>, defina a data e selecione o técnico responsável (Carlos ou Leandro).</p>
+                            <img src="images/abertura-os/passo 08.png" class="step-image" alt="Agendamento">
+                        </div>
+
+                        <div class="step active" style="display:block; margin-top: 20px;">
+                            <h4>Passo 4: Encaminhar</h4>
+                            <p>Por fim, clique em <strong>Encaminhar</strong> para enviar a O.S. para a fila do aplicativo do técnico.</p>
+                            <img src="images/abertura-os/passo 10.png" class="step-image" alt="Encaminhar">
+                        </div>
                     </div>
 
                     <div class="aviso" style="margin-top: 2rem;">
-                        <strong>Ciclo de Qualidade:</strong> Após a visita do técnico, o sistema gera uma O.S. automática de <strong>Pós-Suporte (7 dias)</strong>. Sua função futura será ligar para o cliente e confirmar se o problema foi resolvido definitivamente.
+                        <strong>Ciclo de Qualidade:</strong> Após a visita, o sistema gera uma O.S. de <strong>Pós-Suporte (7 dias)</strong>. Você deve ligar para o cliente na data agendada para confirmar a solução definitiva.
+                    </div>
+
+                    <hr style="margin: 3rem 0;">
+
+                    <h2>4.2 Comunicação em Massa (SMS)</h2>
+                    <p>Em caso de incidentes graves (rompimento de fibra, falta de energia no POP), use o envio em massa para evitar congestionamento no call center.</p>
+
+                    <div class="app-guide">
+                        <h3>Configurando o Filtro (Cuidado!)</h3>
+                        <p>Vá em <strong>Relatórios > Status Logins</strong>. O filtro mais importante é o <strong>Transmissor</strong>.</p>
+                        <div class="image-content" style="text-align: center;">
+                            <img src="images/Envio de mensagem em massa/passo 03.png" alt="Filtro de Transmissor" class="content-image">
+                            <p class="legenda">Nunca envie sem filtrar o Transmissor (POP/OLT) afetado!</p>
+                        </div>
+                        <p>Após filtrar, vá na aba <strong>CRM</strong>, escolha a mensagem "Rompimento/Manutenção" e clique em <strong>Enviar SMS</strong>.</p>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado Rápido - Módulo 4</h3>
+                        <div class="questao">
+                            <p><strong>1. Qual o assunto correto para criar um atendimento inicial de suporte?</strong></p>
+                            <button class="opcao-quiz" data-correta="true">32 - ATENDIMENTO SUPORTE TÉCNICO</button>
+                            <button class="opcao-quiz" data-correta="false">58 - SEM CONEXÃO FIBRA</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. O que acontece se você enviar um SMS em massa sem selecionar o "Transmissor"?</strong></p>
+                            <button class="opcao-quiz" data-correta="false">O sistema bloqueia o envio.</button>
+                            <button class="opcao-quiz" data-correta="true">Todos os clientes do provedor (cidade toda) receberão a mensagem de falha, gerando pânico desnecessário.</button>
+                            <p class="feedback"></p>
+                        </div>
                     </div>
                 </section>
                 <div class="navigation-buttons">

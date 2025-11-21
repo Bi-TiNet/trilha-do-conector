@@ -148,11 +148,17 @@
             border-radius: 4px;
             border: 1px solid #ccc;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        
+        /* Para quando houver múltiplas imagens no mesmo container */
+        .image-container img + img {
+            margin-top: 15px;
         }
 
         .legenda {
             display: block;
-            margin-top: 10px;
+            margin-top: 5px;
             font-size: 13px;
             color: #666;
             font-style: italic;
@@ -168,7 +174,6 @@
             background-color: #f9f9f9;
         }
         
-        /* Cores Específicas de Alerta (baseado no seu index.html) */
         .alert strong { font-weight: 700; }
         
         /* Estilo padrão (Cinza/Info) */
@@ -265,7 +270,7 @@
             <p>Acesse o endereço do sistema e insira suas credenciais.</p>
             
             <div class="image-container">
-                <img src="images/suporte/login.png" alt="Tela de Login do IXC">
+                <img src="images/login/passo 01.png" alt="Tela de Login do IXC">
                 <span class="legenda">Figura 1: Tela inicial de login</span>
             </div>
 
@@ -281,7 +286,7 @@
             <p>Antes de qualquer atendimento, é necessário localizar o cadastro do cliente.</p>
 
             <div class="image-container">
-                <img src="images/suporte/consulta.png" alt="Barra de busca do IXC">
+                <img src="images/buscar-cliente/passo 01.png" alt="Barra de busca do IXC">
                 <span class="legenda">Figura 2: Barra de busca superior</span>
             </div>
 
@@ -305,8 +310,8 @@
             <p>Dentro do cadastro do cliente (Dashboard), localize a barra de ferramentas azul logo acima das informações de conexão. No canto direito, clique no ícone de <b>Diagnóstico</b> (parece uma maleta/monitor).</p>
 
             <div class="image-container">
-                <img src="images/suporte/diagnostico.png" alt="Tela de Diagnóstico Completa">
-                <span class="legenda">Figura 3: Painel completo de diagnóstico</span>
+                <img src="images/diagnostico-de-rede/passo 01.png" alt="Localizando o botão de diagnóstico">
+                <span class="legenda">Figura 3: Barra de ferramentas do cliente</span>
             </div>
 
             <h3>Passo 2: Leitura dos Dados (Sinal e Histórico)</h3>
@@ -316,6 +321,11 @@
                 <li><b>Potência Tx/Rx (Gráfico):</b> Linhas retas indicam estabilidade. Quedas bruscas indicam problema físico.</li>
                 <li><b>Motivos de Desconexão:</b> Ajuda a saber se o cliente desligou o roteador ("User Request") ou se caiu por perda de sinal ("Lost Carrier").</li>
             </ul>
+
+            <div class="image-container">
+                <img src="images/diagnostico-de-rede/passo 02.png" alt="Tela de Diagnóstico Completa">
+                <span class="legenda">Figura 4: Painel completo de diagnóstico (Sinal e Histórico)</span>
+            </div>
 
             <div class="alert alert-warning">
                 <strong>Parâmetros de Sinal (RX Power):</strong>
@@ -335,123 +345,309 @@
                 <strong>Pré-requisito:</strong> Você já deve ter assumido o atendimento e tentado resolver remotamente.
             </div>
 
-            <h3>Passo 1: Localizar e Editar</h3>
-            <p>No IXC, pesquise pelo CPF ou Nome. Ao encontrar, clique no botão <b>Editar</b> (lápis).</p>
+            <h3>Passo 1: Localizar e Editar o Cliente</h3>
+            <p>No IXC, pesquise pelo <b>CPF</b> (preferencialmente) ou Nome do cliente. Ao encontrar o cadastro exato, clique no botão <b>Editar</b> (lápis).</p>
+
             <div class="image-container">
-                <img src="images/suporte/os.png" alt="Tela de OS">
-                <span class="legenda">Figura 4: Acesso ao cadastro e Wizard</span>
+                <img src="images/abertura-os/passo 01.png" alt="Editando o cadastro do cliente">
+                <span class="legenda">Figura 5: Acessando o cadastro</span>
             </div>
 
             <h3>Passo 2: Criar o Atendimento</h3>
-            <p>Vá na aba <b>Atendimentos > Novo</b>. Preencha:</p>
+            <p>Vá na aba <b>Atendimentos</b> e clique em <b>Novo</b>. Preencha com atenção:</p>
             <ul>
-                <li><b>Assunto:</b> <code>32 - ATENDIMENTO SUPORTE TÉCNICO</code>.</li>
-                <li><b>Descrição:</b> Relate detalhadamente o problema e testes feitos.</li>
+                <li><b>Contrato/Login:</b> Selecione o contrato com problema.</li>
+                <li><b>Assunto:</b> Selecione <code>32 - ATENDIMENTO SUPORTE TÉCNICO</code>.</li>
+                <li><b>Origem do endereço:</b> Marque a opção <b>Login</b> (se houver mais de um login, selecione o correto).</li>
+                <li><b>Descrição:</b> Relate detalhadamente o problema.</li>
             </ul>
+            <p>Clique em <b>Salvar</b>.</p>
 
-            <h3>Passo 3: Gerar O.S. (Finalizar Wizard)</h3>
+            <div class="image-container">
+                <img src="images/abertura-os/passo 02.png" alt="Preenchendo o atendimento">
+                <span class="legenda">Figura 6: Dados iniciais do chamado</span>
+            </div>
+
+            <h3>Passo 3: Gerar a Ordem de Serviço (Finalizar Wizard)</h3>
+            <p>Agora vamos transformar esse atendimento em uma tarefa para o técnico.</p>
             <ol>
-                <li>Na aba <b>Ordens de Serviço</b>, selecione a linha criada e clique em <b>Ações > Finalizar</b>.</li>
-                <li>Defina a <b>Tarefa</b> (ex: <code>58 - SEM CONEXÃO FIBRA</code> ou <code>64 - TROCA DE EQUIPAMENTO</code>).</li>
-                <li>Clique em Salvar.</li>
+                <li>Vá para a aba <b>Ordens de Serviço</b>.</li>
+                <li>Selecione a linha criada e clique no botão <b>Ações > Finalizar</b>.</li>
             </ol>
 
-            <h3>Passo 4: Agendar e Encaminhar</h3>
+            <div class="image-container">
+                <img src="images/abertura-os/passo 03.png" alt="Botão Ações e Finalizar">
+                <span class="legenda">Figura 7: Iniciando o assistente de O.S.</span>
+            </div>
+
+            <h3>Passo 4: Definir a Tarefa Técnica</h3>
+            <p>Uma nova janela abrirá. Siga a ordem:</p>
             <ol>
-                <li>Selecione a O.S. gerada. Clique em <b>Ações > Agendar</b>.</li>
-                <li>Defina Data/Hora e selecione o Técnico Padrão.</li>
-                <li>Após agendar, clique em <b>Ações > Encaminhar</b> para enviar à fila do setor Técnico.</li>
+                <li><b>Mensagem:</b> Descreva o problema e uma possível resolução (se houver).</li>
+                <li><b>Próxima Tarefa:</b> Clique na lupa.</li>
+                <li><b>Escolha o Assunto:</b> Dê um duplo clique na tarefa correta (ex: <code>58 - SEM CONEXÃO FIBRA</code>, <code>TROCA DE EQUIPAMENTO</code>, etc).</li>
+                <li>Clique em <b>Salvar</b>.</li>
             </ol>
+
+            <div class="image-container">
+                <img src="images/abertura-os/passo 04.png" alt="Preenchendo a tarefa">
+                <img src="images/abertura-os/passo 05.png" alt="Selecionando o tipo de serviço">
+                <img src="images/abertura-os/passo 06.png" alt="Salvando a tarefa">
+                <span class="legenda">Figuras 8, 9 e 10: Definindo o que o técnico vai fazer</span>
+            </div>
+
+            <h3>Passo 5: Agendar o Técnico</h3>
+            <p>Recarregue a página (F5 ou botão de atualizar). Selecione a O.S. com o novo assunto que você criou.</p>
+            <ol>
+                <li>Clique em <b>Ações > Agendar</b>.</li>
+                <li>Defina a <b>Data Inicial</b> e <b>Final</b> conforme combinado com o cliente.</li>
+                <li><b>Colaborador Responsável:</b> Selecione o técnico <code>57 (Carlos ou Leandro)</code>.</li>
+                <li>Digite "Ok" ou uma observação na mensagem e clique em <b>Agendar</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/abertura-os/passo 07.png" alt="Menu Agendar">
+                <img src="images/abertura-os/passo 08.png" alt="Janela de Agendamento">
+                <span class="legenda">Figuras 11 e 12: Escolhendo a data e o técnico</span>
+            </div>
+
+            <h3>Passo 6: Encaminhar para a Fila</h3>
+            <p>Recarregue a página novamente. Selecione a O.S. que agora está com status "Agendada".</p>
+            <ol>
+                <li>Clique em <b>Ações > Encaminhar</b>.</li>
+                <li>Confira se o Setor está correto (Técnico).</li>
+                <li>Digite uma mensagem de direcionamento e clique em <b>Encaminhar</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/abertura-os/passo 09.png" alt="Menu Encaminhar">
+                <img src="images/abertura-os/passo 10.png" alt="Janela de Encaminhamento">
+                <span class="legenda">Figuras 13 e 14: Enviando para o aplicativo do técnico</span>
+            </div>
+
+            <h3>Passo 7: Verificação e Acompanhamento</h3>
+            <p>Vá até a <b>Agenda de Ordens de Serviço</b> para confirmar se o agendamento apareceu corretamente para o técnico.</p>
+
+            <div class="image-container">
+                <img src="images/abertura-os/passo 11.png" alt="Visualização na Agenda">
+                <span class="legenda">Figura 15: Conferência na Agenda</span>
+            </div>
 
             <div class="alert alert-success">
-                <strong>Pós-Suporte:</strong> O sistema abrirá automaticamente uma O.S. de validação para 7 dias depois. Agende para você mesmo e ligue para o cliente para confirmar a solução.
+                <strong>Pós-Suporte (7 Dias):</strong> Após o técnico finalizar a visita, o sistema abrirá automaticamente uma <b>O.S. de Pós-Suporte</b>. Agende para você mesmo para 7 dias depois e contate o cliente para validar a solução.
             </div>
         </section>
 
         <section id="envio-sms" class="topico-manual">
             <h1>Envio de SMS em Massa (Comunicados)</h1>
-            <p>Para avisar clientes sobre manutenções ou rompimentos em uma região específica.</p>
+            <p>Utilize este procedimento para avisar clientes sobre manutenções programadas, rompimentos de fibra ou incidentes gerais em uma região específica.</p>
             
             <div class="alert alert-danger">
-                <strong>Cuidado Extremo:</strong> Sempre filtre pelo Transmissor (OLT/POP) para não enviar mensagem para a cidade toda.
+                <strong>Atenção:</strong> Tenha muito cuidado ao aplicar os filtros para não enviar mensagens para a base inteira de clientes sem necessidade.
             </div>
 
+            <h3>Passo 1: Acessar o Relatório de Logins</h3>
+            <p>No menu lateral, navegue até <b>Relatórios Provedor > Relatórios Conexões</b> e clique em <b>Relatório de status logins</b>.</p>
+            
+            <div class="image-container">
+                <img src="images/envio-mensagens-massa/passo 01.png" alt="Caminho do menu para relatório de logins">
+                <span class="legenda">Figura 16: Caminho do Menu</span>
+            </div>
+
+            <h3>Passo 2: Filtrar Clientes Ativos</h3>
+            <p>Para garantir que a mensagem chegue apenas para quem está ativo na base, marque as opções:</p>
+            <ul>
+                <li><b>Cadastro ativo:</b> Sim</li>
+                <li><b>Status do contrato:</b> Ativo</li>
+            </ul>
+
+            <div class="image-container">
+                <img src="images/envio-mensagens-massa/passo 02.png" alt="Filtros de contrato ativo">
+                <span class="legenda">Figura 17: Filtros de status do cliente</span>
+            </div>
+
+            <h3>Passo 3: Selecionar a Região Afetada (Transmissor/POP)</h3>
+            <p>Este é o passo mais importante. Identifique qual equipamento atende a região do incidente.</p>
+            <ul>
+                <li><b>Login ativo:</b> Sim</li>
+                <li><b>Transmissor:</b> Selecione o POP ou OLT que está com problema (Ex: POP PEDRAS).</li>
+            </ul>
+
+            <div class="image-container">
+                <img src="images/envio-mensagens-massa/passo 03.png" alt="Selecionando o Transmissor">
+                <span class="legenda">Figura 18: Filtrando pelo Transmissor (Local do problema)</span>
+            </div>
+
+            <h3>Passo 4: Preparar o Envio (Aba CRM)</h3>
+            <p>Após aplicar os filtros, não clique em imprimir. Vá para a aba <b>CRM</b>. No campo "Mensagem SMS", clique na lupa para buscar um modelo.</p>
+
+            <div class="image-container">
+                <img src="images/envio-mensagens-massa/passo 04.png" alt="Aba CRM e busca de mensagem">
+                <span class="legenda">Figura 19: Acessando a área de envio</span>
+            </div>
+
+            <h3>Passo 5 e 6: Escolher e Editar a Mensagem</h3>
+            <p>Busque pelo modelo de mensagem adequado (ex: "rompimento").</p>
             <ol>
-                <li>Vá em <b>Relatórios Provedor > Relatórios Conexões > Status Logins</b>.</li>
-                <li>Filtre por <b>Transmissor:</b> (Selecione o POP/OLT afetado).</li>
-                <li>Filtre por <b>Status Contrato:</b> Ativo.</li>
-                <li>Vá na aba <b>CRM</b> e escolha a mensagem padrão.</li>
-                <li>Clique no botão <b>CRM</b> (topo direito) > <b>Enviar SMS</b>.</li>
+                <li>Selecione a mensagem e clique em <b>Editar</b> para conferir o texto.</li>
+                <li>Verifique se as variáveis (como <code>#cliente_nome#</code>) estão corretas.</li>
+                <li>Confira o Gateway de envio e clique em <b>Salvar</b>.</li>
             </ol>
 
             <div class="image-container">
-                <img src="images/suporte/sms.png" alt="Envio de SMS">
-                <span class="legenda">Figura 5: Tela de envio massivo com filtros</span>
+                <img src="images/envio-mensagens-massa/passo 05.png" alt="Editando mensagem">
+                <img src="images/envio-mensagens-massa/passo 06.png" alt="Salvando mensagem">
+                <span class="legenda">Figuras 20 e 21: Conferindo o texto do aviso</span>
+            </div>
+
+            <h3>Passo 7: Disparar o SMS</h3>
+            <p>Com tudo configurado, volte para a tela principal do relatório:</p>
+            <ol>
+                <li>Clique no botão <b>CRM</b> (no topo direito).</li>
+                <li>Selecione a opção <b>Enviar SMS</b>.</li>
+            </ol>
+            <p>O sistema irá processar e enviar o aviso para todos os clientes listados no filtro.</p>
+
+            <div class="image-container">
+                <img src="images/envio-mensagens-massa/passo 07.png" alt="Botão CRM - Ação de Enviar SMS">
+                <span class="legenda">Figura 22: Executando o envio em massa</span>
             </div>
         </section>
 
         <section id="acesso-remoto" class="topico-manual">
-            <h1>Acesso Remoto (ONU/Roteador)</h1>
-            <p>Utilize para trocar senha do Wi-Fi, mudar canais ou verificar configurações internas.</p>
+            <h1>Acesso à Interface Web do Equipamento</h1>
+            <p>Este procedimento mostra o caminho para sair do sistema IXC e abrir a página de configuração interna do roteador ou ONU do cliente (Interface Web).</p>
 
             <div class="alert alert-warning">
-                <strong>Atenção:</strong> Você será redirecionado para a página do fabricante (Huawei, Datacom, etc). Não altere configurações de WAN (PPPoE/VLAN) sem necessidade.
+                <strong>Atenção:</strong> Ao clicar nestes atalhos, você será redirecionado para a página do fabricante (Datacom, Huawei, Intelbras, etc.). O layout e as configurações mudam de acordo com a marca do equipamento.
             </div>
 
-            <h3>Como Acessar</h3>
-            <p>No painel principal (Dashboard), localize o quadro de <b>Conexão</b>.</p>
+            <h3>Caminho 1: Pelo Card de Conexão</h3>
+            <p>No painel principal (Dashboard), localize o quadro verde/azul de <b>Conexão</b>.</p>
             <ol>
-                <li>Clique no ícone de menu (três listras) ou no ícone de "Globo" no canto do card.</li>
-                <li>O sistema abrirá uma nova aba com o IP da ONU.</li>
+                <li>Clique no ícone de menu (três listras) no canto do card.</li>
+                <li>Neste menu, procure pela opção de acessar o equipamento ou visualizar os dados de acesso.</li>
             </ol>
 
             <div class="image-container">
-                <img src="images/suporte/acesso-remoto.png" alt="Card de conexão">
-                <span class="legenda">Figura 6: Atalhos de acesso no card de conexão</span>
+                <img src="images/acesso-remoto/passo 01.png" alt="Menu do card de conexão">
+                <span class="legenda">Figura 23: Opções dentro do card de conexão</span>
+            </div>
+
+            <h3>Caminho 2: Pela Barra de Atalhos Superior</h3>
+            <p>Esta é a forma mais rápida de tentar o acesso direto.</p>
+            <ol>
+                <li>Localize a barra de ícones no canto direito superior do cadastro (acima do status "Online").</li>
+                <li>Clique no ícone que representa o acesso web (geralmente um monitor ou um globo) para abrir a nova aba de gerenciamento.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/acesso-remoto/passo 02.png" alt="Barra de ferramentas superior">
+                <span class="legenda">Figura 24: Ícones de atalho para a interface do equipamento</span>
             </div>
         </section>
 
         <section id="autorizar-onu" class="topico-manual">
             <h1>Autorização de ONU (Provisionamento)</h1>
-            <p>Realizado quando o técnico instala um novo equipamento. Você deve vincular a ONU ao cliente.</p>
+            <p>Este procedimento deve ser realizado quando o técnico de campo instala um novo equipamento ou realiza a troca de uma ONU queimada.</p>
             
+            <div class="alert alert-info">
+                <strong>Importante:</strong> Tenha em mãos o nome do cliente e a caixa (CTO) onde o técnico está conectado.
+            </div>
+
+            <h3>Passo 1: Localizar a ONU Pendente</h3>
+            <p>Quando o técnico liga a ONU na fibra, ela aparece automaticamente no sistema aguardando autorização.</p>
+            <ol>
+                <li>Vá no menu <b>Provedor > Autorizar ONUs</b>.</li>
+                <li>Na lista, procure pelo MAC Address (serial) que o técnico informou ou pelo modelo do equipamento.</li>
+                <li>Selecione a linha correta e clique no botão <b>Autorizar ONU</b> (ou Editar).</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/autorizar-onu/passo 01.png" alt="Lista de ONUs não autorizadas">
+                <span class="legenda">Figura 25: Menu de ONUs pendentes</span>
+            </div>
+
+            <h3>Passo 2: Vincular ao Cliente e Configurar (Crítico)</h3>
+            <p>Esta é a etapa onde definimos quem é o dono da internet e como ela vai funcionar. Preencha os campos na ordem das setas:</p>
+            
+            <ul>
+                <li><b>Caixa FTTH:</b> Pesquise a caixa (CTO) informada pelo técnico.</li>
+                <li><b>Porta FTTH:</b> Clique em "Listar" e selecione a porta disponível.</li>
+                <li><b>Contrato e Login:</b> Busque pelo nome do cliente. Ao selecionar o Login, o campo "Nome" deve preencher sozinho.</li>
+            </ul>
+
             <div class="alert alert-warning">
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong>Regra de Ouro (VLAN e Perfil):</strong><br>
                 <ul>
-                    <li><strong>Modo Bridge (Roteador externo):</strong> Use Perfil <b>50</b> e VLAN <b>400</b>.</li>
+                    <li><strong>Modo Bridge (Roteador Wi-Fi a parte):</strong> Use Perfil <b>50</b> e VLAN <b>400</b>.</li>
                     <li><strong>Modo Router (ONU faz tudo):</strong> Use Perfil <b>49</b> e VLAN <b>401</b>.</li>
                 </ul>
             </div>
 
+            <div class="image-container">
+                <img src="images/autorizar-onu/passo 02.png" alt="Tela de configuração da ONU">
+                <span class="legenda">Figura 26: Preenchimento dos dados técnicos e vínculo do cliente</span>
+            </div>
+
+            <h3>Passo 3: Finalizar Autorização</h3>
+            <p>Após conferir se a VLAN e o Perfil estão corretos:</p>
             <ol>
-                <li>Vá no menu <b>Provedor > Autorizar ONUs</b>.</li>
-                <li>Localize o serial (MAC) informado pelo técnico.</li>
-                <li>Vincule ao <b>Login</b> do cliente.</li>
-                <li>Selecione a <b>Caixa FTTH</b> e a <b>Porta</b> informadas.</li>
-                <li>Clique em <b>Salvar</b> e depois <b>Autorizar</b>.</li>
+                <li>Clique no botão <b>Salvar</b>.</li>
+                <li>Em seguida, clique no botão <b>Autorizar ONU</b> no topo da tela.</li>
             </ol>
+            <p>Aguarde o comando ser enviado para a OLT. Se der sucesso, o cliente deve navegar em instantes.</p>
 
             <div class="image-container">
-                <img src="images/suporte/autorizar.png" alt="Tela de configuração da ONU">
-                <span class="legenda">Figura 7: Preenchimento dos dados técnicos</span>
+                <img src="images/autorizar-onu/passo 03.png" alt="Botão salvar e autorizar">
+                <span class="legenda">Figura 27: Finalizando o processo</span>
             </div>
         </section>
 
         <section id="desautorizar-onu" class="topico-manual">
             <h1>Desautorizar e Remover ONU</h1>
-            <p>Processo para cancelamento ou troca de equipamento queimado.</p>
+            <p>Este processo é utilizado em casos de <b>cancelamento de contrato</b> ou <b>troca de equipamento</b> (queima/defeito). É necessário remover o registro antigo para liberar a porta ou autorizar uma nova ONU.</p>
 
+            <h3>Passo 1: Identificar o Login do Cliente</h3>
+            <p>Primeiro, precisamos saber qual é o login de conexão do cliente para localizar o equipamento exato.</p>
             <ol>
-                <li>Vá em <b>Provedor > Clientes Fibra (ONU)</b>.</li>
-                <li>Busque pelo Login do cliente.</li>
-                <li>Abra o cadastro da ONU (Duplo clique ou Editar).</li>
-                <li>Clique no botão <b>Desautorizar ONU</b> (Aguarde a mensagem de sucesso).</li>
-                <li>Após desautorizar, clique em <b>Deletar</b> para limpar o registro.</li>
+                <li>Pesquise o nome do cliente no sistema.</li>
+                <li>Copie o <b>Login</b> (ex: mjsp).</li>
+                <li>No menu lateral, vá em <b>Provedor > Clientes Fibra (ONU)</b>.</li>
             </ol>
 
             <div class="image-container">
-                <img src="images/suporte/desautorizar.png" alt="Botões de ação">
-                <span class="legenda">Figura 8: Removendo o equipamento do sistema</span>
+                <img src="images/desautorizar-onu/passo 01.png" alt="Copiando o login do cliente">
+                <span class="legenda">Figura 28: Localizando o login de acesso</span>
+            </div>
+
+            <h3>Passo 2: Localizar a ONU no Sistema</h3>
+            <p>Agora vamos encontrar o equipamento vinculado a este login.</p>
+            <ol>
+                <li>Na tela de "Clientes Fibra", cole o login na barra de pesquisa (campo "Nome" ou "Login").</li>
+                <li>Ao encontrar a linha com status <span class="status-ok">Autorizado</span>, dê um duplo clique ou clique em <b>Editar</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/desautorizar-onu/passo 02.png" alt="Pesquisando a ONU pelo login">
+                <span class="legenda">Figura 29: Filtrando a ONU correta</span>
+            </div>
+
+            <h3>Passo 3: Desautorizar e Deletar</h3>
+            <p>Esta etapa envia o comando para a OLT cortar a conexão e remove o cadastro do banco de dados.</p>
+            
+            <div class="alert alert-danger">
+                <strong>Atenção:</strong> Siga a ordem correta para evitar "sujeira" na configuração da OLT.
+            </div>
+
+            <ol>
+                <li>Dentro do cadastro da ONU, clique no botão superior <b>Desautorizar ONU</b>. (Aguarde a mensagem de sucesso).</li>
+                <li>Após a desautorização, clique no botão <b>Deletar</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/desautorizar-onu/passo 03.png" alt="Botões de Desautorizar e Deletar">
+                <span class="legenda">Figura 30: Removendo o equipamento do sistema</span>
             </div>
         </section>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 3: Procedimentos Técnicos - Ti.Net</title>
+    <title>Módulo 3: Procedimentos Técnicos - Suporte Ti.Net</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <aside class="sidebar">
             <div class="sidebar-header"><img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo"></div>
             <nav class="sidebar-nav">
-                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Fundamentos</a>
-                <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Sistema IXC</a>
+                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Acesso e Navegação</a>
+                <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Diagnóstico de Rede</a>
                 <a href="modulo3-suporte.html" class="nav-item active">Módulo 3: Procedimentos Técnicos</a>
                 <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
                 <a href="avaliacao.html?role=suporte" class="nav-item">🏆 Avaliação Final</a>
@@ -22,45 +22,116 @@
             <header><h1>Trilha de Suporte Técnico 🎧</h1></header>
             <main>
                 <section class="visible">
-                    <h2>3.1 Provisionamento de ONUs</h2>
-                    <p>Quando o técnico instala um equipamento novo, é você quem libera o acesso no sistema (Autorizar ONU).</p>
+                    <h2>3.1 Autorização de ONU (Provisionamento)</h2>
+                    <p>Quando um técnico instala um equipamento novo, você deve autorizá-lo no sistema. Erros aqui deixam o cliente sem navegar.</p>
                     
                     <div class="aviso">
-                        <strong>⚠️ REGRA DE OURO (VLAN e Perfil):</strong> Configurar errado = Cliente sem navegação.
+                        <strong>⚠️ REGRA DE OURO (VLAN e Perfil):</strong> Memorize estas configurações!
                     </div>
 
                     <div class="fluxograma-stepper" style="margin-top: 1.5rem;">
                         <div class="step active" style="display:block">
-                            <h4>Cenário 1: Cliente Residencial Padrão (PPPoE na ONU)</h4>
-                            <p>A ONU fará a discagem e o Wi-Fi. Use:</p>
+                            <h4>Cenário 1: Modo Router (Padrão)</h4>
+                            <p>A ONU faz a discagem PPPoE e gera o Wi-Fi.</p>
                             <ul>
+                                <li><strong>Perfil:</strong> 49</li>
                                 <li><strong>VLAN:</strong> 401</li>
-                                <li><strong>Perfil:</strong> 49 (Router)</li>
                             </ul>
                         </div>
-                        <hr>
+                        <hr style="border: 0; border-top: 1px dashed #ccc; margin: 1rem 0;">
                         <div class="step active" style="display:block">
-                            <h4>Cenário 2: Cliente Gamer / Empresarial (Modo Bridge)</h4>
-                            <p>O cliente tem um roteador potente próprio. A ONU vira apenas um conversor de mídia. Use:</p>
+                            <h4>Cenário 2: Modo Bridge (Gamer/Empresa)</h4>
+                            <p>O cliente usa um roteador próprio potente. A ONU vira apenas um conversor.</p>
                             <ul>
+                                <li><strong>Perfil:</strong> 50</li>
                                 <li><strong>VLAN:</strong> 400</li>
-                                <li><strong>Perfil:</strong> 50 (Bridge)</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="app-guide" style="margin-top: 2rem;">
-                        <h3>Acesso Remoto ao Roteador</h3>
-                        <p>Para trocar senha do Wi-Fi ou mudar o canal (para evitar interferência), use o atalho de acesso remoto no Dashboard do cliente. <strong>Nunca resete a ONU fisicamente</strong> sem necessidade, pois ela perderá essas configurações.</p>
+                        <h3>Passo a Passo no Sistema</h3>
+                        <ol>
+                            <li>Vá em <strong>Provedor > Autorizar ONUs</strong>.</li>
+                            <li>Localize o serial (MAC) e clique em editar.</li>
+                            <li>Preencha: <strong>Caixa FTTH</strong>, <strong>Porta</strong> e vincule ao <strong>Login</strong> do cliente.</li>
+                        </ol>
+                        <div class="image-content" style="display: flex; gap: 10px; overflow-x: auto;">
+                            <img src="images/autorizar-onu/passo 02.png" alt="Tela de Configuração" class="content-image" style="max-width: 45%;">
+                            <img src="images/autorizar-onu/passo 03.png" alt="Botão Autorizar" class="content-image" style="max-width: 45%;">
+                        </div>
+                    </div>
+
+                    <hr style="margin: 3rem 0;">
+
+                    <h2>3.2 Acesso Remoto e Desautorização</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">Como Acessar o Roteador Remotamente</button>
+                            <div class="accordion-content">
+                                <p>Para trocar senha do Wi-Fi ou canais:</p>
+                                <ol>
+                                    <li>No card de Conexão, clique no menu ou ícone de globo.</li>
+                                    <li>Isso abrirá a interface web da ONU (Huawei, Datacom, etc.).</li>
+                                </ol>
+                                <img src="images/acesso-remoto/passo 01.png" alt="Acesso Remoto" style="max-width: 100%; border-radius: 5px;">
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">Como Remover uma ONU (Cancelamento/Troca)</button>
+                            <div class="accordion-content">
+                                <p><strong>Importante:</strong> Siga a ordem para não travar a porta na OLT.</p>
+                                <ol>
+                                    <li>Vá em <strong>Provedor > Clientes Fibra</strong>.</li>
+                                    <li>Busque pelo login.</li>
+                                    <li>Clique em <strong>Desautorizar ONU</strong> (espere o sucesso).</li>
+                                    <li>Só depois clique em <strong>Deletar</strong>.</li>
+                                </ol>
+                                <img src="images/desautorizar-onu/passo 03.png" alt="Botões de Ação" style="max-width: 100%; border-radius: 5px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado Rápido - Módulo 3</h3>
+                        <div class="questao">
+                            <p><strong>1. Qual a VLAN correta para um cliente que usa Roteador Próprio (Modo Bridge)?</strong></p>
+                            <button class="opcao-quiz" data-correta="false">VLAN 401</button>
+                            <button class="opcao-quiz" data-correta="true">VLAN 400</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. Ao remover uma ONU, qual a ordem correta?</strong></p>
+                            <button class="opcao-quiz" data-correta="false">Deletar direto.</button>
+                            <button class="opcao-quiz" data-correta="true">Desautorizar primeiro, depois Deletar.</button>
+                            <p class="feedback"></p>
+                        </div>
                     </div>
                 </section>
                 <div class="navigation-buttons">
                     <a href="modulo2-suporte.html" class="btn-prev">&larr; Voltar</a>
-                    <a href="modulo4-suporte.html" class="btn-next">Avançar para o Módulo 4 &rarr;</a>
+                    <a href="modulo4-suporte.html" class="btn-next">Ir para Módulo 4 &rarr;</a>
                 </div>
             </main>
         </div>
     </div>
     <script src="js/script.js"></script>
+    <script>
+        // Script simples para acordeão funcionar neste módulo
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    button.classList.toggle('active');
+                    if (button.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

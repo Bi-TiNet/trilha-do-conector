@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 2: Dominando o IXC - Ti.Net</title>
+    <title>Módulo 2: Diagnóstico de Rede - Suporte Ti.Net</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <aside class="sidebar">
             <div class="sidebar-header"><img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo"></div>
             <nav class="sidebar-nav">
-                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Fundamentos</a>
-                <a href="modulo2-suporte.html" class="nav-item active">Módulo 2: Sistema IXC</a>
+                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Acesso e Navegação</a>
+                <a href="modulo2-suporte.html" class="nav-item active">Módulo 2: Diagnóstico de Rede</a>
                 <a href="modulo3-suporte.html" class="nav-item">Módulo 3: Procedimentos Técnicos</a>
                 <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
                 <a href="avaliacao.html?role=suporte" class="nav-item">🏆 Avaliação Final</a>
@@ -22,38 +22,65 @@
             <header><h1>Trilha de Suporte Técnico 🎧</h1></header>
             <main>
                 <section class="visible">
-                    <h2>2.1 Diagnóstico de Rede no IXC</h2>
-                    <p>O IXC Soft é sua cabine de comando. Antes de qualquer ação, você deve saber ler os sinais vitais da conexão do cliente.</p>
+                    <h2>2.1 A Ferramenta de Diagnóstico</h2>
+                    <p>Esta é a ferramenta mais importante do suporte N1. Ela permite ver a "saúde" da conexão do cliente sem precisar ir até a casa dele.</p>
                     
                     <div class="app-guide">
-                        <h3>Parâmetros Críticos de Sinal (RX Power)</h3>
-                        <p>Ao clicar no ícone de <strong>Diagnóstico</strong> no cadastro do cliente, observe imediatamente o nível de sinal (dBm):</p>
-                        <div class="sinal-container">
-                            <div class="sinal-card bom">
-                                <h4>Sinal Verde (Ideal)</h4>
-                                <p><strong>-15dBm a -25dBm</strong></p>
-                                <p>Conexão saudável. Se o cliente reclama de lentidão, o problema provavelmente é o Wi-Fi (interferência/distância) ou dispositivos dele.</p>
-                            </div>
-                            <div class="sinal-card ruim">
-                                <h4>Sinal Vermelho (Crítico)</h4>
-                                <p><strong>Abaixo de -27dBm (Ex: -30, -32)</strong></p>
-                                <p>Atenuação alta. A fibra pode estar dobrada ou o conector sujo. Isso causa lentidão e quedas. Requer agendamento técnico.</p>
-                            </div>
+                        <h3>Acessando o Painel</h3>
+                        <p>No dashboard do cliente, localize a barra azul de ferramentas e clique no ícone de <strong>Diagnóstico</strong> (parece uma maleta médica ou monitor).</p>
+                        <div class="image-content" style="text-align: center;">
+                            <img src="images/diagnostico-de-rede/passo 01.png" alt="Botão de Diagnóstico" class="content-image">
                         </div>
                     </div>
 
                     <div class="troubleshooting" style="margin-top: 2rem;">
-                        <h3>Histórico de Conexão (RadAcct)</h3>
-                        <p>Na aba <strong>RadAcct</strong>, verifique o tempo da sessão:</p>
-                        <ul>
-                            <li><strong>Sessão longa (+24h):</strong> Conexão estável. O problema não é queda de internet.</li>
-                            <li><strong>Muitas desconexões curtas (Flapping):</strong> Pode indicar rompimento parcial da fibra ou oscilação de energia na casa do cliente.</li>
-                        </ul>
+                        <h3>Interpretando os Sinais (RX Power)</h3>
+                        <p>Ao abrir a janela, verifique imediatamente a potência do sinal óptico. Isso define se o problema é físico (fibra) ou lógico (wi-fi/lento).</p>
+                        
+                        <div class="sinal-container">
+                            <div class="sinal-card bom">
+                                <h4>Sinal Ideal 🟢</h4>
+                                <p><strong>-15dBm a -25dBm</strong></p>
+                                <p>Conexão saudável. Se o cliente reclama, investigue o Wi-Fi.</p>
+                            </div>
+                            <div class="sinal-card" style="border-color: #ffc107; background-color: #fff3cd;">
+                                <h4>Sinal Alerta 🟡</h4>
+                                <p><strong>-26dBm a -27dBm</strong></p>
+                                <p>No limite. Pode funcionar, mas requer atenção.</p>
+                            </div>
+                            <div class="sinal-card ruim">
+                                <h4>Sinal Crítico 🔴</h4>
+                                <p><strong>Abaixo de -27dBm</strong></p>
+                                <p>(Ex: -30, -32, -40). Atenuação alta. <strong>Abertura de O.S. Obrigatória.</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="image-content" style="text-align: center; margin-top: 1.5rem;">
+                            <img src="images/diagnostico-de-rede/passo 02.png" alt="Painel Completo de Diagnóstico" class="content-image">
+                            <p style="font-size: 0.9rem; color: #666;"><em>Observe os gráficos: Linhas retas = Estabilidade. Quedas bruscas = Problema.</em></p>
+                        </div>
+                    </div>
+
+                    <div class="simulado">
+                        <h3>💡 Simulado Rápido - Módulo 2</h3>
+                        <div class="questao">
+                            <p><strong>1. Um cliente apresenta sinal de -31dBm. Qual a ação correta?</strong></p>
+                            <button class="opcao-quiz" data-correta="false">Reiniciar o roteador e encerrar.</button>
+                            <button class="opcao-quiz" data-correta="true">Abrir Ordem de Serviço para visita técnica (Sinal Crítico).</button>
+                            <button class="opcao-quiz" data-correta="false">Dizer que é normal.</button>
+                            <p class="feedback"></p>
+                        </div>
+                        <div class="questao">
+                            <p><strong>2. O gráfico azul "Motivos de Desconexão" mostra "User Request". O que isso significa?</strong></p>
+                            <button class="opcao-quiz" data-correta="true">O cliente desligou o equipamento ou reiniciou manualmente.</button>
+                            <button class="opcao-quiz" data-correta="false">A fibra rompeu na rua.</button>
+                            <p class="feedback"></p>
+                        </div>
                     </div>
                 </section>
                 <div class="navigation-buttons">
                     <a href="modulo1-suporte.html" class="btn-prev">&larr; Voltar</a>
-                    <a href="modulo3-suporte.html" class="btn-next">Avançar para o Módulo 3 &rarr;</a>
+                    <a href="modulo3-suporte.html" class="btn-next">Ir para Módulo 3 &rarr;</a>
                 </div>
             </main>
         </div>
