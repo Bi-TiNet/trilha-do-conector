@@ -1,31 +1,167 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual de Suporte Técnico - Ti.Net</title>
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
-        /* Ajustes específicos para o layout de Manual (Menu Lateral Fixo) */
-        body { display: flex; height: 100vh; overflow: hidden; background-color: #f4f7f9; }
-        .sidebar-manual { width: 280px; background-color: #061633; color: white; display: flex; flex-direction: column; border-right: 1px solid #ddd; height: 100%; }
-        .logo-area { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo-area img { max-width: 120px; }
-        .menu-manual { list-style: none; padding: 0; margin-top: 10px; overflow-y: auto; flex-grow: 1; }
-        .menu-item-manual { padding: 15px 20px; cursor: pointer; transition: background 0.3s; border-left: 4px solid transparent; font-size: 15px; display: flex; align-items: center; color: #ccc; }
-        .menu-item-manual:hover { background-color: #0a2550; color: white; }
-        .menu-item-manual.active { background-color: #0a2550; border-left: 4px solid #0099cc; color: white; font-weight: bold; }
-        .menu-item-manual i { margin-right: 10px; width: 20px; text-align: center; }
-        .content-manual { flex: 1; padding: 40px; overflow-y: auto; background-color: #fff; }
-        .topico-manual { display: none; animation: fadeIn 0.5s; }
-        .topico-manual.active { display: block; }
-        .image-container { text-align: center; margin: 20px 0; padding: 10px; border: 1px solid #eee; background: #fafafa; border-radius: 8px; }
-        .image-container img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .legenda { display: block; margin-top: 5px; font-size: 12px; color: #666; font-style: italic; }
-        .alert { padding: 15px; margin: 15px 0; border-radius: 5px; border-left: 5px solid; }
-        .alert-info { background-color: #d1ecf1; color: #0c5460; border-color: #17a2b8; }
+        /* --- ESTILOS ESPECÍFICOS PARA O MANUAL (ADAPTADO AO TEMA NOVO) --- */
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f4f7f9; /* Fundo claro para leitura */
+        }
+
+        /* Menu Lateral (Estilo Dark do Novo Projeto) */
+        .sidebar-manual {
+            width: 280px;
+            background-color: var(--cor-primaria, #061633); /* Azul Ti.Net */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #ddd;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .logo-area {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .logo-area img { max-width: 140px; }
+
+        .menu-manual {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .menu-item-manual {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            color: #c9d1d9;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .menu-item-manual:hover {
+            background-color: rgba(0, 153, 204, 0.1);
+            color: white;
+            padding-left: 25px; /* Efeito de deslize */
+        }
+
+        .menu-item-manual.active {
+            background-color: rgba(0, 153, 204, 0.2);
+            border-left: 4px solid var(--cor-secundaria, #0099cc);
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-item-manual i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            color: var(--cor-secundaria, #0099cc);
+        }
+
+        /* Área de Conteúdo */
+        .content-manual {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Tópicos */
+        .topico-manual {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .topico-manual.active {
+            display: block;
+        }
+
+        /* Elementos Internos (Baseados no seu upload original) */
+        h1 {
+            color: var(--cor-primaria, #061633);
+            border-bottom: 2px solid var(--cor-secundaria, #0099cc);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: var(--cor-secundaria, #0099cc);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 450px;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .legenda {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 5px solid;
+        }
+        
+        /* Cores de Alerta */
+        .alert-info { background-color: #e3f2fd; color: #0d47a1; border-color: #2196f3; }
         .alert-warning { background-color: #fff3cd; color: #856404; border-color: #ffc107; }
+        .alert-danger { background-color: #f8d7da; color: #721c24; border-color: #dc3545; }
+
+        .status-ok {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -34,122 +170,255 @@
     <nav class="sidebar-manual">
         <div class="logo-area">
             <img src="images/logo.png" alt="Ti.Net">
-            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">MANUAL DE SUPORTE</p>
+            <div style="margin-top: 10px; font-size: 0.8rem; opacity: 0.8;">MANUAL TÉCNICO</div>
         </div>
         <ul class="menu-manual">
-            <li class="menu-item-manual active" onclick="mostrarTopico('inicio')">
+            <li class="menu-item-manual active" onclick="mostrarTopico('inicio', this)">
                 <i class="fa-solid fa-home"></i> Início
             </li>
-            <li class="menu-item-manual" onclick="mostrarTopico('diagnostico')">
+            <li class="menu-item-manual" onclick="mostrarTopico('login-ixc', this)">
+                <i class="fa-solid fa-key"></i> Acesso ao IXC
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('consulta-cliente', this)">
+                <i class="fa-solid fa-users"></i> Consultar Cliente
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('diagnostico', this)">
                 <i class="fa-solid fa-stethoscope"></i> Diagnóstico de Rede
             </li>
-            <li class="menu-item-manual" onclick="mostrarTopico('acesso-remoto')">
+            <li class="menu-item-manual" onclick="mostrarTopico('acesso-remoto', this)">
                 <i class="fa-solid fa-desktop"></i> Acesso Remoto
             </li>
-            <li class="menu-item-manual" onclick="mostrarTopico('autorizar')">
+            <li class="menu-item-manual" onclick="mostrarTopico('autorizar-onu', this)">
                 <i class="fa-solid fa-wifi"></i> Autorizar ONU
             </li>
-            <li class="menu-item-manual" onclick="mostrarTopico('ordem-servico')">
-                <i class="fa-solid fa-clipboard-list"></i> Abertura de O.S.
+            <li class="menu-item-manual" onclick="mostrarTopico('desautorizar-onu', this)">
+                <i class="fa-solid fa-ban"></i> Desautorizar ONU
             </li>
-            <li class="menu-item-manual" onclick="mostrarTopico('sms-massa')">
-                <i class="fa-solid fa-comment-sms"></i> Aviso em Massa (SMS)
+            <li class="menu-item-manual" onclick="mostrarTopico('abertura-os', this)">
+                <i class="fa-solid fa-file-signature"></i> Abertura de O.S.
+            </li>
+            <li class="menu-item-manual" onclick="mostrarTopico('envio-sms', this)">
+                <i class="fa-solid fa-comment-sms"></i> Aviso em Massa
             </li>
         </ul>
-        <div style="padding: 20px;">
-            <a href="index.html" style="color: #aaa; text-decoration: none; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Sair do Manual</a>
+        
+        <div style="padding: 20px; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1);">
+            <a href="index.html" style="color: #aaa; text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i> Voltar ao Portal
+            </a>
         </div>
     </nav>
 
     <main class="content-manual">
         
         <section id="inicio" class="topico-manual active">
-            <h1>Bem-vindo ao Manual de Operações</h1>
-            <p>Este guia serve para consulta rápida durante o atendimento. Selecione um tópico no menu lateral para ver o passo a passo.</p>
+            <h1>Bem-vindo ao Manual de Suporte</h1>
+            <p>Este guia foi criado para auxiliar na utilização do sistema IXC e nos procedimentos padrões do nosso provedor.</p>
             <div class="alert alert-info">
-                <strong>Dica:</strong> Mantenha esta página aberta durante seu turno para tirar dúvidas sobre procedimentos do IXC Soft.
+                <strong>Dica:</strong> Use o menu lateral à esquerda para navegar entre os assuntos.
             </div>
         </section>
 
-        <section id="diagnostico" class="topico-manual">
-            <h1>Diagnóstico de Rede</h1>
-            <p>Como analisar o sinal e a conexão do cliente sem ir ao local.</p>
+        <section id="login-ixc" class="topico-manual">
+            <h1>Acessando o IXC Soft</h1>
+            <p>Para iniciar o atendimento, você deve logar no sistema administrativo.</p>
+            
+            <h3>Passo 1: Tela de Login</h3>
+            <p>Acesse o endereço do sistema e insira suas credenciais.</p>
+            
             <div class="image-container">
-                <img src="images/suporte/diagnostico.png" alt="Tela de Diagnóstico">
-                <span class="legenda">Figura 1: Painel de diagnóstico do IXC</span>
+                <img src="images/suporte/login.png" alt="Tela de Login do IXC"> 
+                <span class="legenda">Figura 1: Tela inicial de login</span>
             </div>
+
+            <h3>Passo 2: Autenticação</h3>
             <ul>
-                <li><strong>Sinal Ideal:</strong> -15dBm a -25dBm.</li>
-                <li><strong>Sinal Crítico:</strong> Abaixo de -27dBm (ex: -30dBm).</li>
-                <li><strong>Status Online:</strong> Verifique o tempo de conexão e se o cliente não desligou o equipamento (Logoff).</li>
+                <li>Usuário: Seu email corporativo ou nome.sobrenome</li>
+                <li>Senha: Padrão fornecida pelo RH (alterar no primeiro acesso).</li>
             </ul>
         </section>
 
-        <section id="acesso-remoto" class="topico-manual">
-            <h1>Acesso Remoto (ONU/Roteador)</h1>
-            <p>Utilize para trocar senha do Wi-Fi ou verificar configurações internas.</p>
-            <ol>
-                <li>No cadastro do cliente, localize o card <strong>Conexão</strong>.</li>
-                <li>Clique no ícone de "Globo" ou "Monitor" no canto superior direito do card.</li>
-                <li>Você será redirecionado para a página de login do equipamento (Huawei, Datacom, etc.).</li>
-            </ol>
-        </section>
+        <section id="consulta-cliente" class="topico-manual">
+            <h1>Consultando um Cliente</h1>
+            <p>Antes de qualquer atendimento, é necessário localizar o cadastro do cliente.</p>
 
-        <section id="autorizar" class="topico-manual">
-            <h1>Provisionamento de ONU</h1>
-            <div class="alert alert-warning">
-                <strong>ATENÇÃO AOS PERFIS:</strong><br>
-                Modo Bridge: VLAN 400 / Perfil 50<br>
-                Modo Router (PPPoE na ONU): VLAN 401 / Perfil 49
+            <div class="image-container">
+                <img src="images/suporte/consulta.png" alt="Barra de busca do IXC">
+                <span class="legenda">Figura 2: Barra de busca superior</span>
             </div>
+
             <ol>
-                <li>Vá em <strong>Provedor > Autorizar ONUs</strong>.</li>
-                <li>Localize o serial informado pelo técnico.</li>
-                <li>Vincule ao <strong>Login</strong> do cliente.</li>
-                <li>Selecione a Caixa FTTH e a Porta correta.</li>
-                <li>Salve e clique em <strong>Autorizar</strong>.</li>
+                <li>No menu superior, clique na lupa ou pressione <strong>F3</strong>.</li>
+                <li>Digite o CPF, Nome ou ID do contrato.</li>
+                <li>Verifique se o status do cliente está como <span class="status-ok">ATIVO</span>.</li>
             </ol>
         </section>
 
-        <section id="ordem-servico" class="topico-manual">
-            <h1>Abertura de O.S.</h1>
-            <p>Se não resolver remotamente, abra o chamado.</p>
-            <ol>
-                <li>Atendimentos > Novo > Assunto: <strong>32 - SUPORTE TÉCNICO</strong>.</li>
-                <li>Salve o atendimento.</li>
-                <li>Vá na aba Ordens de Serviço > Finalizar Wizard.</li>
-                <li>Selecione a tarefa (ex: <strong>58 - SEM CONEXÃO</strong>).</li>
-                <li>Agende para a data combinada.</li>
-                <li>Encaminhe para o setor Técnico.</li>
-            </ol>
+        <section id="diagnostico" class="topico-manual">
+            <h1>Diagnóstico de Rede Detalhado</h1>
+            <p>Esta ferramenta é essencial para entender a saúde da conexão do cliente sem precisar acessar a OLT diretamente.</p>
+
+            <div class="alert alert-info">
+                <i class="fa-solid fa-info-circle"></i> <strong>Resumo do Painel:</strong><br>
+                Na tela de diagnóstico, terá informações desde as informações da ONU, taxa de sinal do cliente, discagem de login, consumo em tempo real, desconexão por parte do cliente ou problemas na conexão.
+            </div>
+            
+            <h3>Passo 1: Acessar a Ferramenta</h3>
+            <p>Dentro do cadastro do cliente (Dashboard), localize a barra de ferramentas azul logo acima das informações de conexão.</p>
+            <p>No canto direito, clique no ícone de <b>Diagnóstico</b> (parece uma maleta/monitor com ferramentas).</p>
+
+            <div class="image-container">
+                <img src="images/suporte/diagnostico.png" alt="Tela de Diagnóstico Completa">
+                <span class="legenda">Figura 3: Painel completo de diagnóstico</span>
+            </div>
+
+            <h3>Passo 2: Leitura dos Dados (Sinal)</h3>
+            <div class="alert alert-warning">
+                <strong>Parâmetros de Sinal (dBm):</strong>
+                <ul>
+                    <li>🟢 <strong>Ideal:</strong> -15dBm a -25dBm.</li>
+                    <li>🟡 <strong>Alerta:</strong> -26dBm a -27dBm.</li>
+                    <li>🔴 <strong>Crítico:</strong> Abaixo de -27dBm (Ex: -30, -32). Requer visita técnica.</li>
+                </ul>
+            </div>
         </section>
 
-        <section id="sms-massa" class="topico-manual">
-            <h1>Envio de SMS em Massa</h1>
-            <p>Para avisos de rompimento ou manutenção.</p>
+        <section id="acesso-remoto" class="topico-manual">
+            <h1>Acesso Remoto (ONU)</h1>
+            <p>Utilize para trocar senha do Wi-Fi ou verificar configurações internas sem ir ao local.</p>
+
+            <div class="alert alert-danger">
+                <strong>Atenção:</strong> Ao clicar nestes atalhos, você será redirecionado para a página do fabricante (Huawei, Datacom, etc). Não altere configurações de WAN.
+            </div>
+
+            <h3>Como Acessar</h3>
+            <p>No painel principal (Dashboard), localize o quadro verde/azul de <b>Conexão</b>.</p>
             <ol>
-                <li>Relatórios Provedor > Conexões > Status Logins.</li>
-                <li>Filtre pelo <strong>Transmissor</strong> (POP/OLT) afetado.</li>
-                <li>Aba CRM > Selecione a Mensagem Padrão.</li>
-                <li>Botão CRM > Enviar SMS.</li>
+                <li>Clique no ícone de menu (três listras) ou no ícone de "Globo" no canto do card.</li>
+                <li>O sistema abrirá uma nova aba com o IP da ONU.</li>
             </ol>
+
+            <div class="image-container">
+                <img src="images/suporte/acesso-remoto.png" alt="Card de conexão">
+                <span class="legenda">Figura 4: Opções dentro do card de conexão</span>
+            </div>
+        </section>
+
+        <section id="autorizar-onu" class="topico-manual">
+            <h1>Autorização de ONU (Provisionamento)</h1>
+            <p>Realizado quando o técnico instala um novo equipamento.</p>
+            
+            <div class="alert alert-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i> <strong>Regra de Ouro (VLAN e Perfil):</strong><br>
+                <ul>
+                    <li><strong>Modo Bridge (Roteador a parte):</strong> Use Perfil <b>50</b> e VLAN <b>400</b>.</li>
+                    <li><strong>Modo Router (ONU faz tudo):</strong> Use Perfil <b>49</b> e VLAN <b>401</b>.</li>
+                </ul>
+            </div>
+
+            <ol>
+                <li>Vá no menu <b>Provedor > Autorizar ONUs</b>.</li>
+                <li>Localize o serial (MAC) informado pelo técnico.</li>
+                <li>Vincule ao <b>Login</b> do cliente.</li>
+                <li>Selecione a <b>Caixa FTTH</b> e a <b>Porta</b>.</li>
+                <li>Clique em <b>Salvar</b> e depois <b>Autorizar</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/suporte/autorizar.png" alt="Tela de configuração da ONU">
+                <span class="legenda">Figura 5: Preenchimento dos dados técnicos</span>
+            </div>
+        </section>
+
+        <section id="desautorizar-onu" class="topico-manual">
+            <h1>Desautorizar e Remover ONU</h1>
+            <p>Processo para cancelamento ou troca de equipamento queimado.</p>
+
+            <ol>
+                <li>Vá em <b>Provedor > Clientes Fibra (ONU)</b>.</li>
+                <li>Busque pelo Login do cliente.</li>
+                <li>Abra o cadastro da ONU (Duplo clique ou Editar).</li>
+                <li>Clique no botão <b>Desautorizar ONU</b> (Aguarde o comando).</li>
+                <li>Após desautorizar, clique em <b>Deletar</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/suporte/desautorizar.png" alt="Botões de ação">
+                <span class="legenda">Figura 6: Removendo o equipamento do sistema</span>
+            </div>
+        </section>
+
+        <section id="abertura-os" class="topico-manual">
+            <h1>Abertura de Ordem de Serviço</h1>
+            <p>Fluxo para agendar visita técnica quando o suporte remoto não resolve.</p>
+
+            <h3>1. Criar Atendimento</h3>
+            <ul>
+                <li>Aba Atendimentos > Novo.</li>
+                <li>Assunto: <b>32 - SUPORTE TÉCNICO</b>.</li>
+                <li>Descreva todos os testes realizados.</li>
+            </ul>
+
+            <h3>2. Gerar O.S.</h3>
+            <ol>
+                <li>Na aba Ordens de Serviço, clique em <b>Finalizar Wizard</b>.</li>
+                <li>Selecione a tarefa correta (Ex: <b>58 - SEM CONEXÃO FIBRA</b>).</li>
+                <li>Agende data e horário.</li>
+                <li>Encaminhe para o setor TÉCNICO.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/suporte/os.png" alt="Tela de OS">
+                <span class="legenda">Figura 7: Assistente de abertura de OS</span>
+            </div>
+        </section>
+
+        <section id="envio-sms" class="topico-manual">
+            <h1>Aviso em Massa (SMS)</h1>
+            <p>Para comunicar rompimentos ou manutenções em uma região.</p>
+
+            <div class="alert alert-danger">
+                <strong>Cuidado:</strong> Sempre filtre pelo Transmissor (OLT/POP) para não enviar mensagem para a cidade toda.
+            </div>
+
+            <ol>
+                <li>Vá em <b>Relatórios Provedor > Conexões > Status Logins</b>.</li>
+                <li>Filtre pelo <b>Transmissor</b> afetado.</li>
+                <li>Filtre <b>Status Contrato: Ativo</b>.</li>
+                <li>Vá na aba <b>CRM</b> > Selecione a mensagem padrão.</li>
+                <li>Clique no botão <b>CRM</b> (topo) > <b>Enviar SMS</b>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/suporte/sms.png" alt="Envio de SMS">
+                <span class="legenda">Figura 8: Tela de envio massivo</span>
+            </div>
         </section>
 
     </main>
 
     <script>
-        function mostrarTopico(id) {
-            // Esconde todos
-            document.querySelectorAll('.topico-manual').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.menu-item-manual').forEach(el => el.classList.remove('active'));
-            
-            // Mostra o selecionado
-            document.getElementById(id).classList.add('active');
-            
-            // Marca o menu como ativo
-            // (Note: event é global em manipuladores onclick inline simples)
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
+        // Script Simples e Exclusivo para o Manual
+        function mostrarTopico(idTopico, elementoMenu) {
+            // 1. Esconde todos os tópicos
+            document.querySelectorAll('.topico-manual').forEach(div => {
+                div.classList.remove('active');
+            });
+
+            // 2. Remove a marcação de "ativo" de todos os botões do menu
+            document.querySelectorAll('.menu-item-manual').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 3. Mostra o tópico que foi clicado
+            const topicoSelecionado = document.getElementById(idTopico);
+            if (topicoSelecionado) {
+                topicoSelecionado.classList.add('active');
+            }
+
+            // 4. Marca o botão clicado como ativo
+            if (elementoMenu) {
+                elementoMenu.classList.add('active');
             }
         }
     </script>

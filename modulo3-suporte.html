@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Procedimentos Técnicos - Ti.Net</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo"></div>
+            <nav class="sidebar-nav">
+                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2-suporte.html" class="nav-item">Módulo 2: Sistema IXC</a>
+                <a href="modulo3-suporte.html" class="nav-item active">Módulo 3: Procedimentos Técnicos</a>
+                <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header><h1>Integração: Suporte Técnico N1</h1></header>
+            <main>
+                <section>
+                    <h2>3.1 Provisionamento de ONUs</h2>
+                    <p>O suporte é responsável por autorizar o equipamento instalado pelo técnico.</p>
+                    <div class="atendimento-padrao">
+                        <h3>Regras de Configuração (VLAN/Perfil)</h3>
+                        <p>Configurar errado = Cliente sem internet.</p>
+                        <ul>
+                            <li><strong>Modo ROUTER (PPPoE na ONU):</strong><br>Use VLAN <strong>401</strong> e Perfil <strong>49</strong>. É o padrão para clientes residenciais comuns.</li>
+                            <li><strong>Modo BRIDGE (Roteador externo):</strong><br>Use VLAN <strong>400</strong> e Perfil <strong>50</strong>. Usado para clientes empresariais ou gamers com roteadores potentes.</li>
+                        </ul>
+                    </div>
+                </section>
+                <div class="navigation-buttons">
+                    <a href="modulo2-suporte.html" class="btn-prev">&larr; Voltar</a>
+                    <a href="modulo4-suporte.html" class="btn-next">Avançar &rarr;</a>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

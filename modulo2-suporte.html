@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Sistema IXC - Ti.Net</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><img src="images/logo.png" alt="Logo Ti.Net" class="sidebar-logo"></div>
+            <nav class="sidebar-nav">
+                <a href="modulo1-suporte.html" class="nav-item">Módulo 1: Fundamentos</a>
+                <a href="modulo2-suporte.html" class="nav-item active">Módulo 2: Sistema IXC</a>
+                <a href="modulo3-suporte.html" class="nav-item">Módulo 3: Procedimentos Técnicos</a>
+                <a href="modulo4-suporte.html" class="nav-item">Módulo 4: Gestão de O.S.</a>
+                <a href="avaliacao.html" class="nav-item">🏆 Avaliação Final</a>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header><h1>Integração: Suporte Técnico N1</h1></header>
+            <main>
+                <section>
+                    <h2>2.1 Diagnóstico de Rede no IXC</h2>
+                    <p>Aprenda a interpretar os sinais vitais da conexão.</p>
+                    <div class="app-guide">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">Níveis de Sinal (RX Power)</button>
+                                <div class="accordion-content">
+                                    <p>O sinal é medido em dBm (decibéis miliwatt). Quanto mais negativo (longe do zero), mais fraco.</p>
+                                    <ul>
+                                        <li><strong>-15 a -25 dBm:</strong> Sinal Excelente. Cliente navega bem.</li>
+                                        <li><strong>-26 a -27 dBm:</strong> Alerta. Funciona, mas pode oscilar.</li>
+                                        <li><strong>-28 dBm ou menos (ex: -32):</strong> Crítico. Atenuação alta. Requer visita técnica para reparo.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">RadAcct (Histórico de Conexão)</button>
+                                <div class="accordion-content">
+                                    <p>Use a aba <strong>RadAcct</strong> para ver o histórico. Se houver muitas desconexões curtas, pode ser rompimento parcial ou energia oscilando no cliente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="navigation-buttons">
+                    <a href="modulo1-suporte.html" class="btn-prev">&larr; Voltar</a>
+                    <a href="modulo3-suporte.html" class="btn-next">Avançar &rarr;</a>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
